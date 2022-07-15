@@ -2,5 +2,7 @@
 **/.ipynb_checkpoints/
 
 # Ignore large files that cannot be loaded to GitHub
-./data/Lower_Layer_Super_Output_Areas_December_2011_Full_Clipped__Boundaries_in_England_and_Wales.zip
-./data/demographic/2011_Census_Data.xls
+data/Lower_Layer_Super_Output_Areas_December_2011_Full_Clipped__Boundaries_in_England_and_Wales.zip
+data/demographic/2011_Census_Data.xls
+data/test.txt
+
