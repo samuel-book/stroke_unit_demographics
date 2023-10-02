@@ -13,6 +13,7 @@ dependencies:
   - pip:
     - geopandas
     - contextily
+    - libpysal
     - mapclassify
     - pycodestyle
     - pycodestyle_magic
