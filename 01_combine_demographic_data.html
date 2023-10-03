@@ -1,0 +1,3464 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Collate demographic data for each LSOA &#8212; stroke_unit_demographics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_combine_demographic_data';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Ambulance Trusts" href="01b_ambulance_trusts.html" />
+    <link rel="prev" title="Stroke unit demographics" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">stroke_unit_demographics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Stroke unit demographics
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Collate demographic data for each LSOA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01b_ambulance_trusts.html">Ambulance Trusts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_create_shapefiles.html">Create shapefiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_create_maps.html">Create maps</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F01_combine_demographic_data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/01_combine_demographic_data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Collate demographic data for each LSOA</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries-and-set-file-paths">Import libraries and set file paths</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hospital-information">Hospital information</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-admissions-units-and-travel-times">Import admissions, units and travel times</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#admissions">Admissions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#units">Units</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lsoa-to-hospital-travel-times">LSOA to hospital travel times</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inter-hospital-travel-times">Inter-hospital travel times</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-postcodes-of-units-providing-ivt-or-mt">Get postcodes of units providing IVT or MT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#travel-time-to-nearest-thrombolysis-unit">Travel time to nearest thrombolysis unit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#travel-time-to-nearest-thrombectomy-unit-from-home-ignoring-transfers">Travel time to nearest thrombectomy unit from home (ignoring transfers)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#travel-time-from-closest-ivt-unit-to-its-closest-mt-unit-considers-transfers">Travel time from closest IVT unit to its closest MT unit (considers transfers)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thrombolysis-rate-of-closest-ivt-unit">Thrombolysis rate of closest IVT unit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demographic-information">Demographic information</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-of-multiple-deprivation-imd">Index of multiple deprivation (IMD)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deprivation">Deprivation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ethnicity-and-health">Ethnicity and health</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rural-v-s-urban">Rural v.s. urban</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#age">Age</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-output">Save output</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="collate-demographic-data-for-each-lsoa">
+<h1>Collate demographic data for each LSOA<a class="headerlink" href="#collate-demographic-data-for-each-lsoa" title="Permalink to this heading">#</a></h1>
+<p>This notebook collates various data sources and saves as <code class="docutils literal notranslate"><span class="pre">collated_data.csv</span></code> in data folder. For each LSOA, it finds:</p>
+<ul class="simple">
+<li><p><strong>Hospital information</strong> - yearly stroke admissions, travel time to and thrombolysis rate of nearest IVT, and travel time to nearest IVT (considering transfers or not)</p></li>
+<li><p><strong>Demographic information</strong> - IMD, IoD Income/IDACI/IDAOIP, ethnicity, health, rural/urban, age</p></li>
+</ul>
+<p>For source of demographic data, see <code class="docutils literal notranslate"><span class="pre">data/demographic/demographic_soucres.md</span></code></p>
+<section id="import-libraries-and-set-file-paths">
+<h2>Import libraries and set file paths<a class="headerlink" href="#import-libraries-and-set-file-paths" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import required libraries</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define file paths</span>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Paths</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Singleton object for storing paths to data and database.&#39;&#39;&#39;</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;./data&#39;</span>
+
+    <span class="n">hospitals</span> <span class="o">=</span> <span class="s1">&#39;hospitals&#39;</span>
+    <span class="n">travel_matrix_zip</span> <span class="o">=</span> <span class="s1">&#39;lsoa_travel_time_matrix_calibrated.zip&#39;</span>
+    <span class="n">travel_matrix_csv</span> <span class="o">=</span> <span class="s1">&#39;lsoa_travel_time_matrix_calibrated.csv&#39;</span>
+    <span class="n">admissions</span> <span class="o">=</span> <span class="s1">&#39;admissions_2017-2019.csv&#39;</span>
+    <span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;stroke_hospitals_2022.csv&#39;</span>
+    <span class="n">inter_hospital</span> <span class="o">=</span> <span class="s1">&#39;inter_hospital_time_calibrated.csv&#39;</span>
+
+    <span class="n">demographic</span> <span class="o">=</span> <span class="s1">&#39;demographic&#39;</span>
+    <span class="n">welsh_imd</span> <span class="o">=</span> <span class="s1">&#39;WIMD2019_Scores.csv&#39;</span>
+    <span class="n">english_imd</span> <span class="o">=</span> <span class="s1">&#39;IMD_2019.shp&#39;</span>
+    <span class="n">deprivation</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;File_7a_-_All_IoD2019_Scores__Ranks__Deciles&#39;</span> <span class="o">+</span>
+                   <span class="s1">&#39;_and_Population_Denominators_3.csv&#39;</span><span class="p">)</span>
+    <span class="n">ethnicity</span> <span class="o">=</span> <span class="s1">&#39;ethnicity.csv&#39;</span>
+    <span class="n">health</span> <span class="o">=</span> <span class="s1">&#39;general_health.csv&#39;</span>
+    <span class="n">long_term_health</span> <span class="o">=</span> <span class="s1">&#39;long_term_health_by_general_health.csv&#39;</span>
+    <span class="n">rural_urban</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Rural_Urban_Classification_2011_of_Lower_Layer_Super&#39;</span> <span class="o">+</span>
+                   <span class="s1">&#39;_Output_Areas_in_England_and_Wales.csv&#39;</span><span class="p">)</span>
+    <span class="n">age_all</span> <span class="o">=</span> <span class="s1">&#39;mid_2020_persons.csv&#39;</span>
+    <span class="n">age_female</span> <span class="o">=</span> <span class="s1">&#39;mid_2020_females.csv&#39;</span>
+    <span class="n">age_male</span> <span class="o">=</span> <span class="s1">&#39;mid_2020_males.csv&#39;</span>
+
+    <span class="n">look_ups</span> <span class="o">=</span> <span class="s1">&#39;look_ups&#39;</span>
+    <span class="n">welsh_lsoa</span> <span class="o">=</span> <span class="s1">&#39;wales_lsoa_code_name.csv&#39;</span>
+
+    <span class="n">collated</span> <span class="o">=</span> <span class="s1">&#39;collated_data.csv&#39;</span>
+
+
+<span class="n">paths</span> <span class="o">=</span> <span class="n">Paths</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hospital-information">
+<h2>Hospital information<a class="headerlink" href="#hospital-information" title="Permalink to this heading">#</a></h2>
+<section id="import-admissions-units-and-travel-times">
+<h3>Import admissions, units and travel times<a class="headerlink" href="#import-admissions-units-and-travel-times" title="Permalink to this heading">#</a></h3>
+<section id="admissions">
+<h4>Admissions<a class="headerlink" href="#admissions" title="Permalink to this heading">#</a></h4>
+<p>This is the average yearly admissions for each LSOA from 2017 to 2019.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">hospitals</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">admissions</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;area&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Admissions&#39;</span><span class="p">:</span> <span class="s1">&#39;admissions&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admissions</th>
+    </tr>
+    <tr>
+      <th>area</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Welwyn Hatfield 010F</th>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 012A</th>
+      <td>4.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="units">
+<h4>Units<a class="headerlink" href="#units" title="Permalink to this heading">#</a></h4>
+<p>This has a record of information about every hospital - including whether they provide thrombolysis (IVT) and thrombectomy (MT).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">units</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">hospitals</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">units</span><span class="p">))</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">units</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">units</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(142, 21)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Postcode</th>
+      <th>Hospital_name</th>
+      <th>Use_IVT</th>
+      <th>Use_MT</th>
+      <th>Use_MSU</th>
+      <th>Country</th>
+      <th>Strategic Clinical Network</th>
+      <th>Health Board / Trust</th>
+      <th>Stroke Team</th>
+      <th>SSNAP name</th>
+      <th>...</th>
+      <th>Thrombolysis</th>
+      <th>ivt_rate</th>
+      <th>Easting</th>
+      <th>Northing</th>
+      <th>long</th>
+      <th>lat</th>
+      <th>Neuroscience</th>
+      <th>30 England Thrombectomy Example</th>
+      <th>hospital_city</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>RM70AG</td>
+      <td>RM70AG</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>England</td>
+      <td>London SCN</td>
+      <td>Barking</td>
+      <td>Havering and Redbridge University Hospitals N...</td>
+      <td>Queens Hospital Romford HASU</td>
+      <td>...</td>
+      <td>117.0</td>
+      <td>11.9</td>
+      <td>551118</td>
+      <td>187780</td>
+      <td>0.179031</td>
+      <td>51.568647</td>
+      <td>1</td>
+      <td>0</td>
+      <td>Romford</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>E11BB</td>
+      <td>E11BB</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>England</td>
+      <td>London SCN</td>
+      <td>Barts Health NHS Trust</td>
+      <td>The Royal London Hospital</td>
+      <td>Royal London Hospital HASU</td>
+      <td>...</td>
+      <td>115.0</td>
+      <td>13.4</td>
+      <td>534829</td>
+      <td>181798</td>
+      <td>-0.058133</td>
+      <td>51.519018</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Royal London</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 21 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="lsoa-to-hospital-travel-times">
+<h4>LSOA to hospital travel times<a class="headerlink" href="#lsoa-to-hospital-travel-times" title="Permalink to this heading">#</a></h4>
+<p>This is a matrix with travel times (in minutes) from every LSOA to every hospital.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unzip travel matrix folder and save the csv file to data path</span>
+<span class="n">travel_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">hospitals</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">travel_matrix_zip</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">travel_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+    <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">hospitals</span><span class="p">))</span>
+
+<span class="c1"># Import the csv file produced</span>
+<span class="n">travel_time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">hospitals</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">travel_matrix_csv</span><span class="p">),</span>
+    <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;LSOA&#39;</span><span class="p">)</span>
+
+<span class="c1"># Remove any leading spaces in column titles</span>
+<span class="n">travel_time</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">travel_time</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span>
+
+<span class="n">travel_time</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>B152TH</th>
+      <th>B714HJ</th>
+      <th>B95SS</th>
+      <th>BA13NG</th>
+      <th>BA214AT</th>
+      <th>BB23HH</th>
+      <th>BD96RJ</th>
+      <th>BH77DW</th>
+      <th>BL97TD</th>
+      <th>BN112DH</th>
+      <th>...</th>
+      <th>TN240LZ</th>
+      <th>TQ27AA</th>
+      <th>TR13LQ</th>
+      <th>TS198PE</th>
+      <th>TS43BW</th>
+      <th>WD180HB</th>
+      <th>WF14DG</th>
+      <th>WR51DD</th>
+      <th>WV100QP</th>
+      <th>YO318HE</th>
+    </tr>
+    <tr>
+      <th>LSOA</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Adur 001A</th>
+      <td>173.3</td>
+      <td>179.8</td>
+      <td>171.2</td>
+      <td>161.5</td>
+      <td>152.9</td>
+      <td>274.3</td>
+      <td>261.4</td>
+      <td>100.3</td>
+      <td>262.5</td>
+      <td>18.7</td>
+      <td>...</td>
+      <td>89.6</td>
+      <td>212.0</td>
+      <td>291.5</td>
+      <td>310.8</td>
+      <td>306.5</td>
+      <td>92.8</td>
+      <td>242.1</td>
+      <td>178.7</td>
+      <td>186.2</td>
+      <td>267.9</td>
+    </tr>
+    <tr>
+      <th>Adur 001B</th>
+      <td>173.3</td>
+      <td>179.8</td>
+      <td>172.3</td>
+      <td>161.5</td>
+      <td>152.9</td>
+      <td>274.3</td>
+      <td>261.4</td>
+      <td>99.2</td>
+      <td>263.6</td>
+      <td>18.7</td>
+      <td>...</td>
+      <td>90.6</td>
+      <td>212.0</td>
+      <td>290.4</td>
+      <td>311.9</td>
+      <td>306.5</td>
+      <td>92.8</td>
+      <td>242.1</td>
+      <td>178.7</td>
+      <td>186.2</td>
+      <td>267.9</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 125 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="inter-hospital-travel-times">
+<h4>Inter-hospital travel times<a class="headerlink" href="#inter-hospital-travel-times" title="Permalink to this heading">#</a></h4>
+<p>This is a matrix with travel times (in minutes) from each hospital to every other hospital.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inter_hospital_times</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">hospitals</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">inter_hospital</span><span class="p">),</span>
+    <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;from_postcode&#39;</span><span class="p">)</span>
+
+<span class="c1"># Remove any leading spaces in column titles</span>
+<span class="n">inter_hospital_times</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">inter_hospital_times</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span>
+
+<span class="n">inter_hospital_times</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>B152TH</th>
+      <th>B714HJ</th>
+      <th>B95SS</th>
+      <th>BA13NG</th>
+      <th>BA214AT</th>
+      <th>BB23HH</th>
+      <th>BD96RJ</th>
+      <th>BH77DW</th>
+      <th>BL97TD</th>
+      <th>BN112DH</th>
+      <th>...</th>
+      <th>TN240LZ</th>
+      <th>TQ27AA</th>
+      <th>TR13LQ</th>
+      <th>TS198PE</th>
+      <th>TS43BW</th>
+      <th>WD180HB</th>
+      <th>WF14DG</th>
+      <th>WR51DD</th>
+      <th>WV100QP</th>
+      <th>YO318HE</th>
+    </tr>
+    <tr>
+      <th>from_postcode</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>B152TH</th>
+      <td>0.0</td>
+      <td>18.7</td>
+      <td>18.7</td>
+      <td>107.8</td>
+      <td>155.1</td>
+      <td>117.5</td>
+      <td>135.8</td>
+      <td>173.3</td>
+      <td>106.8</td>
+      <td>176.6</td>
+      <td>...</td>
+      <td>184.1</td>
+      <td>176.6</td>
+      <td>256.0</td>
+      <td>191.6</td>
+      <td>187.3</td>
+      <td>114.3</td>
+      <td>122.9</td>
+      <td>36.9</td>
+      <td>29.4</td>
+      <td>148.6</td>
+    </tr>
+    <tr>
+      <th>B714HJ</th>
+      <td>18.7</td>
+      <td>0.0</td>
+      <td>24.1</td>
+      <td>106.8</td>
+      <td>154.0</td>
+      <td>110.0</td>
+      <td>128.2</td>
+      <td>179.8</td>
+      <td>98.2</td>
+      <td>183.0</td>
+      <td>...</td>
+      <td>184.1</td>
+      <td>176.6</td>
+      <td>255.0</td>
+      <td>188.4</td>
+      <td>184.1</td>
+      <td>111.1</td>
+      <td>119.6</td>
+      <td>35.9</td>
+      <td>21.9</td>
+      <td>145.4</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 125 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="get-postcodes-of-units-providing-ivt-or-mt">
+<h3>Get postcodes of units providing IVT or MT<a class="headerlink" href="#get-postcodes-of-units-providing-ivt-or-mt" title="Permalink to this heading">#</a></h3>
+<p>Get postcodes of unit in use for IVT</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">units</span><span class="p">[</span><span class="s1">&#39;Use_IVT&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="n">ivt_units</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">units</span><span class="p">[</span><span class="n">mask</span><span class="p">][</span><span class="s1">&#39;Postcode&#39;</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ivt_units</span><span class="p">))</span>
+<span class="n">ivt_units</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>113
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;RM70AG&#39;, &#39;E11BB&#39;, &#39;SW66SX&#39;, &#39;SE59RW&#39;, &#39;BR68ND&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Get postcodes of units providing MT.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">units</span><span class="p">[</span><span class="s1">&#39;Use_MT&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="n">mt_units</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">units</span><span class="p">[</span><span class="n">mask</span><span class="p">][</span><span class="s1">&#39;Postcode&#39;</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mt_units</span><span class="p">))</span>
+<span class="n">mt_units</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;RM70AG&#39;, &#39;E11BB&#39;, &#39;SW66SX&#39;, &#39;SE59RW&#39;, &#39;SW170QT&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="travel-time-to-nearest-thrombolysis-unit">
+<h3>Travel time to nearest thrombolysis unit<a class="headerlink" href="#travel-time-to-nearest-thrombolysis-unit" title="Permalink to this heading">#</a></h3>
+<p>Limit to units that use IVT</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">travel_time_ivt</span> <span class="o">=</span> <span class="n">travel_time</span><span class="p">[</span><span class="n">ivt_units</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">travel_time_ivt</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">travel_time_ivt</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(34752, 113)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>RM70AG</th>
+      <th>E11BB</th>
+      <th>SW66SX</th>
+      <th>SE59RW</th>
+      <th>BR68ND</th>
+      <th>HA13UJ</th>
+      <th>SW170QT</th>
+      <th>NW12BU</th>
+      <th>DE223NE</th>
+      <th>NN15BD</th>
+      <th>...</th>
+      <th>LL137TD</th>
+      <th>LL572PW</th>
+      <th>CF144XW</th>
+      <th>CF479DT</th>
+      <th>CF311RQ</th>
+      <th>SY231ER</th>
+      <th>SA148QF</th>
+      <th>SA312AF</th>
+      <th>SA612PZ</th>
+      <th>SA66NL</th>
+    </tr>
+    <tr>
+      <th>LSOA</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Adur 001A</th>
+      <td>85.3</td>
+      <td>87.4</td>
+      <td>76.7</td>
+      <td>74.5</td>
+      <td>67.0</td>
+      <td>87.4</td>
+      <td>69.2</td>
+      <td>86.4</td>
+      <td>191.6</td>
+      <td>131.5</td>
+      <td>...</td>
+      <td>248.5</td>
+      <td>321.6</td>
+      <td>192.7</td>
+      <td>217.4</td>
+      <td>206.6</td>
+      <td>297.9</td>
+      <td>238.9</td>
+      <td>255.0</td>
+      <td>287.2</td>
+      <td>230.3</td>
+    </tr>
+    <tr>
+      <th>Adur 001B</th>
+      <td>85.3</td>
+      <td>87.4</td>
+      <td>76.7</td>
+      <td>74.5</td>
+      <td>67.0</td>
+      <td>87.4</td>
+      <td>69.2</td>
+      <td>86.4</td>
+      <td>191.6</td>
+      <td>131.5</td>
+      <td>...</td>
+      <td>248.5</td>
+      <td>321.6</td>
+      <td>192.7</td>
+      <td>217.4</td>
+      <td>207.7</td>
+      <td>297.9</td>
+      <td>238.9</td>
+      <td>255.0</td>
+      <td>287.2</td>
+      <td>230.3</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 113 columns</p>
+</div></div></div>
+</div>
+<p>Get closest unit and time  for IVT (convert series to dataframes)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">closest_ivt_unit</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">travel_time_ivt</span><span class="o">.</span><span class="n">idxmin</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;closest_ivt_unit&#39;</span><span class="p">])</span>
+<span class="n">closest_ivt_unit_time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">travel_time_ivt</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;closest_ivt_unit_time&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Merge into admissions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">closest_ivt_unit</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">closest_ivt_unit_time</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+    </tr>
+    <tr>
+      <th>area</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Welwyn Hatfield 010F</th>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 012A</th>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="travel-time-to-nearest-thrombectomy-unit-from-home-ignoring-transfers">
+<h3>Travel time to nearest thrombectomy unit from home (ignoring transfers)<a class="headerlink" href="#travel-time-to-nearest-thrombectomy-unit-from-home-ignoring-transfers" title="Permalink to this heading">#</a></h3>
+<p>Limit to units that use MT.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">travel_time_mt</span> <span class="o">=</span> <span class="n">travel_time</span><span class="p">[</span><span class="n">mt_units</span><span class="p">]</span>
+<span class="n">travel_time_mt</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>RM70AG</th>
+      <th>E11BB</th>
+      <th>SW66SX</th>
+      <th>SE59RW</th>
+      <th>SW170QT</th>
+      <th>NW12BU</th>
+      <th>NG72UH</th>
+      <th>CB20QQ</th>
+      <th>B152TH</th>
+      <th>CV22DX</th>
+      <th>...</th>
+      <th>NE14LP</th>
+      <th>HU32JZ</th>
+      <th>LS13EX</th>
+      <th>S102JF</th>
+      <th>BN25BE</th>
+      <th>BS105NB</th>
+      <th>PL68DH</th>
+      <th>OX39DU</th>
+      <th>SO166YD</th>
+      <th>CF144XW</th>
+    </tr>
+    <tr>
+      <th>LSOA</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Adur 001A</th>
+      <td>85.3</td>
+      <td>87.4</td>
+      <td>76.7</td>
+      <td>74.5</td>
+      <td>69.2</td>
+      <td>86.4</td>
+      <td>188.4</td>
+      <td>122.9</td>
+      <td>173.3</td>
+      <td>159.4</td>
+      <td>...</td>
+      <td>332.3</td>
+      <td>267.9</td>
+      <td>251.7</td>
+      <td>223.8</td>
+      <td>17.6</td>
+      <td>162.6</td>
+      <td>237.8</td>
+      <td>112.1</td>
+      <td>76.7</td>
+      <td>192.7</td>
+    </tr>
+    <tr>
+      <th>Adur 001B</th>
+      <td>85.3</td>
+      <td>87.4</td>
+      <td>76.7</td>
+      <td>74.5</td>
+      <td>69.2</td>
+      <td>86.4</td>
+      <td>188.4</td>
+      <td>122.9</td>
+      <td>173.3</td>
+      <td>159.4</td>
+      <td>...</td>
+      <td>333.4</td>
+      <td>267.9</td>
+      <td>251.7</td>
+      <td>224.9</td>
+      <td>18.7</td>
+      <td>162.6</td>
+      <td>237.8</td>
+      <td>112.1</td>
+      <td>76.7</td>
+      <td>192.7</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 24 columns</p>
+</div></div></div>
+</div>
+<p>Get closest unit and time for MT (converting series to dataframes).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">closest_mt_unit</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">travel_time_mt</span><span class="o">.</span><span class="n">idxmin</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;closest_mt_unit&#39;</span><span class="p">])</span>
+<span class="n">closest_mt_unit_time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">travel_time_mt</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;closest_mt_unit_time&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Merge into admissions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">closest_mt_unit</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">closest_mt_unit_time</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_unit_time</th>
+    </tr>
+    <tr>
+      <th>area</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Welwyn Hatfield 010F</th>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 012A</th>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="travel-time-from-closest-ivt-unit-to-its-closest-mt-unit-considers-transfers">
+<h3>Travel time from closest IVT unit to its closest MT unit (considers transfers)<a class="headerlink" href="#travel-time-from-closest-ivt-unit-to-its-closest-mt-unit-considers-transfers" title="Permalink to this heading">#</a></h3>
+<p>Find MT unit that is closest to each IVT unit, and the travel time between them</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter to just rows of IVT units, and columns of MT units</span>
+<span class="n">inter_ivt</span> <span class="o">=</span> <span class="n">inter_hospital_times</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="n">inter_hospital_times</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">ivt_units</span><span class="p">),</span> <span class="n">mt_units</span><span class="p">]</span>
+<span class="n">inter_ivt</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>RM70AG</th>
+      <th>E11BB</th>
+      <th>SW66SX</th>
+      <th>SE59RW</th>
+      <th>SW170QT</th>
+      <th>NW12BU</th>
+      <th>NG72UH</th>
+      <th>CB20QQ</th>
+      <th>B152TH</th>
+      <th>CV22DX</th>
+      <th>...</th>
+      <th>NE14LP</th>
+      <th>HU32JZ</th>
+      <th>LS13EX</th>
+      <th>S102JF</th>
+      <th>BN25BE</th>
+      <th>BS105NB</th>
+      <th>PL68DH</th>
+      <th>OX39DU</th>
+      <th>SO166YD</th>
+      <th>CF144XW</th>
+    </tr>
+    <tr>
+      <th>from_postcode</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>B152TH</th>
+      <td>143.3</td>
+      <td>140.0</td>
+      <td>128.2</td>
+      <td>141.1</td>
+      <td>141.1</td>
+      <td>130.4</td>
+      <td>69.2</td>
+      <td>122.9</td>
+      <td>0.0</td>
+      <td>42.3</td>
+      <td>...</td>
+      <td>213.1</td>
+      <td>147.6</td>
+      <td>131.5</td>
+      <td>104.6</td>
+      <td>178.7</td>
+      <td>92.8</td>
+      <td>203.4</td>
+      <td>81.0</td>
+      <td>149.7</td>
+      <td>116.4</td>
+    </tr>
+    <tr>
+      <th>B714HJ</th>
+      <td>140.0</td>
+      <td>137.9</td>
+      <td>134.7</td>
+      <td>141.1</td>
+      <td>148.6</td>
+      <td>129.3</td>
+      <td>65.9</td>
+      <td>119.6</td>
+      <td>18.7</td>
+      <td>39.1</td>
+      <td>...</td>
+      <td>209.9</td>
+      <td>145.4</td>
+      <td>129.3</td>
+      <td>101.4</td>
+      <td>185.2</td>
+      <td>91.7</td>
+      <td>202.3</td>
+      <td>87.4</td>
+      <td>156.2</td>
+      <td>116.4</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 24 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find nearest MT unit to each IVT unit and the travel times</span>
+<span class="n">ivt_nearest_mt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s1">&#39;closest_mt_transfer&#39;</span><span class="p">:</span> <span class="n">inter_ivt</span><span class="o">.</span><span class="n">idxmin</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+     <span class="s1">&#39;closest_mt_transfer_time&#39;</span><span class="p">:</span> <span class="n">inter_ivt</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)})</span>
+<span class="n">ivt_nearest_mt</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>closest_mt_transfer</th>
+      <th>closest_mt_transfer_time</th>
+    </tr>
+    <tr>
+      <th>from_postcode</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>B152TH</th>
+      <td>B152TH</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>B714HJ</th>
+      <td>B152TH</td>
+      <td>18.7</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Merge into admissions (based on closest IVT unit for each LSOA)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ivt_nearest_mt</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;closest_ivt_unit&#39;</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add column with total time (for travel from LSOA to closest IVT to then the MT closest to that)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;total_mt_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;closest_ivt_unit_time&#39;</span><span class="p">]</span> <span class="o">+</span>
+                         <span class="n">data</span><span class="p">[</span><span class="s1">&#39;closest_mt_transfer_time&#39;</span><span class="p">])</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_unit_time</th>
+      <th>closest_mt_transfer</th>
+      <th>closest_mt_transfer_time</th>
+      <th>total_mt_time</th>
+    </tr>
+    <tr>
+      <th>area</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Welwyn Hatfield 010F</th>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 012A</th>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>58.9</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 002F</th>
+      <td>2.000000</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>38.0</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 002E</th>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 010A</th>
+      <td>3.333333</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="thrombolysis-rate-of-closest-ivt-unit">
+<h3>Thrombolysis rate of closest IVT unit<a class="headerlink" href="#thrombolysis-rate-of-closest-ivt-unit" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get index from data (which is originally index from admissions file)</span>
+<span class="n">lsoa_index</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span>
+<span class="n">lsoa_index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Welwyn Hatfield 010F&#39;, &#39;Welwyn Hatfield 012A&#39;, &#39;Welwyn Hatfield 002F&#39;,
+       &#39;Welwyn Hatfield 002E&#39;, &#39;Welwyn Hatfield 010A&#39;, &#39;Welwyn Hatfield 010B&#39;,
+       &#39;Welwyn Hatfield 012B&#39;, &#39;Welwyn Hatfield 011D&#39;, &#39;Welwyn Hatfield 011A&#39;,
+       &#39;Welwyn Hatfield 012C&#39;,
+       ...
+       &#39;Cardiff 005F&#39;, &#39;Cardiff 049D&#39;, &#39;Cardiff 049E&#39;, &#39;Cardiff 049F&#39;,
+       &#39;Cardiff 005G&#39;, &#39;Cardiff 006F&#39;, &#39;Swansea 025F&#39;, &#39;Swansea 023E&#39;,
+       &#39;Swansea 025G&#39;, &#39;Swansea 025H&#39;],
+      dtype=&#39;object&#39;, name=&#39;area&#39;, length=34752)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get postcode and IVT rate of units that offer IVT</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">units</span><span class="p">[</span><span class="s1">&#39;Use_IVT&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="n">ivt_rate</span> <span class="o">=</span> <span class="n">units</span><span class="p">[</span><span class="n">mask</span><span class="p">][[</span><span class="s1">&#39;Postcode&#39;</span><span class="p">,</span> <span class="s1">&#39;ivt_rate&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Merge into admissions (adding rate for closest IVT unit to each LSOA)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">ivt_rate</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;closest_ivt_unit&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;Postcode&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+<span class="c1"># Drop the postcode column (duplicates closest_IVT_unit)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Postcode&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Replace index (as was lost when merged)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">lsoa_index</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_unit_time</th>
+      <th>closest_mt_transfer</th>
+      <th>closest_mt_transfer_time</th>
+      <th>total_mt_time</th>
+      <th>ivt_rate</th>
+    </tr>
+    <tr>
+      <th>area</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Welwyn Hatfield 010F</th>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+      <td>6.8</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 012A</th>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>58.9</td>
+      <td>6.8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="demographic-information">
+<h2>Demographic information<a class="headerlink" href="#demographic-information" title="Permalink to this heading">#</a></h2>
+<section id="index-of-multiple-deprivation-imd">
+<h3>Index of multiple deprivation (IMD)<a class="headerlink" href="#index-of-multiple-deprivation-imd" title="Permalink to this heading">#</a></h3>
+<p>These are imported seperately:</p>
+<ul class="simple">
+<li><p>English - IMD scores extracted from shapefile</p></li>
+<li><p>Welsh - csv file with IMD scores has uncommon LSOA names, so the common LSOA names are added (as from ‘wales_lsoa_code_name.csv’ which was created from <a class="reference external" href="https://datamap.gov.wales/layers/appdata-ons:lsoa_wales_2011">https://datamap.gov.wales/layers/appdata-ons:lsoa_wales_2011</a>)</p></li>
+</ul>
+<p>They are then joined and added to the main dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import common Welsh LSOA</span>
+<span class="n">wales_lsoa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">look_ups</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">welsh_lsoa</span><span class="p">),</span>
+    <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;LSOA11Code&#39;</span><span class="p">)</span>
+
+<span class="c1"># Import welsh IMD scores</span>
+<span class="n">imd_wales</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">demographic</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">welsh_imd</span><span class="p">),</span>
+    <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;LSOA_Code&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add common LSOA name to the dataframe with Welsh IMD scores</span>
+<span class="n">imd_wales</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">imd_wales</span><span class="p">,</span> <span class="n">wales_lsoa</span><span class="p">,</span>
+                     <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+<span class="c1"># Use common LSOA name as index</span>
+<span class="n">imd_wales</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;lsoa11name&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Set index as LSOA, then just keep the index and IMD column (renamed)</span>
+<span class="n">imd_wales</span> <span class="o">=</span> <span class="n">imd_wales</span><span class="p">[[</span><span class="s1">&#39;WIMD2019_Score&#39;</span><span class="p">]]</span>
+<span class="n">imd_wales</span> <span class="o">=</span> <span class="n">imd_wales</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;WIMD2019_Score&#39;</span><span class="p">:</span> <span class="s1">&#39;imd_2019_score&#39;</span><span class="p">})</span>
+
+<span class="n">imd_wales</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imd_2019_score</th>
+    </tr>
+    <tr>
+      <th>lsoa11name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Isle of Anglesey 007A</th>
+      <td>19.2</td>
+    </tr>
+    <tr>
+      <th>Isle of Anglesey 007B</th>
+      <td>12.2</td>
+    </tr>
+    <tr>
+      <th>Isle of Anglesey 001A</th>
+      <td>26.8</td>
+    </tr>
+    <tr>
+      <th>Isle of Anglesey 001B</th>
+      <td>15.5</td>
+    </tr>
+    <tr>
+      <th>Isle of Anglesey 005A</th>
+      <td>16.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">demographic</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">english_imd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;./data/demographic/IMD_2019.shp&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import dataframe with English LSOA and IMD</span>
+<span class="n">imd_eng</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">demographic</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">english_imd</span><span class="p">),</span>
+    <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:27700&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set index as LSOA, then just keep the index and IMD column (renamed)</span>
+<span class="n">imd_eng</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;lsoa11nm&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">imd_eng</span> <span class="o">=</span> <span class="n">imd_eng</span><span class="p">[[</span><span class="s1">&#39;IMDScore&#39;</span><span class="p">]]</span>
+<span class="n">imd_eng</span> <span class="o">=</span> <span class="n">imd_eng</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;IMDScore&#39;</span><span class="p">:</span> <span class="s1">&#39;imd_2019_score&#39;</span><span class="p">})</span>
+
+<span class="n">imd_eng</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imd_2019_score</th>
+    </tr>
+    <tr>
+      <th>lsoa11nm</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>City of London 001A</th>
+      <td>6.208</td>
+    </tr>
+    <tr>
+      <th>City of London 001B</th>
+      <td>5.143</td>
+    </tr>
+    <tr>
+      <th>City of London 001C</th>
+      <td>19.402</td>
+    </tr>
+    <tr>
+      <th>City of London 001E</th>
+      <td>28.652</td>
+    </tr>
+    <tr>
+      <th>Barking and Dagenham 016A</th>
+      <td>19.837</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create list containing the two dataframes</span>
+<span class="n">gdf_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">imd_eng</span><span class="p">,</span> <span class="n">imd_wales</span><span class="p">]</span>
+
+<span class="c1"># Combine two dataframes and convert into GeoDataFrame</span>
+<span class="n">imd_eng_wales</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">gdf_list</span><span class="p">))</span>
+
+<span class="c1"># Merge on index (which is the LSOA)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">imd_eng_wales</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_unit_time</th>
+      <th>closest_mt_transfer</th>
+      <th>closest_mt_transfer_time</th>
+      <th>total_mt_time</th>
+      <th>ivt_rate</th>
+      <th>imd_2019_score</th>
+    </tr>
+    <tr>
+      <th>area</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Welwyn Hatfield 010F</th>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+      <td>6.8</td>
+      <td>15.616</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 012A</th>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>58.9</td>
+      <td>6.8</td>
+      <td>33.313</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="deprivation">
+<h3>Deprivation<a class="headerlink" href="#deprivation" title="Permalink to this heading">#</a></h3>
+<p>The <a class="reference external" href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/835115/IoD2019_Statistical_Release.pdf">Indices of Deprivation (IoD)</a> is calculated from thirty indicators grouped into seven domains. One such domain is Income.</p>
+<ul class="simple">
+<li><p><strong>Income domain</strong> - proportion of population experiencing deprivation relating to low levels of income</p></li>
+<li><p><strong>Income Deprivation Affecting Children Index (IDACI)</strong> - proportion of children aged 0-15 living in income deprived households - subset of Income Deprivation domain</p></li>
+<li><p><strong>Income Deprivation Affecting Older People Index (IDAOPI)</strong> - proportion of adults aged 60 or older who experience income deprivation - subset of Income Deprivation domain</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import deprivation data</span>
+<span class="n">deprivation</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">demographic</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">deprivation</span><span class="p">),</span>
+    <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;LSOA name (2011)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Drop unwanted columns</span>
+<span class="n">cols_to_drop</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LSOA Code (2011)&#39;</span><span class="p">,</span><span class="s1">&#39;Local Authority District code (2019)&#39;</span><span class="p">]</span>
+<span class="n">deprivation</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">cols_to_drop</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Rename columns</span>
+<span class="n">deprivation</span> <span class="o">=</span> <span class="n">deprivation</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;Local Authority District name (2019)&#39;</span><span class="p">:</span> <span class="s1">&#39;la_district_name_2019&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Income Domain Score&#39;</span><span class="p">:</span> <span class="s1">&#39;income_domain_score&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Income Domain Rank (where 1 is most deprived)&#39;</span><span class="p">:</span> <span class="s1">&#39;income_domain_rank&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;IDACI Score&#39;</span><span class="p">:</span> <span class="s1">&#39;idaci_score&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;IDACI Rank (where 1 is most deprived)&#39;</span><span class="p">:</span> <span class="s1">&#39;idaci_rank&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;IDAOPI Score&#39;</span><span class="p">:</span> <span class="s1">&#39;idaopi_score&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;IDAOPI Rank (where 1 is most deprived)&#39;</span><span class="p">:</span> <span class="s1">&#39;idaopi_rank&#39;</span><span class="p">})</span>
+
+<span class="n">deprivation</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>la_district_name_2019</th>
+      <th>income_domain_score</th>
+      <th>income_domain_rank</th>
+      <th>idaci_score</th>
+      <th>idaci_rank</th>
+      <th>idaopi_score</th>
+      <th>idaopi_rank</th>
+    </tr>
+    <tr>
+      <th>LSOA name (2011)</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>City of London 001A</th>
+      <td>City of London</td>
+      <td>0.007</td>
+      <td>34740</td>
+      <td>0.006</td>
+      <td>34715</td>
+      <td>0.012</td>
+      <td>34729</td>
+    </tr>
+    <tr>
+      <th>City of London 001B</th>
+      <td>City of London</td>
+      <td>0.034</td>
+      <td>31762</td>
+      <td>0.037</td>
+      <td>31529</td>
+      <td>0.030</td>
+      <td>33839</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Merge into data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">deprivation</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+<span class="c1"># Reset index back to LSOA (as lost when merged)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">lsoa_index</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_unit_time</th>
+      <th>closest_mt_transfer</th>
+      <th>closest_mt_transfer_time</th>
+      <th>total_mt_time</th>
+      <th>ivt_rate</th>
+      <th>imd_2019_score</th>
+      <th>la_district_name_2019</th>
+      <th>income_domain_score</th>
+      <th>income_domain_rank</th>
+      <th>idaci_score</th>
+      <th>idaci_rank</th>
+      <th>idaopi_score</th>
+      <th>idaopi_rank</th>
+    </tr>
+    <tr>
+      <th>area</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Welwyn Hatfield 010F</th>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+      <td>6.8</td>
+      <td>15.616</td>
+      <td>Welwyn Hatfield</td>
+      <td>0.104</td>
+      <td>17062</td>
+      <td>0.125</td>
+      <td>17700</td>
+      <td>0.186</td>
+      <td>11760</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 012A</th>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>58.9</td>
+      <td>6.8</td>
+      <td>33.313</td>
+      <td>Welwyn Hatfield</td>
+      <td>0.176</td>
+      <td>9058</td>
+      <td>0.270</td>
+      <td>6329</td>
+      <td>0.269</td>
+      <td>6337</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="ethnicity-and-health">
+<h3>Ethnicity and health<a class="headerlink" href="#ethnicity-and-health" title="Permalink to this heading">#</a></h3>
+<p>This is the number of people in each ethnic or health group in each LSOA.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clean_ethnic_or_health</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">suffix</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Cleans ethnicity or health dataset and adds to main dataframe</span>
+<span class="sd">    Inputs:</span>
+<span class="sd">    - path: string - path to dataset from dataclass of paths</span>
+<span class="sd">    - prefix: string - prefix to remove from column names</span>
+<span class="sd">    - suffix: string - suffix to remove from column names</span>
+<span class="sd">    - data: dataframe - with combined hospital and demographic results</span>
+<span class="sd">    Outputs:</span>
+<span class="sd">    - data: dataframe - with addition of ethnicity or health columns</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># Import data</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">demographic</span><span class="p">,</span> <span class="n">path</span><span class="p">),</span>
+        <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;geography&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Only get columns including the specific prefix and suffix (e.g. all age)</span>
+    <span class="n">cols_to_include</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="k">if</span> <span class="n">prefix</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+    <span class="n">cols_to_include</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">cols_to_include</span> <span class="k">if</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+    <span class="n">extract</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cols_to_include</span><span class="p">]</span>
+
+    <span class="c1"># Remove prefix and suffix</span>
+    <span class="n">col_names</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">removeprefix</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span>
+    <span class="n">col_names</span> <span class="o">=</span> <span class="n">col_names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="n">suffix</span><span class="p">)</span>
+    <span class="c1"># Change everything to lower case</span>
+    <span class="n">col_names</span> <span class="o">=</span> <span class="n">col_names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="c1"># Replace spaces and punctuation</span>
+    <span class="n">col_names</span> <span class="o">=</span> <span class="n">col_names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="n">col_names</span> <span class="o">=</span> <span class="n">col_names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="n">col_names</span> <span class="o">=</span> <span class="n">col_names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="n">col_names</span> <span class="o">=</span> <span class="n">col_names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Rename the columns</span>
+    <span class="n">extract</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">col_names</span>
+
+    <span class="c1"># Merge in with data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">extract</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Reset index to LSOA (as lost on merge)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">lsoa_index</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add ethnicity data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">clean_ethnic_or_health</span><span class="p">(</span>
+    <span class="n">path</span><span class="o">=</span><span class="n">paths</span><span class="o">.</span><span class="n">ethnicity</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;Sex: All persons; Age: All categories: Age; &#39;</span><span class="p">,</span>
+    <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;; measures: Value&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_unit_time</th>
+      <th>closest_mt_transfer</th>
+      <th>closest_mt_transfer_time</th>
+      <th>total_mt_time</th>
+      <th>ivt_rate</th>
+      <th>imd_2019_score</th>
+      <th>...</th>
+      <th>ethnic_group_asian_asian_british_bangladeshi</th>
+      <th>ethnic_group_asian_asian_british_chinese</th>
+      <th>ethnic_group_asian_asian_british_other_asian</th>
+      <th>ethnic_group_black_african_caribbean_black_british_total</th>
+      <th>ethnic_group_black_african_caribbean_black_british_african</th>
+      <th>ethnic_group_black_african_caribbean_black_british_caribbean</th>
+      <th>ethnic_group_black_african_caribbean_black_british_other_black</th>
+      <th>ethnic_group_other_ethnic_group_total</th>
+      <th>ethnic_group_other_ethnic_group_arab</th>
+      <th>ethnic_group_other_ethnic_group_any_other_ethnic_group</th>
+    </tr>
+    <tr>
+      <th>area</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Welwyn Hatfield 010F</th>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+      <td>6.8</td>
+      <td>15.616</td>
+      <td>...</td>
+      <td>14</td>
+      <td>23</td>
+      <td>35</td>
+      <td>105</td>
+      <td>73</td>
+      <td>30</td>
+      <td>2</td>
+      <td>14</td>
+      <td>6</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 012A</th>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>58.9</td>
+      <td>6.8</td>
+      <td>33.313</td>
+      <td>...</td>
+      <td>28</td>
+      <td>37</td>
+      <td>23</td>
+      <td>151</td>
+      <td>127</td>
+      <td>11</td>
+      <td>13</td>
+      <td>25</td>
+      <td>11</td>
+      <td>14</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 41 columns</p>
+</div></div></div>
+</div>
+<p>Health is general health from the 2011 census. Each person in the household was asked to rate their health in general; the possible responses were ‘Very good’, ‘Good’, ‘Fair’, ‘Bad’ and ‘Very bad’. For more information, see <a class="reference external" href="https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandwellbeing/articles/generalhealthinenglandandwales/2013-01-30">ONS report on 2011 general health</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add health data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">clean_ethnic_or_health</span><span class="p">(</span>
+    <span class="n">path</span><span class="o">=</span><span class="n">paths</span><span class="o">.</span><span class="n">health</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;Sex: All persons; Age: All categories: Age; General Health: &#39;</span><span class="p">,</span>
+    <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;; Ethnic Group: All categories: Ethnic group; measures: Value&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_unit_time</th>
+      <th>closest_mt_transfer</th>
+      <th>closest_mt_transfer_time</th>
+      <th>total_mt_time</th>
+      <th>ivt_rate</th>
+      <th>imd_2019_score</th>
+      <th>...</th>
+      <th>ethnic_group_black_african_caribbean_black_british_african</th>
+      <th>ethnic_group_black_african_caribbean_black_british_caribbean</th>
+      <th>ethnic_group_black_african_caribbean_black_british_other_black</th>
+      <th>ethnic_group_other_ethnic_group_total</th>
+      <th>ethnic_group_other_ethnic_group_arab</th>
+      <th>ethnic_group_other_ethnic_group_any_other_ethnic_group</th>
+      <th>all_categories_general_health</th>
+      <th>very_good_or_good_health</th>
+      <th>fair_health</th>
+      <th>bad_or_very_bad_health</th>
+    </tr>
+    <tr>
+      <th>area</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Welwyn Hatfield 010F</th>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+      <td>6.8</td>
+      <td>15.616</td>
+      <td>...</td>
+      <td>73</td>
+      <td>30</td>
+      <td>2</td>
+      <td>14</td>
+      <td>6</td>
+      <td>8</td>
+      <td>1523</td>
+      <td>1284</td>
+      <td>175</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 012A</th>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>58.9</td>
+      <td>6.8</td>
+      <td>33.313</td>
+      <td>...</td>
+      <td>127</td>
+      <td>11</td>
+      <td>13</td>
+      <td>25</td>
+      <td>11</td>
+      <td>14</td>
+      <td>1637</td>
+      <td>1269</td>
+      <td>265</td>
+      <td>103</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 45 columns</p>
+</div></div></div>
+</div>
+<p>Long-term health problem or disability is from the 2011 census. People were asked “Are your day-to-day activities limited because of a health problem or disability which has lasted, or is expected to last, at least 12 months, include problems related to old age”. Respondents could choose not, or “limited a little”, or “limited a lot”. For more information, see this <a class="reference external" href="https://www.surreyi.gov.uk/2011-census/disability-health-and-carers/">surrey report on general health and long-term health</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add long-term health or disability</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">clean_ethnic_or_health</span><span class="p">(</span>
+    <span class="n">path</span><span class="o">=</span><span class="n">paths</span><span class="o">.</span><span class="n">long_term_health</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;Sex: All persons; Age: All categories: Age; Disability: &#39;</span><span class="p">,</span>
+    <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;; General Health: All categories: General health; measures: Value&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_unit_time</th>
+      <th>closest_mt_transfer</th>
+      <th>closest_mt_transfer_time</th>
+      <th>total_mt_time</th>
+      <th>ivt_rate</th>
+      <th>imd_2019_score</th>
+      <th>...</th>
+      <th>ethnic_group_other_ethnic_group_arab</th>
+      <th>ethnic_group_other_ethnic_group_any_other_ethnic_group</th>
+      <th>all_categories_general_health</th>
+      <th>very_good_or_good_health</th>
+      <th>fair_health</th>
+      <th>bad_or_very_bad_health</th>
+      <th>all_categories_long_term_health_problem_or_disability</th>
+      <th>day_to_day_activities_limited_a_lot</th>
+      <th>day_to_day_activities_limited_a_little</th>
+      <th>day_to_day_activities_not_limited</th>
+    </tr>
+    <tr>
+      <th>area</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Welwyn Hatfield 010F</th>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+      <td>6.8</td>
+      <td>15.616</td>
+      <td>...</td>
+      <td>6</td>
+      <td>8</td>
+      <td>1523</td>
+      <td>1284</td>
+      <td>175</td>
+      <td>64</td>
+      <td>1523</td>
+      <td>81</td>
+      <td>113</td>
+      <td>1329</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 012A</th>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>58.9</td>
+      <td>6.8</td>
+      <td>33.313</td>
+      <td>...</td>
+      <td>11</td>
+      <td>14</td>
+      <td>1637</td>
+      <td>1269</td>
+      <td>265</td>
+      <td>103</td>
+      <td>1559</td>
+      <td>118</td>
+      <td>129</td>
+      <td>1312</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 49 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="rural-v-s-urban">
+<h3>Rural v.s. urban<a class="headerlink" href="#rural-v-s-urban" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import rural/urban data</span>
+<span class="n">rural_urban</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">demographic</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">rural_urban</span><span class="p">),</span>
+    <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;LSOA11NM&#39;</span><span class="p">)</span>
+
+<span class="c1"># Drop unwanted columns</span>
+<span class="n">cols_to_drop</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LSOA11CD&#39;</span><span class="p">,</span><span class="s1">&#39;RUC11CD&#39;</span><span class="p">,</span> <span class="s1">&#39;FID&#39;</span><span class="p">]</span>
+<span class="n">rural_urban</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">cols_to_drop</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Rename column</span>
+<span class="n">rural_urban</span> <span class="o">=</span> <span class="n">rural_urban</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;RUC11&#39;</span><span class="p">:</span> <span class="s1">&#39;rural_urban_2011&#39;</span><span class="p">})</span>
+
+<span class="c1"># Merge on LSOA</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">rural_urban</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">lsoa_index</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_unit_time</th>
+      <th>closest_mt_transfer</th>
+      <th>closest_mt_transfer_time</th>
+      <th>total_mt_time</th>
+      <th>ivt_rate</th>
+      <th>imd_2019_score</th>
+      <th>...</th>
+      <th>ethnic_group_other_ethnic_group_any_other_ethnic_group</th>
+      <th>all_categories_general_health</th>
+      <th>very_good_or_good_health</th>
+      <th>fair_health</th>
+      <th>bad_or_very_bad_health</th>
+      <th>all_categories_long_term_health_problem_or_disability</th>
+      <th>day_to_day_activities_limited_a_lot</th>
+      <th>day_to_day_activities_limited_a_little</th>
+      <th>day_to_day_activities_not_limited</th>
+      <th>rural_urban_2011</th>
+    </tr>
+    <tr>
+      <th>area</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Welwyn Hatfield 010F</th>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+      <td>6.8</td>
+      <td>15.616</td>
+      <td>...</td>
+      <td>8</td>
+      <td>1523</td>
+      <td>1284</td>
+      <td>175</td>
+      <td>64</td>
+      <td>1523</td>
+      <td>81</td>
+      <td>113</td>
+      <td>1329</td>
+      <td>Urban city and town</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 012A</th>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>58.9</td>
+      <td>6.8</td>
+      <td>33.313</td>
+      <td>...</td>
+      <td>14</td>
+      <td>1637</td>
+      <td>1269</td>
+      <td>265</td>
+      <td>103</td>
+      <td>1559</td>
+      <td>118</td>
+      <td>129</td>
+      <td>1312</td>
+      <td>Urban city and town</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 50 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="age">
+<h3>Age<a class="headerlink" href="#age" title="Permalink to this heading">#</a></h3>
+<p>When using these age columns, be careful to ensure that you remember how they were created - e.g.</p>
+<ul class="simple">
+<li><p>age_band_75 is count of ages 75 to 79</p></li>
+<li><p>age_band_80 is count of ages 80 to 84</p></li>
+<li><p>age_band_85 is count of ages 85 to 89</p></li>
+<li><p>age_band_90 is count of everyone aged 90 or above</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">age_bands</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">all_col</span><span class="p">,</span> <span class="n">lsoa_index</span><span class="o">=</span><span class="n">lsoa_index</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Finds count of individuals in each age band in each LSOA, using data</span>
+<span class="sd">    provided (which has all persons, all males or all females). Adds these</span>
+<span class="sd">    columns to data.</span>
+<span class="sd">    Input:</span>
+<span class="sd">    - file_path: string - path to age data</span>
+<span class="sd">    - data: dataframe - contains hospital and demographic information by LSOA</span>
+<span class="sd">    - group: string - group of people who the age data is from</span>
+<span class="sd">    - all_col: string - name of column with all ages</span>
+<span class="sd">    - lsoa_index: index to reset to</span>
+<span class="sd">    Output:</span>
+<span class="sd">    - data: dataframe - as before, but with added age counts</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># Import age data, setting index as LSOA</span>
+    <span class="n">ages</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;LSOA Name&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Save total person count to data</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">all_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">ages</span><span class="p">[</span><span class="s1">&#39;All Ages&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Drop &#39;All Ages&#39;</span>
+    <span class="n">ages</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;All Ages&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Change 90+ to 90</span>
+    <span class="n">ages</span> <span class="o">=</span> <span class="n">ages</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;90+&#39;</span><span class="p">:</span> <span class="s1">&#39;90&#39;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Create empty dataframe to store age bands</span>
+    <span class="n">age_bands</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+    <span class="c1"># Loop through numbers in 5s (0, 5, 10, 15... 90)</span>
+    <span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+        <span class="c1"># Create empty list</span>
+        <span class="n">cols_to_get</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># Create lists with ages 0, 1, 2... 89, 90 as strings</span>
+        <span class="n">age_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">91</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">age_list</span><span class="p">:</span>
+            <span class="c1"># Divide by 5 and convert to nearest int (e.g. int(14/5)=2)</span>
+            <span class="c1"># Multiply by 5 to get the band - save if in current band of loop</span>
+            <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">field</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">==</span> <span class="n">band</span><span class="p">:</span>
+                <span class="n">cols_to_get</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+        <span class="c1"># Extract columns with ages in that band (e.g. for 0 - 0, 1, 2, 3, 4)</span>
+        <span class="n">extract</span> <span class="o">=</span> <span class="n">ages</span><span class="p">[</span><span class="n">cols_to_get</span><span class="p">]</span>
+        <span class="c1"># Sum of people in that age band</span>
+        <span class="n">age_bands</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;age_band_</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">band</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Merge age band sums with data on LSOA </span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">age_bands</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">lsoa_index</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For all people, add count in each age band</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">age_bands</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">demographic</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">age_all</span><span class="p">),</span>
+    <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;population_all&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_unit_time</th>
+      <th>closest_mt_transfer</th>
+      <th>closest_mt_transfer_time</th>
+      <th>total_mt_time</th>
+      <th>ivt_rate</th>
+      <th>imd_2019_score</th>
+      <th>...</th>
+      <th>age_band_all_45</th>
+      <th>age_band_all_50</th>
+      <th>age_band_all_55</th>
+      <th>age_band_all_60</th>
+      <th>age_band_all_65</th>
+      <th>age_band_all_70</th>
+      <th>age_band_all_75</th>
+      <th>age_band_all_80</th>
+      <th>age_band_all_85</th>
+      <th>age_band_all_90</th>
+    </tr>
+    <tr>
+      <th>area</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Welwyn Hatfield 010F</th>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+      <td>6.8</td>
+      <td>15.616</td>
+      <td>...</td>
+      <td>88</td>
+      <td>115</td>
+      <td>102</td>
+      <td>74</td>
+      <td>72</td>
+      <td>55</td>
+      <td>44</td>
+      <td>22</td>
+      <td>10</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 012A</th>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>58.9</td>
+      <td>6.8</td>
+      <td>33.313</td>
+      <td>...</td>
+      <td>117</td>
+      <td>122</td>
+      <td>127</td>
+      <td>87</td>
+      <td>47</td>
+      <td>45</td>
+      <td>39</td>
+      <td>29</td>
+      <td>20</td>
+      <td>23</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 70 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For all females, add count in each age band</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">age_bands</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">demographic</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">age_female</span><span class="p">),</span>
+    <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;females&#39;</span><span class="p">,</span> <span class="s1">&#39;population_females&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_unit_time</th>
+      <th>closest_mt_transfer</th>
+      <th>closest_mt_transfer_time</th>
+      <th>total_mt_time</th>
+      <th>ivt_rate</th>
+      <th>imd_2019_score</th>
+      <th>...</th>
+      <th>age_band_females_45</th>
+      <th>age_band_females_50</th>
+      <th>age_band_females_55</th>
+      <th>age_band_females_60</th>
+      <th>age_band_females_65</th>
+      <th>age_band_females_70</th>
+      <th>age_band_females_75</th>
+      <th>age_band_females_80</th>
+      <th>age_band_females_85</th>
+      <th>age_band_females_90</th>
+    </tr>
+    <tr>
+      <th>area</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Welwyn Hatfield 010F</th>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+      <td>6.8</td>
+      <td>15.616</td>
+      <td>...</td>
+      <td>41</td>
+      <td>49</td>
+      <td>43</td>
+      <td>46</td>
+      <td>39</td>
+      <td>27</td>
+      <td>18</td>
+      <td>8</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 012A</th>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>58.9</td>
+      <td>6.8</td>
+      <td>33.313</td>
+      <td>...</td>
+      <td>55</td>
+      <td>62</td>
+      <td>47</td>
+      <td>34</td>
+      <td>23</td>
+      <td>27</td>
+      <td>18</td>
+      <td>17</td>
+      <td>15</td>
+      <td>19</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 90 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For all males, add count in each age band</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">age_bands</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">demographic</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">age_male</span><span class="p">),</span>
+    <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;males&#39;</span><span class="p">,</span> <span class="s1">&#39;population_males&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_unit_time</th>
+      <th>closest_mt_transfer</th>
+      <th>closest_mt_transfer_time</th>
+      <th>total_mt_time</th>
+      <th>ivt_rate</th>
+      <th>imd_2019_score</th>
+      <th>...</th>
+      <th>age_band_males_45</th>
+      <th>age_band_males_50</th>
+      <th>age_band_males_55</th>
+      <th>age_band_males_60</th>
+      <th>age_band_males_65</th>
+      <th>age_band_males_70</th>
+      <th>age_band_males_75</th>
+      <th>age_band_males_80</th>
+      <th>age_band_males_85</th>
+      <th>age_band_males_90</th>
+    </tr>
+    <tr>
+      <th>area</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Welwyn Hatfield 010F</th>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+      <td>6.8</td>
+      <td>15.616</td>
+      <td>...</td>
+      <td>47</td>
+      <td>66</td>
+      <td>59</td>
+      <td>28</td>
+      <td>33</td>
+      <td>28</td>
+      <td>26</td>
+      <td>14</td>
+      <td>5</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>Welwyn Hatfield 012A</th>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>58.9</td>
+      <td>6.8</td>
+      <td>33.313</td>
+      <td>...</td>
+      <td>62</td>
+      <td>60</td>
+      <td>80</td>
+      <td>53</td>
+      <td>24</td>
+      <td>18</td>
+      <td>21</td>
+      <td>12</td>
+      <td>5</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 110 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="save-output">
+<h2>Save output<a class="headerlink" href="#save-output" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">collated</span><span class="p">),</span> <span class="n">index_label</span><span class="o">=</span><span class="s1">&#39;LSOA&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Stroke unit demographics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="01b_ambulance_trusts.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Ambulance Trusts</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries-and-set-file-paths">Import libraries and set file paths</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hospital-information">Hospital information</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-admissions-units-and-travel-times">Import admissions, units and travel times</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#admissions">Admissions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#units">Units</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lsoa-to-hospital-travel-times">LSOA to hospital travel times</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inter-hospital-travel-times">Inter-hospital travel times</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-postcodes-of-units-providing-ivt-or-mt">Get postcodes of units providing IVT or MT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#travel-time-to-nearest-thrombolysis-unit">Travel time to nearest thrombolysis unit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#travel-time-to-nearest-thrombectomy-unit-from-home-ignoring-transfers">Travel time to nearest thrombectomy unit from home (ignoring transfers)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#travel-time-from-closest-ivt-unit-to-its-closest-mt-unit-considers-transfers">Travel time from closest IVT unit to its closest MT unit (considers transfers)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thrombolysis-rate-of-closest-ivt-unit">Thrombolysis rate of closest IVT unit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demographic-information">Demographic information</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-of-multiple-deprivation-imd">Index of multiple deprivation (IMD)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deprivation">Deprivation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ethnicity-and-health">Ethnicity and health</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rural-v-s-urban">Rural v.s. urban</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#age">Age</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-output">Save output</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By SAMueL-2 team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
