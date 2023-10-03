@@ -1,0 +1,1288 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Create maps showing average IMD for each IVT unit catchment &#8212; stroke_unit_demographics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'archive/03_create_maps';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">stroke_unit_demographics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Stroke unit demographics
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_combine_demographic_data.html">Collate demographic data for each LSOA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01b_ambulance_trusts.html">Ambulance Trusts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_create_shapefiles.html">Create shapefiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_create_maps.html">Create maps</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Farchive/03_create_maps.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/archive/03_create_maps.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Create maps showing average IMD for each IVT unit catchment</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="create-maps-showing-average-imd-for-each-ivt-unit-catchment">
+<h1>Create maps showing average IMD for each IVT unit catchment<a class="headerlink" href="#create-maps-showing-average-imd-for-each-ivt-unit-catchment" title="Permalink to this heading">#</a></h1>
+<p>Using the datafile as created from notebook 02_combine_demographic_data.ipynb, create maps of IMD for each IVT unit, showing the weighted population average.</p>
+<p>To help with geopandas use <a class="github reference external" href="https://github.com/MichaelAllen1966/2010_geopandas/blob/main/geopandas_1.ipynb">MichaelAllen1966/2010_geopandas</a></p>
+<p>Import libraries</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="nn">ctx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Read in Index of Multiple Deprivation data (per LSOA)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_lsoa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data/collated_data.csv&#39;</span><span class="p">)</span>
+<span class="c1">#df_lsoa.set_index([&#39;LSOA&#39;], inplace=True)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df_lsoa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data/collated_data.csv&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/pandas/io/parsers/readers.py:912,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">    </span><span class="mi">899</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">900</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">901</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">908</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">909</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">910</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">912</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/pandas/io/parsers/readers.py:577,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">574</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">576</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">577</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">579</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">580</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1407,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1404</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1406</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1407</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1661,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1659</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1660</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1661</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1662</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1663</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1664</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1665</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1666</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1667</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1668</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1669</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1670</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1671</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1672</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/pandas/io/common.py:859,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">854</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">855</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">856</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">857</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">858</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">859</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">863</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">864</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">865</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">866</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">867</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;./data/collated_data.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Look at first few rows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LSOA</th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_time</th>
+      <th>mt_transfer_time</th>
+      <th>ivt_rate</th>
+      <th>Local Authority District name (2019)</th>
+      <th>Income Domain Score</th>
+      <th>...</th>
+      <th>age band males 50</th>
+      <th>age band males 55</th>
+      <th>age band males 60</th>
+      <th>age band males 65</th>
+      <th>age band males 70</th>
+      <th>age band males 75</th>
+      <th>age band males 80</th>
+      <th>age band males 85</th>
+      <th>age band males 90</th>
+      <th>age band males 95</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Welwyn Hatfield 010F</td>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>19.2</td>
+      <td>NW12BU</td>
+      <td>37.5</td>
+      <td>47.2</td>
+      <td>6.8</td>
+      <td>Welwyn Hatfield</td>
+      <td>0.104</td>
+      <td>...</td>
+      <td>53.0</td>
+      <td>62.0</td>
+      <td>37.0</td>
+      <td>32.0</td>
+      <td>27.0</td>
+      <td>30.0</td>
+      <td>15.0</td>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Welwyn Hatfield 012A</td>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>20.3</td>
+      <td>NW12BU</td>
+      <td>37.5</td>
+      <td>47.2</td>
+      <td>6.8</td>
+      <td>Welwyn Hatfield</td>
+      <td>0.176</td>
+      <td>...</td>
+      <td>58.0</td>
+      <td>63.0</td>
+      <td>43.0</td>
+      <td>36.0</td>
+      <td>25.0</td>
+      <td>14.0</td>
+      <td>15.0</td>
+      <td>9.0</td>
+      <td>7.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Welwyn Hatfield 002F</td>
+      <td>2.000000</td>
+      <td>SG14AB</td>
+      <td>19.2</td>
+      <td>NW12BU</td>
+      <td>38.6</td>
+      <td>47.2</td>
+      <td>6.8</td>
+      <td>Welwyn Hatfield</td>
+      <td>0.037</td>
+      <td>...</td>
+      <td>43.0</td>
+      <td>50.0</td>
+      <td>51.0</td>
+      <td>21.0</td>
+      <td>31.0</td>
+      <td>8.0</td>
+      <td>5.0</td>
+      <td>8.0</td>
+      <td>5.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Welwyn Hatfield 002E</td>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>19.2</td>
+      <td>NW12BU</td>
+      <td>37.5</td>
+      <td>47.2</td>
+      <td>6.8</td>
+      <td>Welwyn Hatfield</td>
+      <td>0.066</td>
+      <td>...</td>
+      <td>42.0</td>
+      <td>63.0</td>
+      <td>33.0</td>
+      <td>20.0</td>
+      <td>15.0</td>
+      <td>18.0</td>
+      <td>18.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Welwyn Hatfield 010A</td>
+      <td>3.333333</td>
+      <td>SG14AB</td>
+      <td>19.2</td>
+      <td>NW12BU</td>
+      <td>37.5</td>
+      <td>47.2</td>
+      <td>6.8</td>
+      <td>Welwyn Hatfield</td>
+      <td>0.113</td>
+      <td>...</td>
+      <td>56.0</td>
+      <td>54.0</td>
+      <td>37.0</td>
+      <td>32.0</td>
+      <td>28.0</td>
+      <td>21.0</td>
+      <td>12.0</td>
+      <td>9.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 139 columns</p>
+</div></div></div>
+</div>
+<p>Group data by “closest_ivt_unit” and calculate the weighted average of IMD (weighted by population).</p>
+<p>NOTE: Couldn’t find IMD in dataset, so for now using “Income Domain Score”, and will check what to use later.</p>
+<p><a class="reference external" href="https://stackoverflow.com/questions/31521027/groupby-weighted-average-and-sum-in-pandas-dataframe">https://stackoverflow.com/questions/31521027/groupby-weighted-average-and-sum-in-pandas-dataframe</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a lambda function to compute the weighted mean:</span>
+<span class="n">wm</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">df_lsoa</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s2">&quot;All persons&quot;</span><span class="p">])</span>
+
+<span class="c1"># Define a dictionary with the functions to apply for a given column:</span>
+<span class="c1"># the following is deprecated since pandas 0.20:</span>
+<span class="c1"># f = {&#39;adjusted_lots&#39;: [&#39;sum&#39;], &#39;price&#39;: {&#39;weighted_mean&#39; : wm} }</span>
+<span class="c1"># df.groupby([&quot;contract&quot;, &quot;month&quot;, &quot;year&quot;, &quot;buys&quot;]).agg(f)</span>
+
+<span class="c1"># Groupby and aggregate with namedAgg [1]:</span>
+<span class="n">ivt_imd</span> <span class="o">=</span> <span class="n">df_lsoa</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;closest_ivt_unit&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+            <span class="n">all_persons</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;All persons&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">),</span>  
+            <span class="n">income_domain_score_weighted_mean</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Income Domain Score&quot;</span><span class="p">,</span> <span class="n">wm</span><span class="p">))</span>
+<span class="n">ivt_imd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>all_persons</th>
+      <th>income_domain_score_weighted_mean</th>
+    </tr>
+    <tr>
+      <th>closest_ivt_unit</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>B152TH</th>
+      <td>946192.0</td>
+      <td>0.182013</td>
+    </tr>
+    <tr>
+      <th>B714HJ</th>
+      <td>950166.0</td>
+      <td>0.200384</td>
+    </tr>
+    <tr>
+      <th>BA13NG</th>
+      <td>481727.0</td>
+      <td>0.084326</td>
+    </tr>
+    <tr>
+      <th>BA214AT</th>
+      <td>284415.0</td>
+      <td>0.094389</td>
+    </tr>
+    <tr>
+      <th>BB23HH</th>
+      <td>491561.0</td>
+      <td>0.177081</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>WD180HB</th>
+      <td>609652.0</td>
+      <td>0.082740</td>
+    </tr>
+    <tr>
+      <th>WF14DG</th>
+      <td>597452.0</td>
+      <td>0.148566</td>
+    </tr>
+    <tr>
+      <th>WR51DD</th>
+      <td>406174.0</td>
+      <td>0.094492</td>
+    </tr>
+    <tr>
+      <th>WV100QP</th>
+      <td>658614.0</td>
+      <td>0.177076</td>
+    </tr>
+    <tr>
+      <th>YO318HE</th>
+      <td>536058.0</td>
+      <td>0.083755</td>
+    </tr>
+  </tbody>
+</table>
+<p>118 rows × 2 columns</p>
+</div></div></div>
+</div>
+<p>Map the data.</p>
+<p>Load LSOA shape file</p>
+<p>The following will load the shape file of the South West of England LSOA (Lower Super Output Areas) into a GeoPandas DataFrame. Note that we can set the crs (Coordinate Reference System) when loading a GeoPandas DataFrame. EPSG:27700 is the crs to use when geography is in BNG (British National Grid Eastings and Northings).</p>
+<p>EPSG:27700 OSGB 1936 / British National Grid – United Kingdom Ordnance Survey. Co-ordinates are in Eastings (X) and Northings (Y).
+EPSG:4326 WGS 84 – WGS84 - World Geodetic System 1984. Co-ordinates are in Longitude (X) and Latitude (Y).
+EPSG:3857 - projection for displaying lat/long as a flat map</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#filename = &#39;zip://./data/Lower_Layer_Super_Output_Areas_December_2011_Full_Clipped__Boundaries_in_England_and_Wales.zip&#39;</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;zip://./data/Lower_layer_super_output_areas_(E+W)_2011_Boundaries_(Generalised_Clipped)_V2.zip&#39;</span>
+<span class="n">gdf_lsoa</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:27700&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LSOA11CD</th>
+      <th>LSOA11NM</th>
+      <th>LSOA11NMW</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>E01000001</td>
+      <td>City of London 001A</td>
+      <td>City of London 001A</td>
+      <td>POLYGON ((532105.092 182011.230, 532162.491 18...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>E01000002</td>
+      <td>City of London 001B</td>
+      <td>City of London 001B</td>
+      <td>POLYGON ((532746.813 181786.891, 532671.688 18...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>E01000003</td>
+      <td>City of London 001C</td>
+      <td>City of London 001C</td>
+      <td>POLYGON ((532135.145 182198.119, 532158.250 18...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>E01000005</td>
+      <td>City of London 001E</td>
+      <td>City of London 001E</td>
+      <td>POLYGON ((533807.946 180767.770, 533649.063 18...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>E01000006</td>
+      <td>Barking and Dagenham 016A</td>
+      <td>Barking and Dagenham 016A</td>
+      <td>POLYGON ((545122.049 184314.931, 545271.917 18...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1204cf6d9cc378948cc134200dd9779917e07ecfb56183c846c14709c9ca944d.png" src="../_images/1204cf6d9cc378948cc134200dd9779917e07ecfb56183c846c14709c9ca944d.png" />
+</div>
+</div>
+<p>Merging areas together
+Now we are going to merge LSOAs that are in the same IVT unit catchment (we can merge on any column in order to combine areas). This will create a new DataFrame. To merge areas we use the dissolve() method.</p>
+<p><a class="reference external" href="https://geopandas.org/aggregation_with_dissolve.html">https://geopandas.org/aggregation_with_dissolve.html</a></p>
+<p>But first need to add a column to the geopandas dataframe. Using LSOA as the common value, bring in the field ‘closest_ivt_unit’</p>
+<p>Match lsoa_gdf[‘LSOA11NMW’] with lsoa_df[‘LSOA’] and add lsoa_df[‘closest_ivt_unit’] to lsoa_gdf[‘closest_ivt_unit’].
+<a class="reference external" href="https://stackoverflow.com/questions/39816671/pandas-populate-new-dataframe-column-based-on-matching-columns-in-another-datafr">https://stackoverflow.com/questions/39816671/pandas-populate-new-dataframe-column-based-on-matching-columns-in-another-datafr</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#gdf_lsoa.join(df_lsoa[&#39;closest_ivt_unit&#39;,&#39;LSOA&#39;].set_index(&#39;LSOA&#39;), on=&#39;LSOA11NMW&#39;)</span>
+<span class="c1">#gdf_lsoa.head()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_lsoa</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;LSOA&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;LSOA11NMW&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">gdf_lsoa</span> <span class="o">=</span> <span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;closest_ivt_unit&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LSOA11NMW</th>
+      <th>LSOA11CD</th>
+      <th>LSOA11NM</th>
+      <th>geometry</th>
+      <th>closest_ivt_unit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>City of London 001A</td>
+      <td>E01000001</td>
+      <td>City of London 001A</td>
+      <td>POLYGON ((532105.092 182011.230, 532162.491 18...</td>
+      <td>E11BB</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>City of London 001B</td>
+      <td>E01000002</td>
+      <td>City of London 001B</td>
+      <td>POLYGON ((532746.813 181786.891, 532671.688 18...</td>
+      <td>E11BB</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>City of London 001C</td>
+      <td>E01000003</td>
+      <td>City of London 001C</td>
+      <td>POLYGON ((532135.145 182198.119, 532158.250 18...</td>
+      <td>E11BB</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>City of London 001E</td>
+      <td>E01000005</td>
+      <td>City of London 001E</td>
+      <td>POLYGON ((533807.946 180767.770, 533649.063 18...</td>
+      <td>E11BB</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Barking and Dagenham 016A</td>
+      <td>E01000006</td>
+      <td>Barking and Dagenham 016A</td>
+      <td>POLYGON ((545122.049 184314.931, 545271.917 18...</td>
+      <td>RM70AG</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ivt_catchment_gdf</span> <span class="o">=</span> <span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;closest_ivt_unit&#39;</span><span class="p">)</span>
+<span class="n">ivt_catchment_gdf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>LSOA11NMW</th>
+      <th>LSOA11CD</th>
+      <th>LSOA11NM</th>
+    </tr>
+    <tr>
+      <th>closest_ivt_unit</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>B152TH</th>
+      <td>MULTIPOLYGON (((416409.188 268044.406, 416406....</td>
+      <td>Birmingham 067A</td>
+      <td>E01008881</td>
+      <td>Birmingham 067A</td>
+    </tr>
+    <tr>
+      <th>B714HJ</th>
+      <td>MULTIPOLYGON (((417821.448 275919.567, 417832....</td>
+      <td>Birmingham 037A</td>
+      <td>E01008899</td>
+      <td>Birmingham 037A</td>
+    </tr>
+    <tr>
+      <th>BA13NG</th>
+      <td>MULTIPOLYGON (((390339.219 149073.312, 390339....</td>
+      <td>Bath and North East Somerset 007A</td>
+      <td>E01014370</td>
+      <td>Bath and North East Somerset 007A</td>
+    </tr>
+    <tr>
+      <th>BA214AT</th>
+      <td>MULTIPOLYGON (((325347.501 91556.700, 325347.4...</td>
+      <td>East Devon 005A</td>
+      <td>E01019886</td>
+      <td>East Devon 005A</td>
+    </tr>
+    <tr>
+      <th>BB23HH</th>
+      <td>MULTIPOLYGON (((378922.528 421439.886, 379017....</td>
+      <td>Bolton 001B</td>
+      <td>E01004803</td>
+      <td>Bolton 001B</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>WD180HB</th>
+      <td>MULTIPOLYGON (((510268.481 190635.984, 510268....</td>
+      <td>Barnet 003A</td>
+      <td>E01000166</td>
+      <td>Barnet 003A</td>
+    </tr>
+    <tr>
+      <th>WF14DG</th>
+      <td>MULTIPOLYGON (((435708.098 405685.733, 435707....</td>
+      <td>Barnsley 018C</td>
+      <td>E01007320</td>
+      <td>Barnsley 018C</td>
+    </tr>
+    <tr>
+      <th>WR51DD</th>
+      <td>MULTIPOLYGON (((390367.310 234024.700, 390550....</td>
+      <td>Herefordshire 005A</td>
+      <td>E01014000</td>
+      <td>Herefordshire 005A</td>
+    </tr>
+    <tr>
+      <th>WV100QP</th>
+      <td>MULTIPOLYGON (((396639.906 294986.807, 396639....</td>
+      <td>Walsall 004A</td>
+      <td>E01010249</td>
+      <td>Walsall 004A</td>
+    </tr>
+    <tr>
+      <th>YO318HE</th>
+      <td>MULTIPOLYGON (((463976.309 430822.814, 463976....</td>
+      <td>Leeds 002A</td>
+      <td>E01011697</td>
+      <td>Leeds 002A</td>
+    </tr>
+  </tbody>
+</table>
+<p>117 rows × 4 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ivt_catchment_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d29885e5a533a0f6b8e8dcd66510c46ad616085b9d82a235b524d9ce577c63f4.png" src="../_images/d29885e5a533a0f6b8e8dcd66510c46ad616085b9d82a235b524d9ce577c63f4.png" />
+</div>
+</div>
+<p>Add data about IMD, joining based on ‘closest_ivt_unit’</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#ivt_catchment_gdf.set_index([&#39;closest_ivt_unit&#39;], inplace=True)</span>
+<span class="n">ivt_catchment_gdf</span> <span class="o">=</span> <span class="n">ivt_catchment_gdf</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ivt_imd</span><span class="p">[</span><span class="s1">&#39;income_domain_score_weighted_mean&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">ivt_catchment_gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>closest_ivt_unit</th>
+      <th>geometry</th>
+      <th>LSOA11NMW</th>
+      <th>LSOA11CD</th>
+      <th>LSOA11NM</th>
+      <th>income_domain_score_weighted_mean</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>B152TH</td>
+      <td>MULTIPOLYGON (((416409.188 268044.406, 416406....</td>
+      <td>Birmingham 067A</td>
+      <td>E01008881</td>
+      <td>Birmingham 067A</td>
+      <td>0.182013</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>B714HJ</td>
+      <td>MULTIPOLYGON (((417821.448 275919.567, 417832....</td>
+      <td>Birmingham 037A</td>
+      <td>E01008899</td>
+      <td>Birmingham 037A</td>
+      <td>0.200384</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>BA13NG</td>
+      <td>MULTIPOLYGON (((390339.219 149073.312, 390339....</td>
+      <td>Bath and North East Somerset 007A</td>
+      <td>E01014370</td>
+      <td>Bath and North East Somerset 007A</td>
+      <td>0.084326</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>BA214AT</td>
+      <td>MULTIPOLYGON (((325347.501 91556.700, 325347.4...</td>
+      <td>East Devon 005A</td>
+      <td>E01019886</td>
+      <td>East Devon 005A</td>
+      <td>0.094389</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>BB23HH</td>
+      <td>MULTIPOLYGON (((378922.528 421439.886, 379017....</td>
+      <td>Bolton 001B</td>
+      <td>E01004803</td>
+      <td>Bolton 001B</td>
+      <td>0.177081</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Mapping data with MatPlotLib</p>
+<p>Using MatPlotLib gives us more power than the GeoPandas DataFrame plot method.</p>
+<p>To do:</p>
+<ol class="arabic simple">
+<li><p>Add hospital location.</p></li>
+<li><p>Check what value to plot. Is ‘Income Domain Score’ the right thing (couldn’t find IMD in the dataset)?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># When using base maps convert data to epsg:3857</span>
+<span class="n">ivt_catchment_gdf</span> <span class="o">=</span> <span class="n">ivt_catchment_gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">col</span> <span class="o">=</span> <span class="s1">&#39;income_domain_score_weighted_mean&#39;</span>
+<span class="n">col_readable</span> <span class="o">=</span> <span class="s1">&#39;Income Domain Score (population weighted mean)&#39;</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="c1"># Make max dimensions 10x10 inch</span>
+<span class="n">ivt_catchment_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="c1"># Set which axes to use for plot (only one here)</span>
+                 <span class="n">column</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="c1"># Column to apply colour</span>
+                 <span class="n">antialiased</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1"># Avoids artifact boundry lines</span>
+                 <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;face&#39;</span><span class="p">,</span> <span class="c1"># Make LSOA boundry same colour as area</span>
+                 <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="c1"># Use linewidth=0 to hide boarder lines</span>
+<span class="c1">#                 vmin=0, # Manual scale min (remove to make automatic)</span>
+<span class="c1">#                 vmax=70, # Manual scale max (remove to make automatic)</span>
+                 <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;inferno_r&#39;</span><span class="p">,</span> <span class="c1"># Colour map to use</span>
+                 <span class="c1"># Adjust size of colourmap key, and add label</span>
+                 <span class="n">legend_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;shrink&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col_readable</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">},</span>
+                 <span class="c1"># Set to display legend</span>
+                 <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="c1"># Set transparancy (to help reveal basemap</span>
+                 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.70</span><span class="p">)</span>
+
+<span class="c1"># Add base map (note that we specifiy thr same CRS as we are using)</span>
+<span class="c1"># Use manual zoom to adjust level of detail of base map</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> 
+                <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">OpenStreetMap</span><span class="o">.</span><span class="n">Mapnik</span><span class="p">,</span><span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span> <span class="c1"># Turn of axis line and numbers</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col_readable</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># Adjust for printing</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">apply_aspect</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;map_</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">.jpg&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span> <span class="c1"># Save figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1f4c904fc072ac00c24717da38cd4d45020332f8b2d558c5269dbdf3476b33fa.png" src="../_images/1f4c904fc072ac00c24717da38cd4d45020332f8b2d558c5269dbdf3476b33fa.png" />
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./archive"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By SAMueL-2 team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
