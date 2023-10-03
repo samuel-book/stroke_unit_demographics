@@ -4,6 +4,7 @@ channels:
   - conda-forge
 dependencies:
   - jupyterlab
+  - jupyter-book
   - matplotlib
   - numpy
   - pip
@@ -13,6 +14,7 @@ dependencies:
   - pip:
     - geopandas
     - contextily
+    - libpysal
     - mapclassify
     - pycodestyle
     - pycodestyle_magic

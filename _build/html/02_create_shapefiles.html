@@ -1,0 +1,1060 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Create shapefiles &#8212; stroke_unit_demographics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02_create_shapefiles';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Create maps" href="03_create_maps.html" />
+    <link rel="prev" title="Ambulance Trusts" href="01b_ambulance_trusts.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">stroke_unit_demographics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Stroke unit demographics
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_combine_demographic_data.html">Collate demographic data for each LSOA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01b_ambulance_trusts.html">Ambulance Trusts</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Create shapefiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_create_maps.html">Create maps</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F02_create_shapefiles.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/02_create_shapefiles.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Create shapefiles</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries-and-set-file-paths">1 Import libraries and set file paths</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">2 Load data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data-with-closest-ivt-and-ambulance-trust-per-lsoa">2.1 Load data with closest IVT and ambulance trust per LSOA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-lsoa-shape-file">2.2 Load LSOA shape file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-lsoas-together-to-create-shapefiles">3 Merge LSOAs together to create shapefiles</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-function-for-creating-shapefiles">3.1 Define function for creating shapefiles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-ivt-catchment-shapefile">3.2 Create IVT catchment shapefile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-ambulance-trust-shapefile">3.3 Create ambulance trust shapefile</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="create-shapefiles">
+<h1>Create shapefiles<a class="headerlink" href="#create-shapefiles" title="Permalink to this heading">#</a></h1>
+<p>Merge LSOAs to create shapefiles for:</p>
+<ul class="simple">
+<li><p>IVT catchment areas</p></li>
+<li><p>Ambulance trusts</p></li>
+</ul>
+<section id="import-libraries-and-set-file-paths">
+<h2>1 Import libraries and set file paths<a class="headerlink" href="#import-libraries-and-set-file-paths" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define file paths</span>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Paths</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Singleton object for storing paths to data and database.&#39;&#39;&#39;</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;./data&#39;</span>
+    <span class="n">collated</span> <span class="o">=</span> <span class="s1">&#39;collated_data_amb.csv&#39;</span>
+
+    <span class="n">shapefiles</span> <span class="o">=</span> <span class="s1">&#39;shapefiles&#39;</span>
+    <span class="n">ivt_catchment</span> <span class="o">=</span> <span class="s1">&#39;ivt_catchment.shp&#39;</span>
+    <span class="n">amb_catchment</span> <span class="o">=</span> <span class="s1">&#39;amb_catchment.shp&#39;</span>
+    <span class="n">lsoa_shp</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Lower_layer_super_output_areas_(E+W)_2011_Boundaries_&#39;</span> <span class="o">+</span>
+                <span class="s1">&#39;(Generalised_Clipped)_V2.zip&#39;</span><span class="p">)</span>
+
+
+<span class="n">paths</span> <span class="o">=</span> <span class="n">Paths</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-data">
+<h2>2 Load data<a class="headerlink" href="#load-data" title="Permalink to this heading">#</a></h2>
+<section id="load-data-with-closest-ivt-and-ambulance-trust-per-lsoa">
+<h3>2.1 Load data with closest IVT and ambulance trust per LSOA<a class="headerlink" href="#load-data-with-closest-ivt-and-ambulance-trust-per-lsoa" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_lsoa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">collated</span><span class="p">))</span>
+<span class="n">df_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LSOA</th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_unit_time</th>
+      <th>closest_mt_transfer</th>
+      <th>closest_mt_transfer_time</th>
+      <th>total_mt_time</th>
+      <th>ivt_rate</th>
+      <th>...</th>
+      <th>age_band_males_65</th>
+      <th>age_band_males_70</th>
+      <th>age_band_males_75</th>
+      <th>age_band_males_80</th>
+      <th>age_band_males_85</th>
+      <th>age_band_males_90</th>
+      <th>ambulance_service</th>
+      <th>local_authority_district_22</th>
+      <th>LAD22NM</th>
+      <th>country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Welwyn Hatfield 010F</td>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+      <td>6.8</td>
+      <td>...</td>
+      <td>33</td>
+      <td>28</td>
+      <td>26</td>
+      <td>14</td>
+      <td>5</td>
+      <td>3</td>
+      <td>East of England</td>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+      <td>England</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Welwyn Hatfield 012A</td>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>58.9</td>
+      <td>6.8</td>
+      <td>...</td>
+      <td>24</td>
+      <td>18</td>
+      <td>21</td>
+      <td>12</td>
+      <td>5</td>
+      <td>4</td>
+      <td>East of England</td>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+      <td>England</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Welwyn Hatfield 002F</td>
+      <td>2.000000</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>38.0</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+      <td>6.8</td>
+      <td>...</td>
+      <td>33</td>
+      <td>28</td>
+      <td>7</td>
+      <td>5</td>
+      <td>9</td>
+      <td>2</td>
+      <td>East of England</td>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+      <td>England</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Welwyn Hatfield 002E</td>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+      <td>6.8</td>
+      <td>...</td>
+      <td>24</td>
+      <td>17</td>
+      <td>15</td>
+      <td>16</td>
+      <td>9</td>
+      <td>1</td>
+      <td>East of England</td>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+      <td>England</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Welwyn Hatfield 010A</td>
+      <td>3.333333</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+      <td>6.8</td>
+      <td>...</td>
+      <td>33</td>
+      <td>28</td>
+      <td>28</td>
+      <td>13</td>
+      <td>10</td>
+      <td>3</td>
+      <td>East of England</td>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+      <td>England</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 115 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="load-lsoa-shape-file">
+<h3>2.2 Load LSOA shape file<a class="headerlink" href="#load-lsoa-shape-file" title="Permalink to this heading">#</a></h3>
+<p>The following will load the shape file of the England and Wales LSOA (Lower Super Output Areas) into a GeoPandas DataFrame. Note that we can set the crs (Coordinate Reference System) when loading a GeoPandas DataFrame. EPSG:27700 is the crs to use when geography is in BNG (British National Grid Eastings and Northings).</p>
+<p>Other crs to consider for other data projections:</p>
+<ul class="simple">
+<li><p>EPSG:27700 OSGB 1936 / British National Grid – United Kingdom Ordnance Survey. Co-ordinates are in Eastings (X) and Northings (Y).</p></li>
+<li><p>EPSG:4326 WGS 84 – WGS84 - World Geodetic System 1984. Co-ordinates are in Longitude (X) and Latitude (Y).</p></li>
+<li><p>EPSG:3857 - projection for displaying lat/long as a flat map</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_lsoa</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">shapefiles</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">lsoa_shp</span><span class="p">),</span>
+    <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:27700&#39;</span><span class="p">)</span>
+<span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LSOA11CD</th>
+      <th>LSOA11NM</th>
+      <th>LSOA11NMW</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>E01000001</td>
+      <td>City of London 001A</td>
+      <td>City of London 001A</td>
+      <td>POLYGON ((532105.092 182011.230, 532162.491 18...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>E01000002</td>
+      <td>City of London 001B</td>
+      <td>City of London 001B</td>
+      <td>POLYGON ((532746.813 181786.891, 532671.688 18...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>E01000003</td>
+      <td>City of London 001C</td>
+      <td>City of London 001C</td>
+      <td>POLYGON ((532135.145 182198.119, 532158.250 18...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>E01000005</td>
+      <td>City of London 001E</td>
+      <td>City of London 001E</td>
+      <td>POLYGON ((533807.946 180767.770, 533649.063 18...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>E01000006</td>
+      <td>Barking and Dagenham 016A</td>
+      <td>Barking and Dagenham 016A</td>
+      <td>POLYGON ((545122.049 184314.931, 545271.917 18...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>View a simple map of this data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9facbf6fca31ac306d2779aee831a447f265fe438d61cfaa2f3a8214486df65e.png" src="_images/9facbf6fca31ac306d2779aee831a447f265fe438d61cfaa2f3a8214486df65e.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="merge-lsoas-together-to-create-shapefiles">
+<h2>3 Merge LSOAs together to create shapefiles<a class="headerlink" href="#merge-lsoas-together-to-create-shapefiles" title="Permalink to this heading">#</a></h2>
+<section id="define-function-for-creating-shapefiles">
+<h3>3.1 Define function for creating shapefiles<a class="headerlink" href="#define-function-for-creating-shapefiles" title="Permalink to this heading">#</a></h3>
+<p>The method used is explained with the example of creating a shapefile of IVT catchment areas:</p>
+<ol class="arabic simple">
+<li><p><strong>Add column to geopandas dataframe</strong> - using LSOA as common value, add field ‘closest_ivt_unit’. Match gdf_lsoa[‘LSOA11NMW’] with df_lsoa[‘LSOA’] and add df_lsoa[‘closest_ivt_unit’] to gdf_lsoa[‘closest_ivt_unit’] - <a class="reference external" href="https://stackoverflow.com/questions/39816671/pandas-populate-new-dataframe-column-based-on-matching-columns-in-another-datafr">see here for stackoverflow explanation</a></p></li>
+<li><p><strong>Ensure no inner lines from original polygons</strong> using buffer(0.0001) - <a class="reference external" href="https://stackoverflow.com/questions/59797292/deleting-inner-lines-of-polygons-after-dissolving-in-geopandas">see here for stackoverflow explanation</a></p></li>
+<li><p><strong>Merge LSOA polygons that are in same IVT unit catchment area</strong> using dissolve() - <a class="reference external" href="https://geopandas.org/en/stable/docs/user_guide/aggregation_with_dissolve.html">see here for geopandas tutorial on aggregation with dissolve</a></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_shapefile</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">gdf</span><span class="o">=</span><span class="n">gdf_lsoa</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">df_lsoa</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Merges LSOAs together based on specified column to create a shapefile</span>
+<span class="sd">    Inputs:</span>
+<span class="sd">    - col - string, column to group LSOAs based on</span>
+<span class="sd">    - file_path - string, file path to save shapefile to</span>
+<span class="sd">    - gdf - geopandas dataframe, created from LSOA shapefile</span>
+<span class="sd">    - df - dataframe, information for each LSOA</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># Add column to geopandas LSOA dataframe</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">[[</span><span class="n">col</span><span class="p">,</span> <span class="s1">&#39;LSOA&#39;</span><span class="p">]],</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;LSOA11NM&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;LSOA&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;LSOA&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Shortern column to first 10 characters (since that&#39;s what it will be</span>
+    <span class="c1"># renamed to for the shapefile) (else get warning message)</span>
+    <span class="n">shp_col</span> <span class="o">=</span> <span class="n">col</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">col</span><span class="p">:</span> <span class="n">shp_col</span><span class="p">})</span>
+
+    <span class="c1"># Ensure no inner lines (from the original polygons)</span>
+    <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">)</span>
+
+    <span class="c1"># Now merge LSOA on specified column</span>
+    <span class="n">gdf_catchment</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">shp_col</span><span class="p">)</span>
+
+    <span class="c1"># Save to shapefile</span>
+    <span class="n">gdf_catchment</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+
+    <span class="c1"># Show save location</span>
+    <span class="n">display</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Saved to </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Display head of dataframe</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">gdf_catchment</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+    <span class="c1"># Plot shapefile</span>
+    <span class="n">gdf_catchment</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-ivt-catchment-shapefile">
+<h3>3.2 Create IVT catchment shapefile<a class="headerlink" href="#create-ivt-catchment-shapefile" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">create_shapefile</span><span class="p">(</span>
+    <span class="s1">&#39;closest_ivt_unit&#39;</span><span class="p">,</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">shapefiles</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">ivt_catchment</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Saved to ./data/shapefiles/ivt_catchment.shp&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>LSOA11CD</th>
+      <th>LSOA11NM</th>
+      <th>LSOA11NMW</th>
+    </tr>
+    <tr>
+      <th>closest_iv</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>B152TH</th>
+      <td>MULTIPOLYGON (((403011.723 266679.152, 402597....</td>
+      <td>E01008881</td>
+      <td>Birmingham 067A</td>
+      <td>Birmingham 067A</td>
+    </tr>
+    <tr>
+      <th>B714HJ</th>
+      <td>MULTIPOLYGON (((395950.714 272162.470, 395950....</td>
+      <td>E01008899</td>
+      <td>Birmingham 037A</td>
+      <td>Birmingham 037A</td>
+    </tr>
+    <tr>
+      <th>BA13NG</th>
+      <td>POLYGON ((354665.594 144552.500, 354665.594 14...</td>
+      <td>E01014370</td>
+      <td>Bath and North East Somerset 007A</td>
+      <td>Bath and North East Somerset 007A</td>
+    </tr>
+    <tr>
+      <th>BA214AT</th>
+      <td>MULTIPOLYGON (((330365.588 98427.209, 330281.9...</td>
+      <td>E01019886</td>
+      <td>East Devon 005A</td>
+      <td>East Devon 005A</td>
+    </tr>
+    <tr>
+      <th>BB23HH</th>
+      <td>POLYGON ((369965.000 416593.000, 370071.000 41...</td>
+      <td>E01004803</td>
+      <td>Bolton 001B</td>
+      <td>Bolton 001B</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><img alt="_images/858ac21a0892c7c1d7cb438ce481258a1e0e4fd4671b5e89c1cb5bec3049c4ac.png" src="_images/858ac21a0892c7c1d7cb438ce481258a1e0e4fd4671b5e89c1cb5bec3049c4ac.png" />
+</div>
+</div>
+</section>
+<section id="create-ambulance-trust-shapefile">
+<h3>3.3 Create ambulance trust shapefile<a class="headerlink" href="#create-ambulance-trust-shapefile" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">create_shapefile</span><span class="p">(</span>
+    <span class="s1">&#39;ambulance_service&#39;</span><span class="p">,</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">shapefiles</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">amb_catchment</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Saved to ./data/shapefiles/amb_catchment.shp&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>LSOA11CD</th>
+      <th>LSOA11NM</th>
+      <th>LSOA11NMW</th>
+    </tr>
+    <tr>
+      <th>ambulance_</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>East Midlands</th>
+      <td>MULTIPOLYGON (((433631.972 296489.554, 433631....</td>
+      <td>E01013128</td>
+      <td>North East Lincolnshire 010A</td>
+      <td>North East Lincolnshire 010A</td>
+    </tr>
+    <tr>
+      <th>East of England</th>
+      <td>MULTIPOLYGON (((503939.688 193345.500, 503939....</td>
+      <td>E01015589</td>
+      <td>Peterborough 004A</td>
+      <td>Peterborough 004A</td>
+    </tr>
+    <tr>
+      <th>Isle of Wight</th>
+      <td>MULTIPOLYGON (((451071.500 75523.100, 451071.5...</td>
+      <td>E01017282</td>
+      <td>Isle of Wight 006A</td>
+      <td>Isle of Wight 006A</td>
+    </tr>
+    <tr>
+      <th>London</th>
+      <td>MULTIPOLYGON (((510971.125 170480.219, 510971....</td>
+      <td>E01000001</td>
+      <td>City of London 001A</td>
+      <td>City of London 001A</td>
+    </tr>
+    <tr>
+      <th>North East</th>
+      <td>MULTIPOLYGON (((418029.261 516224.682, 418029....</td>
+      <td>E01008162</td>
+      <td>Gateshead 027A</td>
+      <td>Gateshead 027A</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><img alt="_images/82e3b5b4a455f1f7a0034ac2c1a295908da2866198b4265766bea4daaf78b8f4.png" src="_images/82e3b5b4a455f1f7a0034ac2c1a295908da2866198b4265766bea4daaf78b8f4.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01b_ambulance_trusts.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Ambulance Trusts</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_create_maps.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Create maps</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries-and-set-file-paths">1 Import libraries and set file paths</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">2 Load data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data-with-closest-ivt-and-ambulance-trust-per-lsoa">2.1 Load data with closest IVT and ambulance trust per LSOA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-lsoa-shape-file">2.2 Load LSOA shape file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-lsoas-together-to-create-shapefiles">3 Merge LSOAs together to create shapefiles</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-function-for-creating-shapefiles">3.1 Define function for creating shapefiles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-ivt-catchment-shapefile">3.2 Create IVT catchment shapefile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-ambulance-trust-shapefile">3.3 Create ambulance trust shapefile</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By SAMueL-2 team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

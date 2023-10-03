@@ -1,0 +1,1873 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Create maps showing proportion of population over 65 years old, for each IVT unit catchment &#8212; stroke_unit_demographics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'archive/06_create_ave_travel_time_maps';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">stroke_unit_demographics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Stroke unit demographics
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_combine_demographic_data.html">Collate demographic data for each LSOA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01b_ambulance_trusts.html">Ambulance Trusts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_create_shapefiles.html">Create shapefiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_create_maps.html">Create maps</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Farchive/06_create_ave_travel_time_maps.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/archive/06_create_ave_travel_time_maps.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Create maps showing proportion of population over 65 years old, for each IVT unit catchment</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#of-over-65-yrs-old-population-what-proportion-of-the-catchment-is-within-30-minutes">Of over 65 yrs old population, what proportion of the catchment is within 30 minutes?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="create-maps-showing-proportion-of-population-over-65-years-old-for-each-ivt-unit-catchment">
+<h1>Create maps showing proportion of population over 65 years old, for each IVT unit catchment<a class="headerlink" href="#create-maps-showing-proportion-of-population-over-65-years-old-for-each-ivt-unit-catchment" title="Permalink to this heading">#</a></h1>
+<p>Using the datafile as created from notebook 02_combine_demographic_data.ipynb, create a map of proportion of population over 65 within each IVT unit catchment.</p>
+<p>To help with geopandas use <a class="github reference external" href="https://github.com/MichaelAllen1966/2010_geopandas/blob/main/geopandas_1.ipynb">MichaelAllen1966/2010_geopandas</a></p>
+<p>Import libraries</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="nn">ctx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">matplotlib.transforms</span> <span class="kn">import</span> <span class="n">Bbox</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">colors</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1.inset_locator</span> <span class="kn">import</span> <span class="n">zoomed_inset_axes</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1.inset_locator</span> <span class="kn">import</span> <span class="n">mark_inset</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Read in Index of Multiple Deprivation data (per LSOA)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_lsoa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;./data/collated_data.csv&#39;</span><span class="p">)</span>
+<span class="c1">#df_lsoa.set_index([&#39;LSOA&#39;], inplace=True)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df_lsoa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;./data/collated_data.csv&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/pandas/io/parsers/readers.py:912,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">    </span><span class="mi">899</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">900</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">901</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">908</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">909</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">910</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">912</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/pandas/io/parsers/readers.py:577,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">574</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">576</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">577</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">579</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">580</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1407,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1404</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1406</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1407</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1661,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1659</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1660</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1661</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1662</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1663</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1664</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1665</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1666</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1667</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1668</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1669</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1670</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1671</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1672</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/pandas/io/common.py:859,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">854</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">855</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">856</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">857</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">858</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">859</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">863</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">864</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">865</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">866</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">867</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;./data/collated_data.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Look at first few rows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LSOA</th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_unit_time</th>
+      <th>mt_transfer_time</th>
+      <th>ivt_rate</th>
+      <th>IMD2019Score</th>
+      <th>Local Authority District name (2019)</th>
+      <th>...</th>
+      <th>age band males 50</th>
+      <th>age band males 55</th>
+      <th>age band males 60</th>
+      <th>age band males 65</th>
+      <th>age band males 70</th>
+      <th>age band males 75</th>
+      <th>age band males 80</th>
+      <th>age band males 85</th>
+      <th>age band males 90</th>
+      <th>age band males 95</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Welwyn Hatfield 010F</td>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>46.6</td>
+      <td>6.8</td>
+      <td>15.616</td>
+      <td>Welwyn Hatfield</td>
+      <td>...</td>
+      <td>53.0</td>
+      <td>62.0</td>
+      <td>37.0</td>
+      <td>32.0</td>
+      <td>27.0</td>
+      <td>30.0</td>
+      <td>15.0</td>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Welwyn Hatfield 012A</td>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>46.6</td>
+      <td>6.8</td>
+      <td>33.313</td>
+      <td>Welwyn Hatfield</td>
+      <td>...</td>
+      <td>58.0</td>
+      <td>63.0</td>
+      <td>43.0</td>
+      <td>36.0</td>
+      <td>25.0</td>
+      <td>14.0</td>
+      <td>15.0</td>
+      <td>9.0</td>
+      <td>7.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Welwyn Hatfield 002F</td>
+      <td>2.000000</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>38.0</td>
+      <td>46.6</td>
+      <td>6.8</td>
+      <td>7.043</td>
+      <td>Welwyn Hatfield</td>
+      <td>...</td>
+      <td>43.0</td>
+      <td>50.0</td>
+      <td>51.0</td>
+      <td>21.0</td>
+      <td>31.0</td>
+      <td>8.0</td>
+      <td>5.0</td>
+      <td>8.0</td>
+      <td>5.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Welwyn Hatfield 002E</td>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>46.6</td>
+      <td>6.8</td>
+      <td>8.249</td>
+      <td>Welwyn Hatfield</td>
+      <td>...</td>
+      <td>42.0</td>
+      <td>63.0</td>
+      <td>33.0</td>
+      <td>20.0</td>
+      <td>15.0</td>
+      <td>18.0</td>
+      <td>18.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Welwyn Hatfield 010A</td>
+      <td>3.333333</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>46.6</td>
+      <td>6.8</td>
+      <td>19.271</td>
+      <td>Welwyn Hatfield</td>
+      <td>...</td>
+      <td>56.0</td>
+      <td>54.0</td>
+      <td>37.0</td>
+      <td>32.0</td>
+      <td>28.0</td>
+      <td>21.0</td>
+      <td>12.0</td>
+      <td>9.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 140 columns</p>
+</div></div></div>
+</div>
+<p>Group data by “closest_ivt_unit” and calculate the weighted average travel time for each IVT catchment area.</p>
+<p><a class="reference external" href="https://stackoverflow.com/questions/31521027/groupby-weighted-average-and-sum-in-pandas-dataframe">https://stackoverflow.com/questions/31521027/groupby-weighted-average-and-sum-in-pandas-dataframe</a></p>
+<p>Calculate new column (over 65 year olds)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age band 65&#39;</span><span class="p">,</span><span class="s1">&#39;age band 70&#39;</span><span class="p">,</span><span class="s1">&#39;age band 75&#39;</span><span class="p">,</span><span class="s1">&#39;age band 80&#39;</span><span class="p">,</span><span class="s1">&#39;age band 85&#39;</span><span class="p">,</span><span class="s1">&#39;age band 90&#39;</span><span class="p">,</span><span class="s1">&#39;age band 95&#39;</span><span class="p">]</span>
+<span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;age band over 65&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_lsoa</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a lambda function to compute the weighted mean:</span>
+<span class="n">wm</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">df_lsoa</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;age band over 65&#39;</span><span class="p">])</span>
+
+<span class="c1"># Define a dictionary with the functions to apply for a given column:</span>
+<span class="c1"># the following is deprecated since pandas 0.20:</span>
+<span class="c1"># f = {&#39;adjusted_lots&#39;: [&#39;sum&#39;], &#39;price&#39;: {&#39;weighted_mean&#39; : wm} }</span>
+<span class="c1"># df.groupby([&quot;contract&quot;, &quot;month&quot;, &quot;year&quot;, &quot;buys&quot;]).agg(f)</span>
+
+<span class="c1"># Groupby and aggregate with namedAgg [1]:</span>
+<span class="n">ivt_catchment_ave_travel_time</span> <span class="o">=</span> <span class="n">df_lsoa</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;closest_ivt_unit&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+            <span class="n">over_65_persons</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;age band over 65&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>  
+            <span class="n">closest_ivt_time_weighted_mean</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;closest_ivt_unit_time&#39;</span><span class="p">,</span> <span class="n">wm</span><span class="p">))</span>
+<span class="n">ivt_catchment_ave_travel_time</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>over_65_persons</th>
+      <th>closest_ivt_time_weighted_mean</th>
+    </tr>
+    <tr>
+      <th>closest_ivt_unit</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>B152TH</th>
+      <td>142569.0</td>
+      <td>19.868507</td>
+    </tr>
+    <tr>
+      <th>B714HJ</th>
+      <td>157627.0</td>
+      <td>19.297952</td>
+    </tr>
+    <tr>
+      <th>BA13NG</th>
+      <td>99255.0</td>
+      <td>25.123174</td>
+    </tr>
+    <tr>
+      <th>BA214AT</th>
+      <td>70339.0</td>
+      <td>24.252608</td>
+    </tr>
+    <tr>
+      <th>BB23HH</th>
+      <td>86189.0</td>
+      <td>20.274601</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>WD180HB</th>
+      <td>101877.0</td>
+      <td>19.751605</td>
+    </tr>
+    <tr>
+      <th>WF14DG</th>
+      <td>107876.0</td>
+      <td>18.823046</td>
+    </tr>
+    <tr>
+      <th>WR51DD</th>
+      <td>94935.0</td>
+      <td>22.095381</td>
+    </tr>
+    <tr>
+      <th>WV100QP</th>
+      <td>121829.0</td>
+      <td>19.144571</td>
+    </tr>
+    <tr>
+      <th>YO318HE</th>
+      <td>115821.0</td>
+      <td>30.166710</td>
+    </tr>
+  </tbody>
+</table>
+<p>113 rows × 2 columns</p>
+</div></div></div>
+</div>
+<p>Map the data.</p>
+<p>Load IVT catchment shape file (created in notebook “03_create_ivt_catchment_shapefile_and_map.ipynb” by dissolving LSOA polygons that are in the same IVT unit catchment).</p>
+<p><a class="reference external" href="https://geopandas.org/aggregation_with_dissolve.html">https://geopandas.org/aggregation_with_dissolve.html</a></p>
+<p>The following will load the shape file of the catchments for the IVT units in England and Wales into a GeoPandas DataFrame. Note that we can set the crs (Coordinate Reference System) when loading a GeoPandas DataFrame. EPSG:27700 is the crs to use when geography is in BNG (British National Grid Eastings and Northings).</p>
+<p>EPSG:27700 OSGB 1936 / British National Grid – United Kingdom Ordnance Survey. Co-ordinates are in Eastings (X) and Northings (Y). EPSG:4326 WGS 84 – WGS84 - World Geodetic System 1984. Co-ordinates are in Longitude (X) and Latitude (Y). EPSG:3857 - projection for displaying lat/long as a flat map</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;data/ivt_catchment.shp&quot;</span>
+<span class="n">exist</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">exist</span><span class="p">:</span>
+    <span class="c1"># Read in</span>
+    <span class="n">gdf_ivt_catchment</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:27700&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Run &quot;03_create_ivt_catchment_shapefile_and_map.ipynb&quot; first&#39;</span><span class="p">)</span>
+<span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>closest_iv</th>
+      <th>LSOA11NM</th>
+      <th>LSOA11CD</th>
+      <th>LSOA11NMW</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>B152TH</td>
+      <td>Birmingham 067A</td>
+      <td>E01008881</td>
+      <td>Birmingham 067A</td>
+      <td>MULTIPOLYGON (((416346.099 267790.717, 416204....</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>B714HJ</td>
+      <td>Birmingham 037A</td>
+      <td>E01008899</td>
+      <td>Birmingham 037A</td>
+      <td>MULTIPOLYGON (((395851.844 272307.409, 395947....</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>BA13NG</td>
+      <td>Bath and North East Somerset 007A</td>
+      <td>E01014370</td>
+      <td>Bath and North East Somerset 007A</td>
+      <td>POLYGON ((391028.906 148190.250, 391138.688 14...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>BA214AT</td>
+      <td>East Devon 005A</td>
+      <td>E01019886</td>
+      <td>East Devon 005A</td>
+      <td>MULTIPOLYGON (((330557.896 98588.730, 330365.5...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>BB23HH</td>
+      <td>Bolton 001B</td>
+      <td>E01004803</td>
+      <td>Bolton 001B</td>
+      <td>POLYGON ((371685.702 414415.737, 371465.678 41...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8e23769d255c65f3300c62d4136f60a903ddefcdbd7e18716d83d914c58651fc.png" src="../_images/8e23769d255c65f3300c62d4136f60a903ddefcdbd7e18716d83d914c58651fc.png" />
+</div>
+</div>
+<p>Add travel time data, joining based on ‘closest_ivt_unit’</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;closest_iv&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gdf_ivt_catchment</span> <span class="o">=</span> <span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ivt_catchment_ave_travel_time</span><span class="p">[</span><span class="s1">&#39;closest_ivt_time_weighted_mean&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>closest_iv</th>
+      <th>LSOA11NM</th>
+      <th>LSOA11CD</th>
+      <th>LSOA11NMW</th>
+      <th>geometry</th>
+      <th>closest_ivt_time_weighted_mean</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>B152TH</td>
+      <td>Birmingham 067A</td>
+      <td>E01008881</td>
+      <td>Birmingham 067A</td>
+      <td>MULTIPOLYGON (((416346.099 267790.717, 416204....</td>
+      <td>19.868507</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>B714HJ</td>
+      <td>Birmingham 037A</td>
+      <td>E01008899</td>
+      <td>Birmingham 037A</td>
+      <td>MULTIPOLYGON (((395851.844 272307.409, 395947....</td>
+      <td>19.297952</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>BA13NG</td>
+      <td>Bath and North East Somerset 007A</td>
+      <td>E01014370</td>
+      <td>Bath and North East Somerset 007A</td>
+      <td>POLYGON ((391028.906 148190.250, 391138.688 14...</td>
+      <td>25.123174</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>BA214AT</td>
+      <td>East Devon 005A</td>
+      <td>E01019886</td>
+      <td>East Devon 005A</td>
+      <td>MULTIPOLYGON (((330557.896 98588.730, 330365.5...</td>
+      <td>24.252608</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>BB23HH</td>
+      <td>Bolton 001B</td>
+      <td>E01004803</td>
+      <td>Bolton 001B</td>
+      <td>POLYGON ((371685.702 414415.737, 371465.678 41...</td>
+      <td>20.274601</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Mapping data with MatPlotLib</p>
+<p>Using MatPlotLib gives us more power than the GeoPandas DataFrame plot method.</p>
+<p>Read in hospital data
+(Stroke Team, SSNAP name, Easting, Northing)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_units</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;./data/stroke_hospitals_2022.csv&#39;</span><span class="p">)</span>
+
+<span class="n">gdf_units</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span>
+        <span class="n">gdf_units</span><span class="o">.</span><span class="n">Easting</span><span class="p">,</span> <span class="n">gdf_units</span><span class="o">.</span><span class="n">Northing</span><span class="p">)</span>
+<span class="n">gdf_units</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">27700</span><span class="p">)</span>
+
+<span class="c1"># limit dataset to the hospitals using thrombolysis</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="p">[</span><span class="s1">&#39;Use_IVT&#39;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;1&quot;</span>
+<span class="n">gdf_units</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+<span class="n">gdf_units</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Postcode</th>
+      <th>Hospital_name</th>
+      <th>Use_IVT</th>
+      <th>Use_MT</th>
+      <th>Country</th>
+      <th>Strategic Clinical Network</th>
+      <th>Health Board / Trust</th>
+      <th>Stroke Team</th>
+      <th>SSNAP name</th>
+      <th>Admissions 21/22</th>
+      <th>Thrombolysis</th>
+      <th>ivt_rate</th>
+      <th>Easting</th>
+      <th>Northing</th>
+      <th>Neuroscience</th>
+      <th>30 England Thrombectomy Example</th>
+      <th>hospital_city</th>
+      <th>Notes</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>RM70AG</td>
+      <td>RM70AG</td>
+      <td>1</td>
+      <td>1</td>
+      <td>England</td>
+      <td>London SCN</td>
+      <td>Barking; Havering and Redbridge University Hos...</td>
+      <td>Queen's Hospital, Romford</td>
+      <td>Queens Hospital Romford HASU</td>
+      <td>981</td>
+      <td>117</td>
+      <td>11.9</td>
+      <td>551118</td>
+      <td>187780</td>
+      <td>1</td>
+      <td>0</td>
+      <td>Romford</td>
+      <td></td>
+      <td>POINT (551118.000 187780.000)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>E11BB</td>
+      <td>E11BB</td>
+      <td>1</td>
+      <td>1</td>
+      <td>England</td>
+      <td>London SCN</td>
+      <td>Barts Health NHS Trust</td>
+      <td>The Royal London Hospital</td>
+      <td>Royal London Hospital HASU</td>
+      <td>861</td>
+      <td>115</td>
+      <td>13.4</td>
+      <td>534829</td>
+      <td>181798</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Royal London</td>
+      <td></td>
+      <td>POINT (534829.000 181798.000)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>SW66SX</td>
+      <td>SW66SX</td>
+      <td>1</td>
+      <td>1</td>
+      <td>England</td>
+      <td>London SCN</td>
+      <td>Imperial College Healthcare NHS Trust</td>
+      <td>Charing Cross Hospital, London</td>
+      <td>Charing Cross Hospital HASU</td>
+      <td>1147</td>
+      <td>113</td>
+      <td>9.9</td>
+      <td>524226</td>
+      <td>176487</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Charing Cross</td>
+      <td></td>
+      <td>POINT (524226.000 176487.000)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>SE59RW</td>
+      <td>SE59RW</td>
+      <td>1</td>
+      <td>1</td>
+      <td>England</td>
+      <td>London SCN</td>
+      <td>King's College Hospital NHS Foundation Trust</td>
+      <td>King's College Hospital, London</td>
+      <td>King's College Hospital HASU</td>
+      <td>824</td>
+      <td>124</td>
+      <td>15</td>
+      <td>532536</td>
+      <td>176228</td>
+      <td>1</td>
+      <td>0</td>
+      <td>Kings College</td>
+      <td></td>
+      <td>POINT (532536.000 176228.000)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>BR68ND</td>
+      <td>BR68ND</td>
+      <td>1</td>
+      <td>0</td>
+      <td>England</td>
+      <td>London SCN</td>
+      <td>King's College Hospital NHS Foundation Trust</td>
+      <td>Princess Royal University Hospital; Orpington</td>
+      <td>Princess Royal University Hospital HASU</td>
+      <td>847</td>
+      <td>113</td>
+      <td>13.3</td>
+      <td>543443</td>
+      <td>165032</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Princess Royal</td>
+      <td></td>
+      <td>POINT (543443.000 165032.000)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># When using base maps convert data to epsg:3857</span>
+<span class="n">gdf_ivt_catchment</span> <span class="o">=</span> <span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span>
+<span class="n">gdf_units</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_nonoverlapping_text_labels</span><span class="p">(</span><span class="n">gdf_units</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">y_step</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    #https://stackoverflow.com/questions/43916834/matplotlib-dynamically-change-text-position</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">text_rectangles</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Better results if the labels are sorted descending in the y axis</span>
+    <span class="n">gdf_units</span><span class="p">[</span><span class="s1">&#39;sort_by&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span>
+    <span class="n">gdf_units</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;sort_by&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">gdf_units</span><span class="p">[</span><span class="s2">&quot;sort_by&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Add labels</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+        <span class="n">gdf_units</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">gdf_units</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">gdf_units</span><span class="p">[</span><span class="n">col</span><span class="p">]):</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> 
+                        <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span> 
+                        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">))</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+            <span class="n">new_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">2</span>
+            <span class="n">text</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="n">new_x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+                    
+            <span class="n">rect</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">get_window_extent</span><span class="p">()</span>
+
+            <span class="k">for</span> <span class="n">other_rect</span> <span class="ow">in</span> <span class="n">text_rectangles</span><span class="p">:</span>
+                <span class="k">while</span> <span class="n">Bbox</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span> <span class="n">other_rect</span><span class="p">):</span>  <span class="c1"># overlapping</span>
+                    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+                    <span class="n">new_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_step</span>
+                    <span class="n">text</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">new_y</span><span class="p">))</span>
+                    <span class="n">rect</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">get_window_extent</span><span class="p">()</span>
+            <span class="n">text_rectangles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eng_wales_bounds</span> <span class="o">=</span> <span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">bounds</span>
+<span class="n">eng_wales_bounds</span> <span class="o">=</span> <span class="n">eng_wales_bounds</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">gdf_ivt_catchment</span><span class="p">[</span><span class="s1">&#39;closest_iv&#39;</span><span class="p">],</span><span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span>
+                      <span class="n">left_on</span> <span class="o">=</span> <span class="n">eng_wales_bounds</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                      <span class="n">right_on</span> <span class="o">=</span> <span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">eng_wales_bounds</span> <span class="o">=</span> <span class="n">eng_wales_bounds</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;closest_iv&#39;</span><span class="p">)</span>
+<span class="n">eng_wales_bounds</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;key_0&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">eng_wales_bounds</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>minx</th>
+      <th>miny</th>
+      <th>maxx</th>
+      <th>maxy</th>
+    </tr>
+    <tr>
+      <th>closest_iv</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>B152TH</th>
+      <td>-228159.802962</td>
+      <td>6.840962e+06</td>
+      <td>-186486.338536</td>
+      <td>6.891587e+06</td>
+    </tr>
+    <tr>
+      <th>B714HJ</th>
+      <td>-230754.673759</td>
+      <td>6.862190e+06</td>
+      <td>-174024.968174</td>
+      <td>6.926919e+06</td>
+    </tr>
+    <tr>
+      <th>BA13NG</th>
+      <td>-301440.775912</td>
+      <td>6.639528e+06</td>
+      <td>-220910.832420</td>
+      <td>6.742989e+06</td>
+    </tr>
+    <tr>
+      <th>BA214AT</th>
+      <td>-338714.448556</td>
+      <td>6.574692e+06</td>
+      <td>-241766.759874</td>
+      <td>6.661788e+06</td>
+    </tr>
+    <tr>
+      <th>BB23HH</th>
+      <td>-293523.883294</td>
+      <td>7.097870e+06</td>
+      <td>-227656.460963</td>
+      <td>7.179456e+06</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_labels</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">col</span> <span class="o">=</span> <span class="s1">&#39;closest_ivt_time_weighted_mean&#39;</span>
+<span class="n">col_readable</span> <span class="o">=</span> <span class="s1">&#39;Average travel time to IVT unit (over 65 year olds weighted mean)&#39;</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span> <span class="c1"># Make max dimensions 10x10 inch</span>
+<span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="c1"># Set which axes to use for plot (only one here)</span>
+                 <span class="n">column</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="c1"># Column to apply colour</span>
+                 <span class="n">antialiased</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1"># Avoids artifact boundry lines</span>
+                 <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;face&#39;</span><span class="p">,</span> <span class="c1"># Make LSOA boundry same colour as area</span>
+                 <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="c1"># Use linewidth=0 to hide boarder lines</span>
+<span class="c1">#                 vmin=0, # Manual scale min (remove to make automatic)</span>
+<span class="c1">#                 vmax=70, # Manual scale max (remove to make automatic)</span>
+                 <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;inferno_r&#39;</span><span class="p">,</span> <span class="c1"># Colour map to use</span>
+                 <span class="c1"># Adjust size of colourmap key, and add label</span>
+                 <span class="n">legend_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;shrink&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col_readable</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">},</span>
+                 <span class="c1"># Set to display legend</span>
+                 <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="c1"># Set transparancy (to help reveal basemap</span>
+                 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.70</span><span class="p">)</span>
+
+<span class="c1"># Plot location of hospitals</span>
+<span class="n">gdf_units</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> 
+               <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">show_labels</span><span class="p">:</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">add_nonoverlapping_text_labels</span><span class="p">(</span><span class="n">gdf_units</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;hospital_city&#39;</span><span class="p">,</span>
+                                        <span class="n">y_step</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+        
+<span class="c1"># Add base map (note that we specifiy the same CRS as we are using)</span>
+<span class="c1"># Use manual zoom to adjust level of detail of base map</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> 
+                <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">OpenStreetMap</span><span class="o">.</span><span class="n">Mapnik</span><span class="p">,</span><span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+
+<span class="c1"># give some more space at bottom for london inset map</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">100000</span><span class="p">,</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># give some more space at right for hospital name label</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">50000</span><span class="p">)</span>
+
+<span class="c1"># Add base map (note that we specifiy the same CRS as we are using)</span>
+<span class="c1"># Use manual zoom to adjust level of detail of base map</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> 
+                <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">OpenStreetMap</span><span class="o">.</span><span class="n">Mapnik</span><span class="p">,</span><span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Insert an inset map (loc=4 places it bottom right)</span>
+<span class="n">axins</span> <span class="o">=</span> <span class="n">zoomed_inset_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Identify london hospitals to go in the inset map</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="p">[</span><span class="s2">&quot;Strategic Clinical Network&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;London SCN&quot;</span>
+<span class="n">london_hospitals</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="p">[</span><span class="s2">&quot;Hospital_name&quot;</span><span class="p">][</span><span class="n">mask</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+
+<span class="c1"># identify map area to plot in the inset map</span>
+<span class="c1"># initialise exteme values</span>
+<span class="n">minx_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+<span class="n">miny_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+<span class="n">maxx_</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">maxy_</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># Find min and max x and y for the london hospitals</span>
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">london_hospitals</span><span class="p">:</span>
+    <span class="n">minx</span><span class="p">,</span><span class="n">miny</span><span class="p">,</span><span class="n">maxx</span><span class="p">,</span><span class="n">maxy</span> <span class="o">=</span>  <span class="n">eng_wales_bounds</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">h</span><span class="p">]</span>
+    <span class="n">minx_</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">minx_</span><span class="p">,</span> <span class="n">minx</span><span class="p">)</span>
+    <span class="n">miny_</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">miny_</span><span class="p">,</span> <span class="n">miny</span><span class="p">)</span>
+    <span class="n">maxx_</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxx_</span><span class="p">,</span> <span class="n">maxx</span><span class="p">)</span>
+    <span class="n">maxy_</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxy_</span><span class="p">,</span> <span class="n">maxy</span><span class="p">)</span>
+
+<span class="c1"># Set extent of inset map</span>
+<span class="n">axins</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">minx_</span><span class="p">,</span> <span class="n">maxx_</span><span class="p">)</span>
+<span class="n">axins</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">miny_</span><span class="p">,</span> <span class="n">maxy_</span><span class="p">)</span>
+
+<span class="c1"># Define lines connecting inset map to main map</span>
+<span class="n">mark_inset</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">axins</span><span class="p">,</span> <span class="n">loc1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">loc2</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot zoom window</span>
+<span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axins</span><span class="p">,</span> <span class="c1"># Set which axes to use for plot (only one here)</span>
+                 <span class="n">column</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="c1"># Column to apply colour</span>
+                 <span class="n">antialiased</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1"># Avoids artifact boundry lines</span>
+                 <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;face&#39;</span><span class="p">,</span> <span class="c1"># Make LSOA boundry same colour as area</span>
+                 <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="c1"># Use linewidth=0 to hide boarder lines</span>
+                 <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;inferno_r&#39;</span><span class="p">,</span> <span class="c1"># Colour map to use</span>
+                 <span class="c1"># Adjust size of colourmap key, and add label</span>
+<span class="c1">#                 legend_kwds={&#39;shrink&#39;:0.5, &#39;label&#39;:f&#39;{col_readable}&#39;},</span>
+                 <span class="c1"># Set to display legend</span>
+<span class="c1">#                 legend=True,</span>
+                 <span class="c1"># Set transparancy (to help reveal basemap</span>
+                 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.70</span><span class="p">)</span>
+
+<span class="c1"># Plot location of hospitals</span>
+<span class="n">gdf_units</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axins</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> 
+               <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+
+<span class="c1"># Label hospitals</span>
+<span class="k">if</span> <span class="n">show_labels</span><span class="p">:</span>
+    <span class="n">axins</span> <span class="o">=</span> <span class="n">add_nonoverlapping_text_labels</span><span class="p">(</span><span class="n">gdf_units</span><span class="p">,</span> <span class="n">axins</span><span class="p">,</span> <span class="s1">&#39;hospital_city&#39;</span><span class="p">,</span>
+                                        <span class="n">y_step</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="c1"># Add base map (note that we specifiy the same CRS as we are using)</span>
+<span class="c1"># Use manual zoom to adjust level of detail of base map</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axins</span><span class="p">,</span> 
+                <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">OpenStreetMap</span><span class="o">.</span><span class="n">Mapnik</span><span class="p">,</span><span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Remove x and y ticks</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axins</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axins</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span> <span class="c1"># Turn of axis line and numbers</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col_readable</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># Adjust for printing</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">apply_aspect</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;outputs/map_</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">.jpg&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span> <span class="c1"># Save figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/39206fbe45d476598d13c33bdbe29ba1f4b0dfc44696252dd18765bbd61c4c70.png" src="../_images/39206fbe45d476598d13c33bdbe29ba1f4b0dfc44696252dd18765bbd61c4c70.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The range of </span><span class="si">{</span><span class="n">col_readable</span><span class="si">}</span><span class="s2"> across the </span><span class="si">{</span><span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> catchments is: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">gdf_ivt_catchment</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">gdf_ivt_catchment</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Median: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">gdf_ivt_catchment</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The range of Average travel time to IVT unit (over 65 year olds weighted mean) across the 113 catchments is: 12.89 to 35.61
+Median: 20.06
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">gdf_ivt_catchment</span><span class="p">[</span><span class="n">col</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04e3c4159878981ba57213a8512b17383d1e806044f1836518ed9859bc5e04d0.png" src="../_images/04e3c4159878981ba57213a8512b17383d1e806044f1836518ed9859bc5e04d0.png" />
+</div>
+</div>
+<section id="of-over-65-yrs-old-population-what-proportion-of-the-catchment-is-within-30-minutes">
+<h2>Of over 65 yrs old population, what proportion of the catchment is within 30 minutes?<a class="headerlink" href="#of-over-65-yrs-old-population-what-proportion-of-the-catchment-is-within-30-minutes" title="Permalink to this heading">#</a></h2>
+<p>Create column with the population that are over 65 years old and are within 30 minutes of their nearest IVT centre</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;closest_ivt_unit_time&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">30</span>
+<span class="c1">#temp_series = pd.DataFrame(0, index=np.arange(len(df_lsoa)), columns=[[&#39;age band over 65 within 30mins&#39;]])</span>
+<span class="n">temp_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df_lsoa</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[[</span><span class="s1">&#39;age band over 65 within 30mins&#39;</span><span class="p">]])</span>
+<span class="n">temp_series</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;age band over 65&#39;</span><span class="p">][</span><span class="n">mask</span><span class="p">]</span>
+<span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;age band over 65 within 30mins&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_series</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Groupby nearest IVT centre and sum each the total population over 65 years old, and the population over 65 years old and within 30 minutes. Calculate the proportion of the 65 year old population that are within 30 minutes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Groupby and sum</span>
+<span class="n">ivt_catchment_propn_over65_within_30mins</span> <span class="o">=</span> <span class="n">df_lsoa</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;closest_ivt_unit&#39;</span><span class="p">])[[</span><span class="s1">&#39;age band over 65&#39;</span><span class="p">,</span><span class="s1">&#39;age band over 65 within 30mins&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">ivt_catchment_propn_over65_within_30mins</span><span class="p">[</span><span class="s1">&#39;propn_over65_within_30mins&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">ivt_catchment_propn_over65_within_30mins</span><span class="p">[</span><span class="s1">&#39;age band over 65 within 30mins&#39;</span><span class="p">]</span> <span class="o">/</span> 
+            <span class="n">ivt_catchment_propn_over65_within_30mins</span><span class="p">[</span><span class="s1">&#39;age band over 65&#39;</span><span class="p">])</span>
+<span class="n">ivt_catchment_propn_over65_within_30mins</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age band over 65</th>
+      <th>age band over 65 within 30mins</th>
+      <th>propn_over65_within_30mins</th>
+    </tr>
+    <tr>
+      <th>closest_ivt_unit</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>B152TH</th>
+      <td>142569.0</td>
+      <td>136431.0</td>
+      <td>0.956947</td>
+    </tr>
+    <tr>
+      <th>B714HJ</th>
+      <td>157627.0</td>
+      <td>137513.0</td>
+      <td>0.872395</td>
+    </tr>
+    <tr>
+      <th>BA13NG</th>
+      <td>99255.0</td>
+      <td>62886.0</td>
+      <td>0.633580</td>
+    </tr>
+    <tr>
+      <th>BA214AT</th>
+      <td>70339.0</td>
+      <td>43826.0</td>
+      <td>0.623068</td>
+    </tr>
+    <tr>
+      <th>BB23HH</th>
+      <td>86189.0</td>
+      <td>79922.0</td>
+      <td>0.927288</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>WD180HB</th>
+      <td>101877.0</td>
+      <td>94941.0</td>
+      <td>0.931918</td>
+    </tr>
+    <tr>
+      <th>WF14DG</th>
+      <td>107876.0</td>
+      <td>107409.0</td>
+      <td>0.995671</td>
+    </tr>
+    <tr>
+      <th>WR51DD</th>
+      <td>94935.0</td>
+      <td>82259.0</td>
+      <td>0.866477</td>
+    </tr>
+    <tr>
+      <th>WV100QP</th>
+      <td>121829.0</td>
+      <td>110530.0</td>
+      <td>0.907255</td>
+    </tr>
+    <tr>
+      <th>YO318HE</th>
+      <td>115821.0</td>
+      <td>65288.0</td>
+      <td>0.563697</td>
+    </tr>
+  </tbody>
+</table>
+<p>113 rows × 3 columns</p>
+</div></div></div>
+</div>
+<p>Join column to the shapefile for IVT catchment</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;closest_iv&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gdf_ivt_catchment</span> <span class="o">=</span> <span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ivt_catchment_propn_over65_within_30mins</span><span class="p">[</span><span class="s1">&#39;propn_over65_within_30mins&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>closest_iv</th>
+      <th>LSOA11NM</th>
+      <th>LSOA11CD</th>
+      <th>LSOA11NMW</th>
+      <th>geometry</th>
+      <th>closest_ivt_time_weighted_mean</th>
+      <th>propn_over65_within_30mins</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>B152TH</td>
+      <td>Birmingham 067A</td>
+      <td>E01008881</td>
+      <td>Birmingham 067A</td>
+      <td>MULTIPOLYGON (((-196108.670 6856006.932, -1963...</td>
+      <td>19.868507</td>
+      <td>0.956947</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>B714HJ</td>
+      <td>Birmingham 037A</td>
+      <td>E01008899</td>
+      <td>Birmingham 037A</td>
+      <td>MULTIPOLYGON (((-229576.464 6863444.064, -2294...</td>
+      <td>19.297952</td>
+      <td>0.872395</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>BA13NG</td>
+      <td>Bath and North East Somerset 007A</td>
+      <td>E01014370</td>
+      <td>Bath and North East Somerset 007A</td>
+      <td>POLYGON ((-237096.214 6662581.601, -236920.941...</td>
+      <td>25.123174</td>
+      <td>0.633580</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>BA214AT</td>
+      <td>East Devon 005A</td>
+      <td>E01019886</td>
+      <td>East Devon 005A</td>
+      <td>MULTIPOLYGON (((-332442.946 6582944.980, -3327...</td>
+      <td>24.252608</td>
+      <td>0.623068</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>BB23HH</td>
+      <td>Bolton 001B</td>
+      <td>E01004803</td>
+      <td>Bolton 001B</td>
+      <td>POLYGON ((-270459.822 7099547.703, -270828.685...</td>
+      <td>20.274601</td>
+      <td>0.927288</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_labels</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">col</span> <span class="o">=</span> <span class="s1">&#39;propn_over65_within_30mins&#39;</span>
+<span class="n">col_readable</span> <span class="o">=</span> <span class="s1">&#39;Per IVT catchment, the proportion of over 65 year olds that live within 30 minutes of their closest IVT unit&#39;</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span> <span class="c1"># Make max dimensions 10x10 inch</span>
+<span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="c1"># Set which axes to use for plot (only one here)</span>
+                 <span class="n">column</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="c1"># Column to apply colour</span>
+                 <span class="n">antialiased</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1"># Avoids artifact boundry lines</span>
+                 <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;face&#39;</span><span class="p">,</span> <span class="c1"># Make LSOA boundry same colour as area</span>
+                 <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="c1"># Use linewidth=0 to hide boarder lines</span>
+<span class="c1">#                 vmin=0, # Manual scale min (remove to make automatic)</span>
+<span class="c1">#                 vmax=70, # Manual scale max (remove to make automatic)</span>
+                 <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;inferno&#39;</span><span class="p">,</span> <span class="c1"># Colour map to use</span>
+                 <span class="c1"># Adjust size of colourmap key, and add label</span>
+                 <span class="n">legend_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;shrink&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col_readable</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">},</span>
+                 <span class="c1"># Set to display legend</span>
+                 <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="c1"># Set transparancy (to help reveal basemap</span>
+                 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.70</span><span class="p">)</span>
+
+<span class="c1"># Plot location of hospitals</span>
+<span class="n">gdf_units</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> 
+               <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">show_labels</span><span class="p">:</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">add_nonoverlapping_text_labels</span><span class="p">(</span><span class="n">gdf_units</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;hospital_city&#39;</span><span class="p">,</span>
+                                        <span class="n">y_step</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+        
+<span class="c1"># Add base map (note that we specifiy the same CRS as we are using)</span>
+<span class="c1"># Use manual zoom to adjust level of detail of base map</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> 
+                <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">OpenStreetMap</span><span class="o">.</span><span class="n">Mapnik</span><span class="p">,</span><span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+
+<span class="c1"># give some more space at bottom for london inset map</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">100000</span><span class="p">,</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># give some more space at right for hospital name label</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">50000</span><span class="p">)</span>
+
+<span class="c1"># Add base map (note that we specifiy the same CRS as we are using)</span>
+<span class="c1"># Use manual zoom to adjust level of detail of base map</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> 
+                <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">OpenStreetMap</span><span class="o">.</span><span class="n">Mapnik</span><span class="p">,</span><span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Insert an inset map (loc=4 places it bottom right)</span>
+<span class="n">axins</span> <span class="o">=</span> <span class="n">zoomed_inset_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Identify london hospitals to go in the inset map</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="p">[</span><span class="s2">&quot;Strategic Clinical Network&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;London SCN&quot;</span>
+<span class="n">london_hospitals</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="p">[</span><span class="s2">&quot;Hospital_name&quot;</span><span class="p">][</span><span class="n">mask</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+
+<span class="c1"># identify map area to plot in the inset map</span>
+<span class="c1"># initialise exteme values</span>
+<span class="n">minx_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+<span class="n">miny_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+<span class="n">maxx_</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">maxy_</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># Find min and max x and y for the london hospitals</span>
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">london_hospitals</span><span class="p">:</span>
+    <span class="n">minx</span><span class="p">,</span><span class="n">miny</span><span class="p">,</span><span class="n">maxx</span><span class="p">,</span><span class="n">maxy</span> <span class="o">=</span>  <span class="n">eng_wales_bounds</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">h</span><span class="p">]</span>
+    <span class="n">minx_</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">minx_</span><span class="p">,</span> <span class="n">minx</span><span class="p">)</span>
+    <span class="n">miny_</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">miny_</span><span class="p">,</span> <span class="n">miny</span><span class="p">)</span>
+    <span class="n">maxx_</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxx_</span><span class="p">,</span> <span class="n">maxx</span><span class="p">)</span>
+    <span class="n">maxy_</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxy_</span><span class="p">,</span> <span class="n">maxy</span><span class="p">)</span>
+
+<span class="c1"># Set extent of inset map</span>
+<span class="n">axins</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">minx_</span><span class="p">,</span> <span class="n">maxx_</span><span class="p">)</span>
+<span class="n">axins</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">miny_</span><span class="p">,</span> <span class="n">maxy_</span><span class="p">)</span>
+
+<span class="c1"># Define lines connecting inset map to main map</span>
+<span class="n">mark_inset</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">axins</span><span class="p">,</span> <span class="n">loc1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">loc2</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot zoom window</span>
+<span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axins</span><span class="p">,</span> <span class="c1"># Set which axes to use for plot (only one here)</span>
+                 <span class="n">column</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="c1"># Column to apply colour</span>
+                 <span class="n">antialiased</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1"># Avoids artifact boundry lines</span>
+                 <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;face&#39;</span><span class="p">,</span> <span class="c1"># Make LSOA boundry same colour as area</span>
+                 <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="c1"># Use linewidth=0 to hide boarder lines</span>
+                 <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;inferno&#39;</span><span class="p">,</span> <span class="c1"># Colour map to use</span>
+                 <span class="c1"># Adjust size of colourmap key, and add label</span>
+<span class="c1">#                 legend_kwds={&#39;shrink&#39;:0.5, &#39;label&#39;:f&#39;{col_readable}&#39;},</span>
+                 <span class="c1"># Set to display legend</span>
+<span class="c1">#                 legend=True,</span>
+                 <span class="c1"># Set transparancy (to help reveal basemap</span>
+                 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.70</span><span class="p">)</span>
+
+<span class="c1"># Plot location of hospitals</span>
+<span class="n">gdf_units</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axins</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> 
+               <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+
+<span class="c1"># Label hospitals</span>
+<span class="k">if</span> <span class="n">show_labels</span><span class="p">:</span>
+    <span class="n">axins</span> <span class="o">=</span> <span class="n">add_nonoverlapping_text_labels</span><span class="p">(</span><span class="n">gdf_units</span><span class="p">,</span> <span class="n">axins</span><span class="p">,</span> <span class="s1">&#39;hospital_city&#39;</span><span class="p">,</span>
+                                        <span class="n">y_step</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="c1"># Add base map (note that we specifiy the same CRS as we are using)</span>
+<span class="c1"># Use manual zoom to adjust level of detail of base map</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axins</span><span class="p">,</span> 
+                <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">OpenStreetMap</span><span class="o">.</span><span class="n">Mapnik</span><span class="p">,</span><span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Remove x and y ticks</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axins</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axins</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span> <span class="c1"># Turn of axis line and numbers</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col_readable</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># Adjust for printing</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">apply_aspect</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;outputs/map_</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">.jpg&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span> <span class="c1"># Save figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/639eb3701b344b8eadf3cc35a69021a699e670ac9535ced5b68ce67e71440c42.png" src="../_images/639eb3701b344b8eadf3cc35a69021a699e670ac9535ced5b68ce67e71440c42.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The range of </span><span class="si">{</span><span class="n">col_readable</span><span class="si">}</span><span class="s2"> across the </span><span class="si">{</span><span class="n">gdf_ivt_catchment</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> catchments is: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">gdf_ivt_catchment</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">gdf_ivt_catchment</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Median: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">gdf_ivt_catchment</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The range of Per IVT catchment, the proportion of over 65 year olds that live within 30 minutes of their closest IVT unit across the 113 catchments is: 0.36 to 1.0
+Median: 0.91
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">gdf_ivt_catchment</span><span class="p">[</span><span class="n">col</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/cd69441c2bb7e34491b9ad04641f26ec9f5c8880daacc441c1244d2f14a4ddc3.png" src="../_images/cd69441c2bb7e34491b9ad04641f26ec9f5c8880daacc441c1244d2f14a4ddc3.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./archive"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#of-over-65-yrs-old-population-what-proportion-of-the-catchment-is-within-30-minutes">Of over 65 yrs old population, what proportion of the catchment is within 30 minutes?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By SAMueL-2 team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

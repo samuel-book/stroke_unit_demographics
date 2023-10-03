@@ -1,0 +1,2131 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Create a map of the Ambulance Service regions &#8212; stroke_unit_demographics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'archive/10_create_ambulance_lsoa_datafiles';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">stroke_unit_demographics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Stroke unit demographics
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_combine_demographic_data.html">Collate demographic data for each LSOA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01b_ambulance_trusts.html">Ambulance Trusts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_create_shapefiles.html">Create shapefiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_create_maps.html">Create maps</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Farchive/10_create_ambulance_lsoa_datafiles.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/archive/10_create_ambulance_lsoa_datafiles.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Create a map of the Ambulance Service regions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aim">Aim</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-packages-and-define-file-paths">Import packages and define file paths</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-lookup-files">Load the lookup files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-the-lookup-files-so-can-translate-lsoa-to-ambulance">Combine the lookup files (so can translate LSOA to ambulance)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deal-with-complications">Deal with complications</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nhs-hampshire-southampton-and-isle-of-wight-ccg">NHS Hampshire, Southampton and Isle of Wight CCG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nhs-bedfordshire-luton-and-milton-keynes-ccg">NHS Bedfordshire, Luton and Milton Keynes CCG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-hospital-data">Read in hospital data</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="create-a-map-of-the-ambulance-service-regions">
+<h1>Create a map of the Ambulance Service regions<a class="headerlink" href="#create-a-map-of-the-ambulance-service-regions" title="Permalink to this heading">#</a></h1>
+<p><mark>Change all “” to ‘’</mark></p>
+<p>Note: See <a class="reference external" href="https://www.overleaf.com/project/63e3af828a2b446a5a6a447a">https://www.overleaf.com/project/63e3af828a2b446a5a6a447a</a> and 11_clip_lsoas_to_county.ipynb</p>
+<p>Note: Code cell “gdf_beds_lsoa = gpd.clip(gdf_beds_county, gdf_lsoa)” takes a few hours to run. So read in the created shapefile (same for the Bucks equivalent)</p>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this heading">#</a></h2>
+<p>In England and Wales there are 11 Ambulance Services. An image of the Ambulance Service catchments can be found on the <a class="reference external" href="https://aace.org.uk/uk-ambulance-service/map-of-nhs-ambulance-services/">Association of Ambulance Chief Executives website</a>. We have been advised by Steve Irving (Executive Officer / ALF Conference Lead) that the map <strong>“is just an approximation of the boundaries, purely for illustrative / navigational purposes”</strong>.</p>
+<p>Maps of ambulance services in England and Wales:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aace.org.uk/uk-ambulance-service/map-of-nhs-ambulance-services/">AACE map of ambulance services</a></p></li>
+<li><p><a class="reference external" href="https://commons.wikimedia.org/wiki/File:Ambulance-Services-in-England-map.png">Wikipedia map of ambulance services</a></p></li>
+<li><p><a class="reference external" href="https://www.nicepng.com/ourpic/u2y3w7r5a9u2q8e6_regions-uk-ambulance-services-map/">NicePNG map of ambulance services</a></p></li>
+<li><p><a class="reference external" href="https://www.researchgate.net/publication/257019478_Cycle_response_unit_paramedics">Publication with map of ambulance service CRUs</a></p></li>
+<li><p><a class="reference external" href="https://www.semanticscholar.org/paper/Data-for-Ambulance-Dispatch%3A-New-%26-emerging-forms-Drake-Pollitt/382dd6b762ae64f30c22d0e3046e1aa055b5f7f5/figure/10">Publication with map of ambulance service areas</a></p></li>
+<li><p><a class="reference external" href="https://www.bbc.co.uk/news/health-16052725">BBC news article with map of ambulance services</a></p></li>
+</ul>
+<p>Links to information about each ambulance services:</p>
+<ol class="arabic simple">
+<li><p>East Midlands Ambulance Service (EMAS) - <a class="reference external" href="https://commons.wikimedia.org/wiki/File:East-Midlands-Ambulance-Service-map.png">EMAS map highlighted on Wikimedia</a></p></li>
+<li><p>East of England Ambulance Service Trust (EEAST) - <a class="reference external" href="https://www.eastamb.nhs.uk/join-the-team/our-stations.htm">EEAST map on their website</a></p></li>
+<li><p>London Ambulance Service (LAS)</p></li>
+<li><p>North East Ambulance Service (NEAS) - as from <a class="reference external" href="https://www.neas.nhs.uk/about-us/who-we-are-and-what-we-do.aspx">their website</a>, NEAS ‘operates across Northumberland, Tyne and Wear, County Durham, Darlington and Teesside’. There is also an <a class="reference external" href="https://north-east-ambulance-service.v3.gsmicrosites.net/about-us">old link</a> which no longer works</p></li>
+<li><p>North West Ambulance Service (NWAS)</p></li>
+<li><p>South Central Ambulance Service (SCAS) - <a class="reference external" href="https://www.scas.nhs.uk/about-scas/">SCAS map on their website</a></p></li>
+<li><p>South East Coast Ambulance Service (SECAmb) - as from <a class="reference external" href="https://www.secamb.nhs.uk/what-we-do/about-us/">their website</a>, SECAmb ‘covers a geographical area of 3,600 square miles (Brighton &amp; Hove, East Sussex, West Sussex, Kent, Surrey, and North East Hampshire)’</p></li>
+<li><p>West Midlands Ambulance Service (WMAS) - <a class="reference external" href="https://wmas.nhs.uk/">WMAS map on their website</a></p></li>
+<li><p>South West Ambulance Service (SWAS)</p></li>
+<li><p>Yorkshire Ambulance Service (YAS)</p></li>
+<li><p>Welsh Ambulance Service (WAS)</p></li>
+</ol>
+</section>
+<section id="aim">
+<h2>Aim<a class="headerlink" href="#aim" title="Permalink to this heading">#</a></h2>
+<p>We aim to build a map of the Ambulance Service regions from the individual LSOAs up.</p>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
+<p>We link together two datafiles that take us from <strong>LSOA to CCG</strong>, and then from <strong>CCG to Ambulance Service</strong>:</p>
+<ol class="arabic simple">
+<li><p>LSOA to CCG - <code class="docutils literal notranslate"><span class="pre">Lower_Layer_Super_Output_Area_(2011)_to_Clinical_Commissioning_Group_to_Local_Authority_District_(April_2021)_Lookup_in_England.csv</span></code></p></li>
+<li><p>CCG to Ambulance Service - <code class="docutils literal notranslate"><span class="pre">ambulance_service_info_ccg_lookup.csv</span></code></p>
+<ul class="simple">
+<li><p>Created from <code class="docutils literal notranslate"><span class="pre">Ambulance</span> <span class="pre">CCG</span> <span class="pre">lookup</span></code> sheet of the excel file <code class="docutils literal notranslate"><span class="pre">ambulance_service_info.xlsx</span></code></p></li>
+<li><p>When creating that sheet, removed the rows for ‘NHS Hampshire, Southampton and Isle of Wight CCG’ and ‘NHS Bedfordshire, Luton and Milton Keynes CCG’, since these just stated that they were covered by more than one ambulance service - and these are dealt with seperately below</p></li>
+<li><p>We don’t use the column “NHS Ambulance Service Region Name/Code” as this is not a name per Ambulance Service (e.g. for Midlands). Instead set up a dictionary and create a new field “Ambulance Service Name” from the code contained in the field “Ambulance Service” (which is unique).</p></li>
+</ul>
+</li>
+</ol>
+<p>There are complications when using this approach, which are explained below.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Complication</p></th>
+<th class="head"><p>How we manage this</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>NHS Hampshire, Southampton and Isle of Wight CCG is covered by both: <ul><li>Isle of Wight Ambulance Service</li><li>SCAS</li></ul></p></td>
+<td><p>Of the LSOAs that make up the “NHS Hampshire, Southampton and Isle of Wight CCG”: <ul><li>LSOA names that contain “Isle of Wight” get assigned to Isle of Wight Ambulance Service</li><li>Remaining LSOA names get assigned to SCAS</li></ul></p></td>
+</tr>
+<tr class="row-odd"><td><p>NHS Bedfordshire, Luton and Milton Keynes CCG is covered by both: <ul><li>EEAST</li><li>SCAS</li></ul></p></td>
+<td><p>NHS Bedfordshire, Luton and Milton Keynes CCG spans two counties: Bedfordshire and Buckinghamshire. The catchment maps on the respective Ambulance Service websites showed that: <ul><li>The Ambulance Service EEAST serves the county of Bedfordshire</li><li>The Ambulance Service SCAS serves the county of Buckinghamshire</li></ul> Using a shapefile of the UK Counties, extract the individual polygons for i) Bedfordshire ii) Buckinghamshire and in turn use these to identify the LSOAs in each. For the LSOAs in the NHS Bedfordshire, Luton and Milton Keynes CCG, use their location in relation to these two counties to determine whether they are part of the EEAST or SCAS.</p></td>
+</tr>
+<tr class="row-even"><td><p>Wales is not included in the LSOA to CCG datafile, and so would otherwise not be included in this analysis.</p></td>
+<td><p>?</p></td>
+</tr>
+</tbody>
+</table>
+<p><mark>What happens with Wales</mark></p>
+</section>
+<section id="import-packages-and-define-file-paths">
+<h2>Import packages and define file paths<a class="headerlink" href="#import-packages-and-define-file-paths" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import required packages</span>
+<span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="nn">ctx</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">colors</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.transforms</span> <span class="kn">import</span> <span class="n">Bbox</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1.inset_locator</span> <span class="kn">import</span> <span class="n">mark_inset</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1.inset_locator</span> <span class="kn">import</span> <span class="n">zoomed_inset_axes</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># Linting</span>
+<span class="c1"># %load_ext pycodestyle_magic</span>
+<span class="c1"># %pycodestyle_on</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define file paths</span>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Paths</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Singleton object for storing paths to data and database.&#39;&#39;&#39;</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;./data&#39;</span>
+    <span class="n">lsoa_to_ccg</span> <span class="o">=</span> <span class="s1">&#39;demographic/Lower_Layer_Super_Output_Area_(2011)_to_Clinical_Commissioning_Group_to_Local_Authority_District_(April_2021)_Lookup_in_England.csv&#39;</span>
+    <span class="n">ccg_to_amb</span> <span class="o">=</span> <span class="s1">&#39;demographic/ambulance_service_info_ccg_lookup.csv&#39;</span>
+    <span class="n">county_ua</span> <span class="o">=</span> <span class="s1">&#39;Counties_and_Unitary_Authorities__December_2017__Boundaries_UK-shp.zip&#39;</span>
+    <span class="n">bedfordshire</span> <span class="o">=</span> <span class="s1">&#39;bedfordshire_county_from_3uas.shp&#39;</span>
+    <span class="n">lsoa_shp</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;zip://./data/Lower_layer_super_output_areas_(E+W)_2011_&#39;</span> <span class="o">+</span>
+                <span class="s1">&#39;Boundaries_(Generalised_Clipped)_V2.zip&#39;</span><span class="p">)</span>
+    <span class="n">lsoa_bedfordshire_box</span> <span class="o">=</span> <span class="s1">&#39;lsoa_bedfordshire_box.shp&#39;</span>
+
+<span class="n">paths</span> <span class="o">=</span> <span class="n">Paths</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-the-lookup-files">
+<h2>Load the lookup files<a class="headerlink" href="#load-the-lookup-files" title="Permalink to this heading">#</a></h2>
+<p>Load LSOA to CCG</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the LSOA to CCG look-up</span>
+<span class="n">lsoa_ccg_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">lsoa_to_ccg</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;CCG21NM&#39;</span><span class="p">)</span>
+
+<span class="n">lsoa_ccg_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Load the LSOA to CCG look-up</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">lsoa_ccg_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">lsoa_to_ccg</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;CCG21NM&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">lsoa_ccg_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/pandas/io/parsers/readers.py:912,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">    </span><span class="mi">899</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">900</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">901</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">908</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">909</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">910</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">912</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/pandas/io/parsers/readers.py:577,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">574</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">576</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">577</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">579</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">580</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1407,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1404</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1406</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1407</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/pandas/io/parsers/readers.py:1661,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1659</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1660</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1661</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1662</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1663</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1664</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1665</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1666</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1667</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1668</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1669</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1670</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1671</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1672</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/pandas/io/common.py:859,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">854</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">855</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">856</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">857</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">858</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">859</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">863</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">864</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">865</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">866</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">867</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;./data/demographic/Lower_Layer_Super_Output_Area_(2011)_to_Clinical_Commissioning_Group_to_Local_Authority_District_(April_2021)_Lookup_in_England.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Load CCG to Ambulance</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the CCG to ambulance look-up</span>
+<span class="n">ccg_ambo_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">ccg_to_amb</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;CCG name&#39;</span><span class="p">)</span>
+
+<span class="c1"># Remove trailing whitespace from column names</span>
+<span class="n">ccg_ambo_data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">ccg_ambo_data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+
+<span class="c1"># Preview dataframe</span>
+<span class="n">ccg_ambo_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NHS CCG code</th>
+      <th>Office for National Statistics (ONS) April 2021 CCG code</th>
+      <th>Ambulance Service</th>
+      <th>NHS Ambulance Service Region Name</th>
+      <th>NHS Ambulance Service Region code</th>
+      <th>ONS Ambulance Service Region Code</th>
+    </tr>
+    <tr>
+      <th>CCG name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>NHS Bassetlaw CCG</th>
+      <td>02Q</td>
+      <td>E38000008</td>
+      <td>EMAS</td>
+      <td>Midlands</td>
+      <td>Y60</td>
+      <td>E40000008</td>
+    </tr>
+    <tr>
+      <th>NHS East Leicestershire and Rutland CCG</th>
+      <td>03W</td>
+      <td>E38000051</td>
+      <td>EMAS</td>
+      <td>Midlands</td>
+      <td>Y60</td>
+      <td>E40000008</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Add column with unique, full name for each ambulance service to the CCG to Ambulance file</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create dictionary with guide to full ambulance service names</span>
+<span class="n">dict_amb_service_name</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;EMAS&#39;</span><span class="p">:</span> <span class="s1">&#39;East Midlands&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;EEAST&#39;</span><span class="p">:</span> <span class="s1">&#39;East of England&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;LAS&#39;</span><span class="p">:</span> <span class="s1">&#39;London&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;NEAS&#39;</span><span class="p">:</span> <span class="s1">&#39;North East&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;NWAS&#39;</span><span class="p">:</span> <span class="s1">&#39;North West&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;SCAS&#39;</span><span class="p">:</span> <span class="s1">&#39;South Central&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;SECAmb&#39;</span><span class="p">:</span> <span class="s1">&#39;South East Coast&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;WMAS&#39;</span><span class="p">:</span> <span class="s1">&#39;West Midlands&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;SWAS&#39;</span><span class="p">:</span> <span class="s1">&#39;South West&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;YAS&#39;</span><span class="p">:</span> <span class="s1">&#39;Yorkshire&#39;</span><span class="p">}</span>
+
+<span class="c1"># Add full ambulance service name, based on the data dictionary</span>
+<span class="n">ccg_ambo_data</span><span class="p">[</span><span class="s1">&#39;Ambulance Service Name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ccg_ambo_data</span><span class="p">[</span><span class="s1">&#39;Ambulance Service&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">dict_amb_service_name</span><span class="p">))</span>
+
+<span class="c1"># Preview dataframe</span>
+<span class="n">ccg_ambo_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NHS CCG code</th>
+      <th>Office for National Statistics (ONS) April 2021 CCG code</th>
+      <th>Ambulance Service</th>
+      <th>NHS Ambulance Service Region Name</th>
+      <th>NHS Ambulance Service Region code</th>
+      <th>ONS Ambulance Service Region Code</th>
+      <th>Ambulance Service Name</th>
+    </tr>
+    <tr>
+      <th>CCG name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>NHS Bassetlaw CCG</th>
+      <td>02Q</td>
+      <td>E38000008</td>
+      <td>EMAS</td>
+      <td>Midlands</td>
+      <td>Y60</td>
+      <td>E40000008</td>
+      <td>East Midlands</td>
+    </tr>
+    <tr>
+      <th>NHS East Leicestershire and Rutland CCG</th>
+      <td>03W</td>
+      <td>E38000051</td>
+      <td>EMAS</td>
+      <td>Midlands</td>
+      <td>Y60</td>
+      <td>E40000008</td>
+      <td>East Midlands</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="combine-the-lookup-files-so-can-translate-lsoa-to-ambulance">
+<h2>Combine the lookup files (so can translate LSOA to ambulance)<a class="headerlink" href="#combine-the-lookup-files-so-can-translate-lsoa-to-ambulance" title="Permalink to this heading">#</a></h2>
+<p>Add the CCG to Ambulance fields to the LSOA to CCG dataset (by matching on CCG name - make that the index for both datasets before joining)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Join LSOA-CCG and CCG-Ambulance based on index (which is the CCG name)</span>
+<span class="n">lsoa_ambo_data</span> <span class="o">=</span> <span class="n">lsoa_ccg_data</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ccg_ambo_data</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Set dataframe index to LSOA</span>
+<span class="n">lsoa_ambo_data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;LSOA11CD&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Preview dataframe</span>
+<span class="n">lsoa_ambo_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CCG21NM</th>
+      <th>FID</th>
+      <th>LSOA11NM</th>
+      <th>CCG21CD</th>
+      <th>CCG21CDH</th>
+      <th>LAD21CD</th>
+      <th>LAD21NM</th>
+      <th>NHS CCG code</th>
+      <th>Office for National Statistics (ONS) April 2021 CCG code</th>
+      <th>Ambulance Service</th>
+      <th>NHS Ambulance Service Region Name</th>
+      <th>NHS Ambulance Service Region code</th>
+      <th>ONS Ambulance Service Region Code</th>
+      <th>Ambulance Service Name</th>
+    </tr>
+    <tr>
+      <th>LSOA11CD</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>E01007420</th>
+      <td>NHS Barnsley CCG</td>
+      <td>1</td>
+      <td>Barnsley 016C</td>
+      <td>E38000006</td>
+      <td>02P</td>
+      <td>E08000016</td>
+      <td>Barnsley</td>
+      <td>02P</td>
+      <td>E38000006</td>
+      <td>YAS</td>
+      <td>North East and Yorkshire</td>
+      <td>Y63</td>
+      <td>E40000009</td>
+      <td>Yorkshire</td>
+    </tr>
+    <tr>
+      <th>E01007317</th>
+      <td>NHS Barnsley CCG</td>
+      <td>2</td>
+      <td>Barnsley 018A</td>
+      <td>E38000006</td>
+      <td>02P</td>
+      <td>E08000016</td>
+      <td>Barnsley</td>
+      <td>02P</td>
+      <td>E38000006</td>
+      <td>YAS</td>
+      <td>North East and Yorkshire</td>
+      <td>Y63</td>
+      <td>E40000009</td>
+      <td>Yorkshire</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="deal-with-complications">
+<h2>Deal with complications<a class="headerlink" href="#deal-with-complications" title="Permalink to this heading">#</a></h2>
+<p>As described above, there are two CCGs with complications for our approach, since the CCGs are covered by more than one ambulance service each.</p>
+<section id="nhs-hampshire-southampton-and-isle-of-wight-ccg">
+<h3>NHS Hampshire, Southampton and Isle of Wight CCG<a class="headerlink" href="#nhs-hampshire-southampton-and-isle-of-wight-ccg" title="Permalink to this heading">#</a></h3>
+<p>This is covered by both:</p>
+<ul class="simple">
+<li><p>Isle of Wight Ambulance Service</p></li>
+<li><p>SCAS</p></li>
+</ul>
+<p>As described above, set all LSOAs in this CCG to SCAS, apart from those LSOAs that has “Isle of Wight” in their LSOA name will be allocated to the Isle of Wight Ambulance service.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find LSOAs in that CCG</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">lsoa_ambo_data</span><span class="p">[</span><span class="s1">&#39;CCG21NM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;Hampshire&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set the ambulance service as South Central (SCAS)</span>
+<span class="n">lsoa_ambo_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="s1">&#39;Ambulance Service Name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;South Central&#39;</span>
+
+<span class="c1"># From those LSOAs, identify those that are in the Isle of Wight</span>
+<span class="n">mask2</span> <span class="o">=</span> <span class="n">lsoa_ambo_data</span><span class="p">[</span><span class="s1">&#39;LSOA11NM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;Isle of Wight&#39;</span><span class="p">)</span>
+
+<span class="c1"># Replace the ambulance service for those to Isle of Wight</span>
+<span class="n">lsoa_ambo_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask2</span><span class="p">,</span> <span class="s1">&#39;Ambulance Service Name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Isle of Wight&#39;</span>
+
+<span class="c1"># View resulting number of LSOA from that CCG in each service</span>
+<span class="n">lsoa_ambo_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="s1">&#39;Ambulance Service Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ambulance Service Name
+South Central    879
+Isle of Wight     89
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="nhs-bedfordshire-luton-and-milton-keynes-ccg">
+<h3>NHS Bedfordshire, Luton and Milton Keynes CCG<a class="headerlink" href="#nhs-bedfordshire-luton-and-milton-keynes-ccg" title="Permalink to this heading">#</a></h3>
+<p>This CCG contains Buckinghamshire and Bedfordshire, and is covered both by:</p>
+<ul class="simple">
+<li><p>EEAST</p></li>
+<li><p>SCAS</p></li>
+</ul>
+<p>As described above, informed by <a class="reference external" href="https://www.eastamb.nhs.uk/join-the-team/our-stations.htm">EEAST</a> and <a class="reference external" href="https://www.scas.nhs.uk/about-scas/">SCAS</a> maps copied below, we can allocate LSOAs to counties and allocate:</p>
+<ul class="simple">
+<li><p>Buckinghamshire to SCAS</p></li>
+<li><p>Bedfordshire to EEAST.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># EEAST map</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;images/our-station-map.jpg&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><img src="images/our-station-map.jpg" width="300" height="300"/></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SCAS map</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;images/SCAS-map.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><img src="images/SCAS-map.png" width="300" height="300"/></div></div>
+</div>
+<p>Import county shapefile - we used the County and Unitary Authorities shapefile.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import county shapefile</span>
+<span class="n">gdf_county_ua</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">county_ua</span><span class="p">),</span> <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:3857&#39;</span><span class="p">)</span>
+
+<span class="c1"># Preview dataframe</span>
+<span class="n">gdf_county_ua</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>objectid</th>
+      <th>ctyua17cd</th>
+      <th>ctyua17nm</th>
+      <th>ctyua17nmw</th>
+      <th>bng_e</th>
+      <th>bng_n</th>
+      <th>long</th>
+      <th>lat</th>
+      <th>st_areasha</th>
+      <th>st_lengths</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>E06000001</td>
+      <td>Hartlepool</td>
+      <td>NaN</td>
+      <td>447157</td>
+      <td>531476</td>
+      <td>-1.27023</td>
+      <td>54.676159</td>
+      <td>9.355951e+07</td>
+      <td>71707.407523</td>
+      <td>MULTIPOLYGON (((447213.900 537036.104, 447228....</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>E06000002</td>
+      <td>Middlesbrough</td>
+      <td>NaN</td>
+      <td>451141</td>
+      <td>516887</td>
+      <td>-1.21099</td>
+      <td>54.544670</td>
+      <td>5.388858e+07</td>
+      <td>43840.866561</td>
+      <td>MULTIPOLYGON (((448958.901 521835.695, 449045....</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Take the three polygons that represent Bedfordshire: “Bedford”, “Central Bedfordshire”, “Luton”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Identify polygons that represent Bedforshire</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">gdf_county_ua</span><span class="p">[</span><span class="s1">&#39;ctyua17nm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">&#39;Bedford&#39;</span><span class="p">,</span> <span class="s1">&#39;Central Bedfordshire&#39;</span><span class="p">,</span> <span class="s1">&#39;Luton&#39;</span><span class="p">])</span>
+<span class="n">gdf_beds_county_ua</span> <span class="o">=</span> <span class="n">gdf_county_ua</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+
+<span class="c1"># Show dataframe</span>
+<span class="n">display</span><span class="p">(</span><span class="n">gdf_beds_county_ua</span><span class="p">)</span>
+
+<span class="c1"># Plot shapefile</span>
+<span class="n">gdf_beds_county_ua</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Save as a file</span>
+<span class="n">gdf_beds_county_ua</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">bedfordshire</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>objectid</th>
+      <th>ctyua17cd</th>
+      <th>ctyua17nm</th>
+      <th>ctyua17nmw</th>
+      <th>bng_e</th>
+      <th>bng_n</th>
+      <th>long</th>
+      <th>lat</th>
+      <th>st_areasha</th>
+      <th>st_lengths</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>31</th>
+      <td>32</td>
+      <td>E06000032</td>
+      <td>Luton</td>
+      <td>NaN</td>
+      <td>508606</td>
+      <td>222559</td>
+      <td>-0.42319</td>
+      <td>51.891022</td>
+      <td>4.335249e+07</td>
+      <td>34569.659940</td>
+      <td>POLYGON ((507976.900 226540.203, 507995.896 22...</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>54</td>
+      <td>E06000055</td>
+      <td>Bedford</td>
+      <td>NaN</td>
+      <td>505721</td>
+      <td>256463</td>
+      <td>-0.45463</td>
+      <td>52.196281</td>
+      <td>4.764083e+08</td>
+      <td>131721.247617</td>
+      <td>POLYGON ((505548.597 270000.003, 505658.100 26...</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>55</td>
+      <td>E06000056</td>
+      <td>Central Bedfordshire</td>
+      <td>NaN</td>
+      <td>504615</td>
+      <td>234492</td>
+      <td>-0.47754</td>
+      <td>51.999031</td>
+      <td>7.156653e+08</td>
+      <td>232692.706405</td>
+      <td>POLYGON ((517561.000 255955.803, 517584.696 25...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><img alt="../_images/5ab31836cecc50cc9e44743fba8724e855a0d77b91824b83a8b7672385d2c58b.png" src="../_images/5ab31836cecc50cc9e44743fba8724e855a0d77b91824b83a8b7672385d2c58b.png" />
+</div>
+</div>
+<p>Load LSOA shapefile for boundaries in England and Wales.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load shapefile</span>
+<span class="n">gdf_lsoa</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">lsoa_shp</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:27700&#39;</span><span class="p">)</span>
+
+<span class="c1"># Preview dataframe</span>
+<span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LSOA11CD</th>
+      <th>LSOA11NM</th>
+      <th>LSOA11NMW</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>E01000001</td>
+      <td>City of London 001A</td>
+      <td>City of London 001A</td>
+      <td>POLYGON ((532105.092 182011.230, 532162.491 18...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>E01000002</td>
+      <td>City of London 001B</td>
+      <td>City of London 001B</td>
+      <td>POLYGON ((532746.813 181786.891, 532671.688 18...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Limit the LSOA shapefile to the boundary around the county polygon, before do clip method, to save a lot of processing time</p>
+<p><mark>Why is it just taking the bounds of the first county?</mark></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract bounds for each county</span>
+<span class="n">beds_county_ua_bounds</span> <span class="o">=</span> <span class="n">gdf_beds_county_ua</span><span class="o">.</span><span class="n">bounds</span>
+<span class="n">display</span><span class="p">(</span><span class="n">beds_county_ua_bounds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>minx</th>
+      <th>miny</th>
+      <th>maxx</th>
+      <th>maxy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>31</th>
+      <td>502891.5027</td>
+      <td>218496.8952</td>
+      <td>513680.9979</td>
+      <td>226621.6995</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>491084.1959</td>
+      <td>240621.3021</td>
+      <td>520357.0980</td>
+      <td>270534.9994</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>489373.8981</td>
+      <td>212863.2978</td>
+      <td>527179.0039</td>
+      <td>256120.5955</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Take bounds of first county</span>
+<span class="n">minx</span><span class="p">,</span> <span class="n">miny</span><span class="p">,</span> <span class="n">maxx</span><span class="p">,</span> <span class="n">maxy</span> <span class="o">=</span>  <span class="n">beds_county_ua_bounds</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Show chosen bounds</span>
+<span class="n">minx</span><span class="p">,</span> <span class="n">miny</span><span class="p">,</span> <span class="n">maxx</span><span class="p">,</span> <span class="n">maxy</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(502891.50270000007, 218496.8951999992, 513680.99789999984, 226621.6995000001)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Restrict the shapefile to boundary of country polygon</span>
+<span class="c1"># cx = Coordinate based indexer to select by intersection with bounding box</span>
+<span class="n">gdf_beds_lsoa_box</span> <span class="o">=</span> <span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">cx</span><span class="p">[</span><span class="n">minx</span><span class="p">:</span><span class="n">maxx</span><span class="p">,</span> <span class="n">miny</span><span class="p">:</span><span class="n">maxy</span><span class="p">]</span>
+<span class="n">gdf_beds_lsoa_box</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LSOA11CD</th>
+      <th>LSOA11NM</th>
+      <th>LSOA11NMW</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>15225</th>
+      <td>E01015693</td>
+      <td>Luton 007A</td>
+      <td>Luton 007A</td>
+      <td>POLYGON ((509000.071 224167.035, 509007.975 22...</td>
+    </tr>
+    <tr>
+      <th>15226</th>
+      <td>E01015694</td>
+      <td>Luton 007B</td>
+      <td>Luton 007B</td>
+      <td>POLYGON ((508884.430 223900.354, 508899.797 22...</td>
+    </tr>
+    <tr>
+      <th>15227</th>
+      <td>E01015695</td>
+      <td>Luton 007C</td>
+      <td>Luton 007C</td>
+      <td>POLYGON ((508899.797 223748.818, 508935.122 22...</td>
+    </tr>
+    <tr>
+      <th>15228</th>
+      <td>E01015696</td>
+      <td>Luton 007D</td>
+      <td>Luton 007D</td>
+      <td>POLYGON ((509633.031 224771.375, 509560.071 22...</td>
+    </tr>
+    <tr>
+      <th>15229</th>
+      <td>E01015697</td>
+      <td>Luton 007E</td>
+      <td>Luton 007E</td>
+      <td>POLYGON ((509187.325 224722.331, 509178.215 22...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>22804</th>
+      <td>E01023430</td>
+      <td>Dacorum 001A</td>
+      <td>Dacorum 001A</td>
+      <td>POLYGON ((505764.094 218023.781, 505887.000 21...</td>
+    </tr>
+    <tr>
+      <th>22995</th>
+      <td>E01023624</td>
+      <td>North Hertfordshire 014D</td>
+      <td>North Hertfordshire 014D</td>
+      <td>POLYGON ((511345.500 232335.703, 511388.688 23...</td>
+    </tr>
+    <tr>
+      <th>22996</th>
+      <td>E01023625</td>
+      <td>North Hertfordshire 014E</td>
+      <td>North Hertfordshire 014E</td>
+      <td>POLYGON ((517829.594 226516.297, 517829.813 22...</td>
+    </tr>
+    <tr>
+      <th>22997</th>
+      <td>E01023626</td>
+      <td>North Hertfordshire 015C</td>
+      <td>North Hertfordshire 015C</td>
+      <td>POLYGON ((515974.600 219964.700, 516080.313 21...</td>
+    </tr>
+    <tr>
+      <th>23024</th>
+      <td>E01023653</td>
+      <td>North Hertfordshire 014F</td>
+      <td>North Hertfordshire 014F</td>
+      <td>POLYGON ((513048.094 233075.203, 513202.000 23...</td>
+    </tr>
+  </tbody>
+</table>
+<p>148 rows × 4 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save this to a file</span>
+<span class="n">gdf_beds_lsoa_box</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">lsoa_bedfordshire_box</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Plot England and Wales LSOA</span>
+<span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="c1"># Plot the shapefile with the three counties in red</span>
+<span class="n">gdf_beds_county_ua</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">gdf_beds_county_ua</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">gdf_beds_county_ua</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="c1"># Plot the boundaried LSOA shapefile in green (covers one county but also more)</span>
+<span class="n">gdf_beds_lsoa_box</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">gdf_beds_lsoa_box</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">gdf_beds_lsoa_box</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/961a9f12df9322f418793beb991c0248f76fc1835e77aa4a3ca09b41f4dc66a7.png" src="../_images/961a9f12df9322f418793beb991c0248f76fc1835e77aa4a3ca09b41f4dc66a7.png" />
+</div>
+</div>
+<p>See “11_clip.ipynb” for all attempts used to used geopandas to identify the LSOAs. Such as:</p>
+<ol class="arabic simple">
+<li><p>checking for LSOA overlapping with, or completely within, Bedfordshire:</p></li>
+</ol>
+<p>gdf_beds_county_geometry = gdf_beds_county.geometry
+mask = (gdf_beds_lsoa_box.geometry.overlaps(gdf_beds_county_geometry)) | (gdf_beds_lsoa_box.within(gdf_beds_county))</p>
+<ol class="arabic simple" start="2">
+<li><p>Take the LSOAs that sit wtihin the county polygon. Using the Clip method: “think of “clipping” as passing a top layer of cookie dough (the map above), over a bottom layer cookiecutter (our high-resolution provinces data) to get a shape out”</p></li>
+</ol>
+<p>gdf_beds_lsoa = gpd.clip(gdf_beds_lsoa_box, gdf_beds_county)</p>
+<p>Got error “TopologyException: Input geom 0 is invalid: Ring Self-intersection at or near point -48331.645175062782 6821220.2919420162 at -48331.645175062782 6821220.2919420162” which I believe identified an issue with a polygon in the shapefile.</p>
+<p>Decided to see what QGIS makes of it.</p>
+<p>Took the country LSOA shapefile (bedfordshire_county_from_3uas.shp) and used QGIS to create a shapefile of the LSOAs in Bedfordshire, from the LSOAs in the box that surrounds Bedfodshire (lsoa_bedfordshire_box.shp).</p>
+<p>Geoprocessing method clip (Tutorial to use this: <a class="reference external" href="https://www.youtube.com/watch?v=U3pngCq3TFw">https://www.youtube.com/watch?v=U3pngCq3TFw</a>).</p>
+<p>There was an issue as it didn’t end up including “E01017486” (which is in Bedfordshire). This may be the same place GeoPandas fell over and stopped working, whereas in QGIS it processed for those it could, and skipped those it could not.</p>
+<p>Created “bedfordshire_lsoas.gpkg”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data/bedfordshire_lsoas.gpkg&quot;</span>
+<span class="n">gdf_beds_lsoa_qgis</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:27700&#39;</span><span class="p">)</span>
+<span class="n">gdf_beds_lsoa_qgis</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">CPLE_OpenFailedError</span><span class="g g-Whitespace">                      </span>Traceback (most recent call last)
+<span class="nn">File fiona/ogrext.pyx:136,</span> in <span class="ni">fiona.ogrext.gdal_open_vector</span><span class="nt">()</span>
+
+<span class="nn">File fiona/_err.pyx:291,</span> in <span class="ni">fiona._err.exc_wrap_pointer</span><span class="nt">()</span>
+
+<span class="ne">CPLE_OpenFailedError</span>: data/bedfordshire_lsoas.gpkg: No such file or directory
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">DriverError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">amy</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">stroke_unit_demographics</span><span class="o">/</span><span class="mi">10</span><span class="n">_create_ambulance_lsoa_datafiles</span><span class="o">.</span><span class="n">ipynb</span> <span class="n">Cell</span> <span class="mi">36</span> <span class="n">line</span> <span class="mi">2</span>
+      <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/home/amy/Documents/stroke_unit_demographics/10_create_ambulance_lsoa_datafiles.ipynb#X50sZmlsZQ%3D%3D?line=0&#39;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data/bedfordshire_lsoas.gpkg&quot;</span>
+<span class="o">----&gt;</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/home/amy/Documents/stroke_unit_demographics/10_create_ambulance_lsoa_datafiles.ipynb#X50sZmlsZQ%3D%3D?line=1&#39;</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">gdf_beds_lsoa_qgis</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:27700&#39;</span><span class="p">)</span>
+      <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell:/home/amy/Documents/stroke_unit_demographics/10_create_ambulance_lsoa_datafiles.ipynb#X50sZmlsZQ%3D%3D?line=2&#39;</span><span class="o">&gt;</span><span class="mi">3</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">gdf_beds_lsoa_qgis</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/geopandas/io/file.py:297,</span> in <span class="ni">_read_file</span><span class="nt">(filename, bbox, mask, rows, engine, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">294</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">295</span>         <span class="n">path_or_bytes</span> <span class="o">=</span> <span class="n">filename</span>
+<span class="ne">--&gt; </span><span class="mi">297</span>     <span class="k">return</span> <span class="n">_read_file_fiona</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span>         <span class="n">path_or_bytes</span><span class="p">,</span> <span class="n">from_bytes</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="n">rows</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unknown engine &#39;</span><span class="si">{</span><span class="n">engine</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/geopandas/io/file.py:338,</span> in <span class="ni">_read_file_fiona</span><span class="nt">(path_or_bytes, from_bytes, bbox, mask, rows, where, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">335</span>     <span class="n">reader</span> <span class="o">=</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span>
+<span class="g g-Whitespace">    </span><span class="mi">337</span> <span class="k">with</span> <span class="n">fiona_env</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">338</span>     <span class="k">with</span> <span class="n">reader</span><span class="p">(</span><span class="n">path_or_bytes</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">as</span> <span class="n">features</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">339</span>         <span class="n">crs</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">crs_wkt</span>
+<span class="g g-Whitespace">    </span><span class="mi">340</span>         <span class="c1"># attempt to get EPSG code</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/fiona/env.py:457,</span> in <span class="ni">ensure_env_with_credentials.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">454</span>     <span class="n">session</span> <span class="o">=</span> <span class="n">DummySession</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">456</span> <span class="k">with</span> <span class="n">env_ctor</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">457</span>     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/fiona/__init__.py:292,</span> in <span class="ni">open</span><span class="nt">(fp, mode, driver, schema, crs, encoding, layer, vfs, enabled_drivers, crs_wkt, allow_unsupported_drivers, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">289</span>     <span class="n">path</span> <span class="o">=</span> <span class="n">parse_path</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">291</span> <span class="k">if</span> <span class="n">mode</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">292</span>     <span class="n">colxn</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">293</span>         <span class="n">path</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">294</span>         <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">295</span>         <span class="n">driver</span><span class="o">=</span><span class="n">driver</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">296</span>         <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span>         <span class="n">layer</span><span class="o">=</span><span class="n">layer</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span>         <span class="n">enabled_drivers</span><span class="o">=</span><span class="n">enabled_drivers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span>         <span class="n">allow_unsupported_drivers</span><span class="o">=</span><span class="n">allow_unsupported_drivers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span>         <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span> <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;w&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span>     <span class="n">colxn</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>         <span class="n">path</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">305</span>         <span class="n">mode</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">314</span>         <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">315</span>     <span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/geopandas/lib/python3.9/site-packages/fiona/collection.py:243,</span> in <span class="ni">Collection.__init__</span><span class="nt">(self, path, mode, driver, schema, crs, encoding, layer, vsi, archive, enabled_drivers, crs_wkt, ignore_fields, ignore_geometry, include_fields, wkt_version, allow_unsupported_drivers, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">241</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;r&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">242</span>     <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">243</span>     <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">244</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">245</span>     <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">WritingSession</span><span class="p">()</span>
+
+<span class="nn">File fiona/ogrext.pyx:588,</span> in <span class="ni">fiona.ogrext.Session.start</span><span class="nt">()</span>
+
+<span class="nn">File fiona/ogrext.pyx:143,</span> in <span class="ni">fiona.ogrext.gdal_open_vector</span><span class="nt">()</span>
+
+<span class="ne">DriverError</span>: data/bedfordshire_lsoas.gpkg: No such file or directory
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_beds_lsoa_qgis</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Need to do a few tidying up steps.</p>
+<p>As the county boundary didn’t fall exactly on the LSOA boundary, some slithers of the polygons outside the edges were included.
+Here’s an example of an LSOA that’s in, but only a slither (identified when selecting the full LSOA from the names in this shapefile and when plotting can see it’s entirity, which is outside of the Bedfordshire county).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">gdf_beds_lsoa_qgis</span><span class="p">[</span><span class="s2">&quot;LSOA11CD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;E01017652&quot;</span>
+<span class="n">LSOA11CD_E01017652</span> <span class="o">=</span> <span class="n">gdf_beds_lsoa_qgis</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">LSOA11CD_E01017652</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">gdf_beds_lsoa_qgis</span><span class="p">[</span><span class="s2">&quot;LSOA11CD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;E01027348&quot;</span>
+<span class="n">LSOA11CD_E01017652</span> <span class="o">=</span> <span class="n">gdf_beds_lsoa_qgis</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">LSOA11CD_E01017652</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Need to do a couple of manual tweaks to the resulting LSOAs selected.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get list of LSOAs in the shapefile</span>
+<span class="n">bedfordshire_lsoas</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">gdf_beds_lsoa_qgis</span><span class="p">[</span><span class="s2">&quot;LSOA11CD&quot;</span><span class="p">])</span>
+
+<span class="c1"># 1) add in missing LSOAs</span>
+<span class="c1">#    The polygon missing could be the cause for clip using GeoPandas not to work</span>
+<span class="c1">#    but QGIS did as best as it could, and then ingnored the polygon that cause the error</span>
+<span class="c1">#    Now we can add the single missing polygon</span>
+<span class="n">bedfordshire_lsoas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;E01017486&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2) Some LSOAs were assigned to Bedfordshire which are in Buckinghamshire</span>
+<span class="c1">#    The boundaries of the UA shapefile and LSOA shapefile do not align perfectly</span>
+<span class="c1">#    so these LSOAs were allocated to Bedford, when they are in Buckinghamshire</span>
+<span class="c1">#    Identified manually in QGIS (see image).</span>
+<span class="c1">#    These need to be removed from the list</span>
+<span class="c1">#  ([&quot;E01016800&quot;, &quot;E01016797&quot;, &quot;E01016803&quot;, &quot;E01016735&quot;, &quot;E01016734&quot;, &quot;E01017670&quot;, </span>
+<span class="c1">#    &quot;E01017652&quot;, &quot;E01017658&quot;, &quot;E01017657&quot;, &quot;E01016736&quot;])</span>
+
+<span class="c1"># 3) Some LSOAs were assigned to Bedfordshire which are in Northamptonshire</span>
+<span class="c1">#    The boundaries of the UA shapefile and LSOA shapefile do not align perfectly</span>
+<span class="c1">#    so these LSOAs were allocated to Bedford, when they are in Northamptonshire</span>
+<span class="c1">#    Identified manually in QGIS (see image).</span>
+<span class="c1">#    These need to be removed from the list</span>
+<span class="c1"># ([&quot;E01027348&quot;, &quot;E01027354&quot;, &quot;E01027355&quot;,&quot;E01027335&quot;, &quot;E01027336&quot;, &quot;E01027337&quot;,</span>
+<span class="c1">#   &quot;E01027071&quot;, &quot;E01027067&quot;, &quot;E01027066&quot;, &quot;E01027035&quot;])</span>
+
+<span class="c1"># Don&#39;t think including these will make a difference</span>
+<span class="c1"># ([&quot;E01027031&quot;, &quot;E01027044&quot;])</span>
+
+<span class="c1"># putting all three lists above into one</span>
+<span class="n">not_in_bedfordshire_lsoas</span> <span class="o">=</span> <span class="p">([</span><span class="s2">&quot;E01016800&quot;</span><span class="p">,</span> <span class="s2">&quot;E01016797&quot;</span><span class="p">,</span> <span class="s2">&quot;E01016803&quot;</span><span class="p">,</span> 
+                              <span class="s2">&quot;E01016735&quot;</span><span class="p">,</span> <span class="s2">&quot;E01016734&quot;</span><span class="p">,</span> <span class="s2">&quot;E01017670&quot;</span><span class="p">,</span> 
+                              <span class="s2">&quot;E01017652&quot;</span><span class="p">,</span> <span class="s2">&quot;E01017658&quot;</span><span class="p">,</span> <span class="s2">&quot;E01017657&quot;</span><span class="p">,</span> 
+                              <span class="s2">&quot;E01016736&quot;</span><span class="p">,</span> <span class="s2">&quot;E01027348&quot;</span><span class="p">,</span> <span class="s2">&quot;E01027354&quot;</span><span class="p">,</span>
+                              <span class="s2">&quot;E01027355&quot;</span><span class="p">,</span> <span class="s2">&quot;E01027335&quot;</span><span class="p">,</span> <span class="s2">&quot;E01027336&quot;</span><span class="p">,</span> 
+                              <span class="s2">&quot;E01027337&quot;</span><span class="p">,</span> <span class="s2">&quot;E01027071&quot;</span><span class="p">,</span> <span class="s2">&quot;E01027067&quot;</span><span class="p">,</span>
+                               <span class="s2">&quot;E01027066&quot;</span><span class="p">,</span> <span class="s2">&quot;E01027035&quot;</span><span class="p">])</span>
+
+<span class="c1"># Remove these from the Bedfordshire LSOA list</span>
+<span class="n">l3</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">bedfordshire_lsoas</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">not_in_bedfordshire_lsoas</span><span class="p">]</span>
+<span class="n">bedfordshire_lsoas</span> <span class="o">=</span> <span class="n">l3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the NHS Bedfordshire, Luton and Milton Keynes CCG, those LSOAs in the Bedfordhsire shape file get allocated to EEAST, and the rest to SCAS.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">lsoa_ambo_data</span><span class="p">[</span><span class="s2">&quot;CCG name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;Bedfordshire&#39;</span><span class="p">)</span>
+<span class="n">lsoa_ambo_data</span><span class="p">[</span><span class="s2">&quot;Ambulance Service Name&quot;</span><span class="p">][</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;South Central&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lsoa_ambo_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;E01017652&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lsoa_ambo_data</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">lsoa_ambo_data</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="s2">&quot;LSOA11CD&quot;</span><span class="p">})</span>
+<span class="n">lsoa_ambo_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">lsoa_ambo_data</span><span class="p">[</span><span class="s2">&quot;LSOA11CD&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">bedfordshire_lsoas</span><span class="p">)</span>
+<span class="n">lsoa_ambo_data</span><span class="p">[</span><span class="s2">&quot;Ambulance Service Name&quot;</span><span class="p">][</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;East of England&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">bedfordshire_lsoas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">lsoa_ambo_data</span><span class="p">[</span><span class="s2">&quot;LSOA11CD&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;E01017652&quot;</span>
+<span class="n">lsoa_ambo_data</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lsoa_ambo_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Save combined file</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lsoa_ambo_data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;./data/demographic/ambulance_service_regions_lsoa.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add ambulance data to the LSOA polygons</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;zip://./data/Lower_layer_super_output_areas_(E+W)_2011_Boundaries_(Generalised_Clipped)_V2.zip&#39;</span>
+<span class="n">gdf_lsoa</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:27700&#39;</span><span class="p">)</span>
+<span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lsoa_ambo_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#gdf_lsoa = pd.concat([gdf_lsoa, lsoa_ambo_data[col], axis=1)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;LSOA11CD&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">lsoa_ambo_data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;LSOA11CD&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">col</span> <span class="o">=</span> <span class="s1">&#39;Ambulance Service Name&#39;</span><span class="c1">#&#39;NHS Ambulance Service Region Name&#39;</span>
+
+<span class="c1"># Join the Ambulance data to the LSOA shapefile, but keep all rows in the LSOA shapefile.</span>
+<span class="c1"># May need to use &quot;how = &#39;left&#39;&quot;. Check and choose.</span>
+<span class="n">gdf_lsoa</span> <span class="o">=</span> <span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lsoa_ambo_data</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;outer&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now data for Wales in the CCG and Ambulance datafiles. Should still have the Wales LSOA polygons in the shapefile, so populate the “Ambulance Service Name” field with “Wales” for those polygons with LSOA11CD starting with “W”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="s2">&quot;LSOA11CD&quot;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>gdf_lsoa.reset_index(inplace=True)
+gdf_lsoa.rename({“Index”:”LSOA11CD”})
+gdf_lsoa.head()</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">gdf_lsoa</span><span class="p">[</span><span class="s2">&quot;LSOA11CD&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span><span class="s2">&quot;W&quot;</span>
+<span class="n">gdf_lsoa</span><span class="p">[</span><span class="s2">&quot;Ambulance Service Name&quot;</span><span class="p">][</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Welsh&quot;</span>
+<span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Save lsoa shapefile, with the ambulace service data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data/Lower_layer_super_output_areas_(E+W)_2011_Boundaries_(Generalised_Clipped)_V2_ambulance_service.shp&quot;</span>
+<span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="read-in-hospital-data">
+<h3>Read in hospital data<a class="headerlink" href="#read-in-hospital-data" title="Permalink to this heading">#</a></h3>
+<p>(Stroke Team, SSNAP name, Easting, Northing)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_units</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;./data/stroke_hospitals_2022.csv&#39;</span><span class="p">)</span>
+
+<span class="n">gdf_units</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span>
+        <span class="n">gdf_units</span><span class="o">.</span><span class="n">Easting</span><span class="p">,</span> <span class="n">gdf_units</span><span class="o">.</span><span class="n">Northing</span><span class="p">)</span>
+<span class="n">gdf_units</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">27700</span><span class="p">)</span>
+
+<span class="c1"># Restrict to the units delivering thrombolysis</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="p">[</span><span class="s1">&#39;Use_IVT&#39;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;1&quot;</span>
+<span class="n">gdf_units</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+<span class="n">gdf_units</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Convert CRS so compatible with basemap</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># When using base maps convert data to epsg:3857</span>
+<span class="n">gdf_lsoa</span> <span class="o">=</span> <span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span>
+<span class="n">gdf_units</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Define mapping regions for full plot (and later for the London inset plot)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eng_wales_bounds</span> <span class="o">=</span> <span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">bounds</span>
+<span class="n">eng_wales_bounds</span> <span class="o">=</span> <span class="n">eng_wales_bounds</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">gdf_lsoa</span><span class="p">[</span><span class="n">col</span><span class="p">],</span><span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span>
+                      <span class="n">left_on</span> <span class="o">=</span> <span class="n">eng_wales_bounds</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                      <span class="n">right_on</span> <span class="o">=</span> <span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">eng_wales_bounds</span> <span class="o">=</span> <span class="n">eng_wales_bounds</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+<span class="n">eng_wales_bounds</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;key_0&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">eng_wales_bounds</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_nonoverlapping_text_labels</span><span class="p">(</span><span class="n">gdf_units</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">y_step</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    #https://stackoverflow.com/questions/43916834/matplotlib-dynamically-change-text-position</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">text_rectangles</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Better results if the labels are sorted descending in the y axis</span>
+    <span class="n">gdf_units</span><span class="p">[</span><span class="s1">&#39;sort_by&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span>
+    <span class="n">gdf_units</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;sort_by&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">gdf_units</span><span class="p">[</span><span class="s2">&quot;sort_by&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Add labels</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+        <span class="n">gdf_units</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">gdf_units</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">gdf_units</span><span class="p">[</span><span class="n">col</span><span class="p">]):</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> 
+                        <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">,</span> 
+                        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">))</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+            <span class="n">new_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">2</span>
+            <span class="n">text</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="n">new_x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+                    
+            <span class="n">rect</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">get_window_extent</span><span class="p">()</span>
+
+            <span class="k">for</span> <span class="n">other_rect</span> <span class="ow">in</span> <span class="n">text_rectangles</span><span class="p">:</span>
+                <span class="k">while</span> <span class="n">Bbox</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span> <span class="n">other_rect</span><span class="p">):</span>  <span class="c1"># overlapping</span>
+                    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+                    <span class="n">new_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_step</span>
+                    <span class="n">text</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">new_y</span><span class="p">))</span>
+                    <span class="n">rect</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">get_window_extent</span><span class="p">()</span>
+            <span class="n">text_rectangles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Map Ambulance Region, by LSOA</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_labels</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1">#col = &#39;NHS Ambulance Service Region Name&#39;</span>
+<span class="n">col_readable</span> <span class="o">=</span> <span class="s1">&#39;NHS Ambulance Service&#39;</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span> <span class="c1"># Make max dimensions 10x10 inch</span>
+<span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="c1"># Set which axes to use for plot (only one here)</span>
+                 <span class="n">column</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="c1"># Column to apply colour</span>
+                 <span class="n">antialiased</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1"># Avoids artifact boundry lines</span>
+                 <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;face&#39;</span><span class="p">,</span> <span class="c1"># Make LSOA boundry same colour as area</span>
+                 <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="c1"># Use linewidth=0 to hide boarder lines</span>
+<span class="c1">#                 vmin=0, # Manual scale min (remove to make automatic)</span>
+<span class="c1">#                 vmax=70, # Manual scale max (remove to make automatic)</span>
+                 <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span> <span class="c1"># Colour map to use</span>
+                 <span class="c1"># Adjust size of colourmap key, and add label</span>
+<span class="c1">#                 legend_kwds={&#39;shrink&#39;:0.5, &#39;label&#39;:f&#39;{col_readable}&#39;},</span>
+                 <span class="c1"># Set to display legend</span>
+                 <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="c1"># Set transparancy (to help reveal basemap</span>
+                 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.70</span><span class="p">)</span>
+
+<span class="c1"># Plot location of hospitals</span>
+<span class="n">gdf_units</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> 
+               <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">show_labels</span><span class="p">:</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">add_nonoverlapping_text_labels</span><span class="p">(</span><span class="n">gdf_units</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;hospital_city&#39;</span><span class="p">,</span>
+                                        <span class="n">y_step</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+        
+<span class="c1"># Add base map (note that we specifiy the same CRS as we are using)</span>
+<span class="c1"># Use manual zoom to adjust level of detail of base map</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> 
+                <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">OpenStreetMap</span><span class="o">.</span><span class="n">Mapnik</span><span class="p">,</span><span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+
+
+<span class="c1"># Remove x and y ticks</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span> <span class="c1"># Turn of axis line and numbers</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col_readable</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># Adjust for printing</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">apply_aspect</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;map_</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">_v1.jpg&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span> <span class="c1"># Save figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_ambulance_service</span> <span class="o">=</span> <span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_ambulance_service</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_ambulance_service</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data/ambulance_service.shp&quot;</span>
+<span class="n">gdf_ambulance_service</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_labels</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1">#col = &#39;NHS Ambulance Service Region Name&#39;</span>
+<span class="n">col_readable</span> <span class="o">=</span> <span class="s1">&#39;NHS Ambulance Service&#39;</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span> <span class="c1"># Make max dimensions 10x10 inch</span>
+<span class="n">gdf_ambulance_service</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="c1"># Set which axes to use for plot (only one here)</span>
+<span class="c1">#                 column=col, # Column to apply colour</span>
+                 <span class="n">antialiased</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1"># Avoids artifact boundry lines</span>
+                 <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;face&#39;</span><span class="p">,</span> <span class="c1"># Make LSOA boundry same colour as area</span>
+                 <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="c1"># Use linewidth=0 to hide boarder lines</span>
+<span class="c1">#                 vmin=0, # Manual scale min (remove to make automatic)</span>
+<span class="c1">#                 vmax=70, # Manual scale max (remove to make automatic)</span>
+                 <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span> <span class="c1"># Colour map to use</span>
+                 <span class="c1"># Adjust size of colourmap key, and add label</span>
+<span class="c1">#                 legend_kwds={&#39;shrink&#39;:0.5, &#39;label&#39;:f&#39;{col_readable}&#39;},</span>
+                 <span class="c1"># Set to display legend</span>
+                 <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="c1"># Set transparancy (to help reveal basemap</span>
+                 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.70</span><span class="p">)</span>
+
+<span class="c1"># Plot location of hospitals</span>
+<span class="n">gdf_units</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> 
+               <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">show_labels</span><span class="p">:</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">add_nonoverlapping_text_labels</span><span class="p">(</span><span class="n">gdf_units</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;hospital_city&#39;</span><span class="p">,</span>
+                                        <span class="n">y_step</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+        
+<span class="c1"># Add base map (note that we specifiy the same CRS as we are using)</span>
+<span class="c1"># Use manual zoom to adjust level of detail of base map</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> 
+                <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">OpenStreetMap</span><span class="o">.</span><span class="n">Mapnik</span><span class="p">,</span><span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+
+
+<span class="c1"># Remove x and y ticks</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span> <span class="c1"># Turn of axis line and numbers</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col_readable</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># Adjust for printing</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">apply_aspect</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;map_</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">_1_v1.jpg&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span> <span class="c1"># Save figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hospital in each Ambulance Service.</p>
+<p>Use Points-in-polygon:
+<a class="reference external" href="https://support.esri.com/en-us/gis-dictionary/point-in-polygon-overlay">https://support.esri.com/en-us/gis-dictionary/point-in-polygon-overlay</a></p>
+<p>Function below from: <a class="reference external" href="https://medium.com/analytics-vidhya/point-in-polygon-analysis-using-python-geopandas-27ea67888bff">https://medium.com/analytics-vidhya/point-in-polygon-analysis-using-python-geopandas-27ea67888bff</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_pip</span> <span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">regions</span><span class="p">):</span>
+    <span class="n">r_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">regions</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="c1">#Name)</span>
+    <span class="c1">#create empty dataframe</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span><span class="o">.</span><span class="n">reindex_like</span><span class="p">(</span><span class="n">gdf</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">r_list</span><span class="p">:</span>
+        <span class="c1">#get geometry for specific region</span>
+        <span class="n">pol</span> <span class="o">=</span> <span class="p">(</span><span class="n">regions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">regions</span><span class="o">.</span><span class="n">index</span><span class="o">==</span><span class="n">r</span><span class="p">])</span><span class="c1">#.Name==r])</span>
+        <span class="n">pol</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="c1">#identify those records from gdf that are intersecting with the region polygon</span>
+        <span class="n">pip_mask</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="n">pol</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">])</span>
+        <span class="c1">#filter gdf to keep only the intersecting records</span>
+        <span class="n">pip_data</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pip_mask</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="c1">#create a new column and assign the region name as the value</span>
+        <span class="n">pip_data</span><span class="p">[</span><span class="s1">&#39;Ambulance Service&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">r</span>
+        <span class="c1">#append region data to empty dataframe</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pip_data</span><span class="p">)</span>
+    <span class="c1">#checking there are no more than one region assigned to an event    </span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Original dataframe count=&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">gdf</span><span class="p">),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">New dataframe count=&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Hospital_name</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span> <span class="o">==</span> <span class="kc">True</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are id&#39;s with more than one region&quot;</span><span class="p">)</span>
+    <span class="c1">#checking all events have a region</span>
+    <span class="k">elif</span> <span class="n">gdf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">gdf</span><span class="o">.</span><span class="n">Hospital_name</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Hospital_name</span><span class="p">)]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are id&#39;s without an assigned region&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No discrepancies in results!&quot;</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;geometry&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hosp_in_ambo_service</span> <span class="o">=</span> <span class="n">get_pip</span><span class="p">(</span><span class="n">gdf_units</span><span class="p">,</span> <span class="n">gdf_ambulance_service</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hosp_in_ambo_service</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#gdf_units = gdf_units.join(hosp_in_ambo_service)</span>
+<span class="n">hosp_in_ambo_service</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">hosp_in_ambo_service</span><span class="p">,</span> <span class="p">)</span>
+<span class="n">hosp_in_ambo_service</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span>
+        <span class="n">hosp_in_ambo_service</span><span class="o">.</span><span class="n">Easting</span><span class="p">,</span> <span class="n">hosp_in_ambo_service</span><span class="o">.</span><span class="n">Northing</span><span class="p">)</span>
+<span class="n">hosp_in_ambo_service</span> <span class="o">=</span> <span class="n">hosp_in_ambo_service</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">27700</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># When using base maps convert data to epsg:3857</span>
+<span class="n">hosp_in_ambo_service</span> <span class="o">=</span> <span class="n">hosp_in_ambo_service</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span> <span class="c1"># Make max dimensions 10x10 inch</span>
+<span class="c1"># Plot location of hospitals</span>
+<span class="n">hosp_in_ambo_service</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s2">&quot;Ambulance Service&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> 
+                          <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
+                          <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">add_nonoverlapping_text_labels</span><span class="p">(</span><span class="n">hosp_in_ambo_service</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;hospital_city&#39;</span><span class="p">,</span>
+                                    <span class="n">y_step</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="c1"># Add base map (note that we specifiy the same CRS as we are using)</span>
+<span class="c1"># Use manual zoom to adjust level of detail of base map</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> 
+                <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">OpenStreetMap</span><span class="o">.</span><span class="n">Mapnik</span><span class="p">,</span><span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Remove x and y ticks</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span> <span class="c1"># Turn of axis line and numbers</span>
+<span class="c1">#ax.set_title(f&#39;{col_readable}&#39;)</span>
+<span class="c1"># Adjust for printing</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">apply_aspect</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;map_hosp_in_ambo_service.jpg&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span> <span class="c1"># Save figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./archive"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aim">Aim</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-packages-and-define-file-paths">Import packages and define file paths</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-lookup-files">Load the lookup files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-the-lookup-files-so-can-translate-lsoa-to-ambulance">Combine the lookup files (so can translate LSOA to ambulance)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deal-with-complications">Deal with complications</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nhs-hampshire-southampton-and-isle-of-wight-ccg">NHS Hampshire, Southampton and Isle of Wight CCG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nhs-bedfordshire-luton-and-milton-keynes-ccg">NHS Bedfordshire, Luton and Milton Keynes CCG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-hospital-data">Read in hospital data</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By SAMueL-2 team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

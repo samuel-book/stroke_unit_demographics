@@ -1,0 +1,10 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: 01_combine_demographic_data
+- file: 01b_ambulance_trusts
+- file: 02_create_shapefiles
+- file: 03_create_maps
