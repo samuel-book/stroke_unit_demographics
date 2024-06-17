@@ -1,0 +1,1414 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Create simplified regions for Streamlit app &#8212; stroke_unit_demographics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02b_create_regions_for_streamlit_app';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Create maps" href="03_create_maps.html" />
+    <link rel="prev" title="Create shapefiles" href="02_create_shapefiles.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">stroke_unit_demographics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Stroke unit demographics
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_combine_demographic_data.html">Collate demographic data for each LSOA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01b_ambulance_trusts.html">Ambulance Trusts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_create_shapefiles.html">Create shapefiles</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Create simplified regions for Streamlit app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_create_maps.html">Create maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03b_results_by_region.html">Create region-averaged data</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F02b_create_regions_for_streamlit_app.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/02b_create_regions_for_streamlit_app.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Create simplified regions for Streamlit app</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-setup">Notebook setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#link-region-data">Link region data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-region-shapes">Merge region shapes</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="create-simplified-regions-for-streamlit-app">
+<h1>Create simplified regions for Streamlit app<a class="headerlink" href="#create-simplified-regions-for-streamlit-app" title="Permalink to this heading">#</a></h1>
+<p>The stroke demographics app shows a map of the demographic data at the LSOA level. It is useful to show which LSOAs can be grouped together, for example into stroke unit catchment areas or into ambulance service areas.</p>
+<p>The app uses simplified LSOA shapes to speed up the calculations. This means that the LSOA in the app are different shapes than those that were used to create the region files available from the Office for National Statistics geoportal and similar services.</p>
+<p>In this notebook we will recreate the region boundary shapes from the simplified LSOA shapes.</p>
+<section id="notebook-setup">
+<h2>Notebook setup<a class="headerlink" href="#notebook-setup" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">importlib_resources</span> <span class="kn">import</span> <span class="n">files</span>
+<span class="kn">from</span> <span class="nn">shapely.validation</span> <span class="kn">import</span> <span class="n">make_valid</span>  <span class="c1"># for fixing dodgy polygons</span>
+
+<span class="c1"># The stroke-maps package from our other stroke work contains data</span>
+<span class="c1"># linking different region types.</span>
+<span class="kn">import</span> <span class="nn">stroke_maps</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define file paths</span>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Paths</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Singleton object for storing paths to data and database.&#39;&#39;&#39;</span>
+
+    <span class="c1"># Inputs:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;./data&#39;</span>
+    <span class="n">collated</span> <span class="o">=</span> <span class="s1">&#39;collated_data_amb.csv&#39;</span>
+
+    <span class="c1"># Outputs:</span>
+    <span class="n">shapefiles</span> <span class="o">=</span> <span class="s1">&#39;shapefiles&#39;</span>
+    <span class="n">lsoa_shp</span> <span class="o">=</span> <span class="s1">&#39;LSOA_V3_reduced_simplified.geojson&#39;</span>
+
+
+<span class="n">paths</span> <span class="o">=</span> <span class="n">Paths</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-data">
+<h2>Load data<a class="headerlink" href="#load-data" title="Permalink to this heading">#</a></h2>
+<p>Firstly the tabular data to say which LSOA belongs to which region, and only keep the region columns:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_lsoa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">collated</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;LSOA&#39;</span><span class="p">)</span>
+
+<span class="n">cols_regions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;closest_ivt_unit&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;closest_mt_unit&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;closest_mt_transfer&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;la_district_name_2019&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;rural_urban_2011&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ambulance_service&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;local_authority_district_22&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LAD22NM&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;country&#39;</span>
+<span class="p">]</span>
+
+<span class="n">df_lsoa</span> <span class="o">=</span> <span class="n">df_lsoa</span><span class="p">[</span><span class="n">cols_regions</span><span class="p">]</span>
+
+<span class="n">df_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>LSOA</th>
+      <th>Welwyn Hatfield 010F</th>
+      <th>Welwyn Hatfield 012A</th>
+      <th>Welwyn Hatfield 002F</th>
+      <th>Welwyn Hatfield 002E</th>
+      <th>Welwyn Hatfield 010A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>closest_ivt_unit</th>
+      <td>SG14AB</td>
+      <td>SG14AB</td>
+      <td>SG14AB</td>
+      <td>SG14AB</td>
+      <td>SG14AB</td>
+    </tr>
+    <tr>
+      <th>closest_mt_unit</th>
+      <td>NW12BU</td>
+      <td>NW12BU</td>
+      <td>NW12BU</td>
+      <td>NW12BU</td>
+      <td>NW12BU</td>
+    </tr>
+    <tr>
+      <th>closest_mt_transfer</th>
+      <td>CB20QQ</td>
+      <td>CB20QQ</td>
+      <td>CB20QQ</td>
+      <td>CB20QQ</td>
+      <td>CB20QQ</td>
+    </tr>
+    <tr>
+      <th>la_district_name_2019</th>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+    </tr>
+    <tr>
+      <th>rural_urban_2011</th>
+      <td>Urban city and town</td>
+      <td>Urban city and town</td>
+      <td>Urban city and town</td>
+      <td>Urban city and town</td>
+      <td>Urban city and town</td>
+    </tr>
+    <tr>
+      <th>ambulance_service</th>
+      <td>East of England</td>
+      <td>East of England</td>
+      <td>East of England</td>
+      <td>East of England</td>
+      <td>East of England</td>
+    </tr>
+    <tr>
+      <th>local_authority_district_22</th>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+    </tr>
+    <tr>
+      <th>LAD22NM</th>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+      <td>Welwyn Hatfield</td>
+    </tr>
+    <tr>
+      <th>country</th>
+      <td>England</td>
+      <td>England</td>
+      <td>England</td>
+      <td>England</td>
+      <td>England</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Then load the LSOA shape files:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_lsoa</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">shapefiles</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">lsoa_shp</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="c1"># Make geometry valid:</span>
+<span class="n">gdf_lsoa</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">make_valid</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="k">if</span> <span class="n">g</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">g</span>
+    <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">gdf_lsoa</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="p">]</span>
+
+<span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LSOA11NM</th>
+      <th>LSOA11CD</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>City of London 001A</td>
+      <td>E01000001</td>
+      <td>POLYGON ((-0.09470 51.52060, -0.09730 51.52160...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>City of London 001B</td>
+      <td>E01000002</td>
+      <td>POLYGON ((-0.08810 51.51940, -0.09270 51.52140...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>City of London 001C</td>
+      <td>E01000003</td>
+      <td>POLYGON ((-0.09450 51.52200, -0.09680 51.52330...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>City of London 001E</td>
+      <td>E01000005</td>
+      <td>POLYGON ((-0.07590 51.51590, -0.07730 51.51740...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Barking and Dagenham 016A</td>
+      <td>E01000006</td>
+      <td>POLYGON ((0.09330 51.53790, 0.08650 51.54180, ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>And a bonus file that links LSOA to more region types:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Relative import from `stroke-maps` package files:</span>
+<span class="n">path_to_file</span> <span class="o">=</span> <span class="n">files</span><span class="p">(</span><span class="s1">&#39;stroke_maps.data&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;regions_lsoa_ew.csv&#39;</span><span class="p">)</span>
+<span class="n">df_lsoa_regions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;lsoa&#39;</span><span class="p">)</span>
+
+<span class="c1"># Rename index to match df_lsoa:</span>
+<span class="n">df_lsoa_regions</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;LSOA&#39;</span>
+
+<span class="n">df_lsoa_regions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lsoa_code</th>
+      <th>region</th>
+      <th>region_code</th>
+      <th>region_type</th>
+    </tr>
+    <tr>
+      <th>LSOA</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Halton 007A</th>
+      <td>E01012367</td>
+      <td>NHS Cheshire and Merseyside ICB - 01F</td>
+      <td>E38000068</td>
+      <td>SICBL</td>
+    </tr>
+    <tr>
+      <th>Halton 003A</th>
+      <td>E01012368</td>
+      <td>NHS Cheshire and Merseyside ICB - 01F</td>
+      <td>E38000068</td>
+      <td>SICBL</td>
+    </tr>
+    <tr>
+      <th>Halton 005A</th>
+      <td>E01012369</td>
+      <td>NHS Cheshire and Merseyside ICB - 01F</td>
+      <td>E38000068</td>
+      <td>SICBL</td>
+    </tr>
+    <tr>
+      <th>Halton 007B</th>
+      <td>E01012370</td>
+      <td>NHS Cheshire and Merseyside ICB - 01F</td>
+      <td>E38000068</td>
+      <td>SICBL</td>
+    </tr>
+    <tr>
+      <th>Halton 016A</th>
+      <td>E01012371</td>
+      <td>NHS Cheshire and Merseyside ICB - 01F</td>
+      <td>E38000068</td>
+      <td>SICBL</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>And a second bonus file that links those region types to yet more region types:</p>
+<p>(These two files are stored separately to save disk space)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load further region data linking SICBL to other regions:</span>
+<span class="n">path_to_file</span> <span class="o">=</span> <span class="n">files</span><span class="p">(</span><span class="s1">&#39;stroke_maps.data&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;regions_ew.csv&#39;</span><span class="p">)</span>
+<span class="n">df_regions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">)</span>
+
+<span class="n">df_regions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>region</th>
+      <th>region_code</th>
+      <th>region_type</th>
+      <th>short_code</th>
+      <th>country</th>
+      <th>icb</th>
+      <th>icb_code</th>
+      <th>isdn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Aneurin Bevan University Health Board</td>
+      <td>W11000028</td>
+      <td>LHB</td>
+      <td>AB</td>
+      <td>Wales</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NHS Bath and North East Somerset, Swindon and ...</td>
+      <td>E38000231</td>
+      <td>SICBL</td>
+      <td>BA</td>
+      <td>England</td>
+      <td>NHS Bath and North East Somerset, Swindon and ...</td>
+      <td>E54000040</td>
+      <td>Gloucester, BSW, BNSSG and Somerset</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Betsi Cadwaladr University Health Board</td>
+      <td>W11000023</td>
+      <td>LHB</td>
+      <td>BC</td>
+      <td>Wales</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NHS Bedfordshire, Luton and Milton Keynes ICB ...</td>
+      <td>E38000249</td>
+      <td>SICBL</td>
+      <td>BD</td>
+      <td>England</td>
+      <td>NHS Bedfordshire, Luton and Milton Keynes Inte...</td>
+      <td>E54000024</td>
+      <td>East of England (South)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NHS Black Country ICB - D2P2L</td>
+      <td>E38000259</td>
+      <td>SICBL</td>
+      <td>BL</td>
+      <td>England</td>
+      <td>NHS Black Country Integrated Care Board</td>
+      <td>E54000062</td>
+      <td>North Midlands</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Finally a file to link LSOA to MSOA:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_msoa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;lsoa_2021&#39;</span><span class="p">,</span> <span class="s1">&#39;lsoa_to_msoa.csv&#39;</span><span class="p">),</span>
+    <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;lsoa11nm&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Rename index to match df_lsoa:</span>
+<span class="n">df_msoa</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;LSOA&#39;</span>
+
+<span class="n">df_msoa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lsoa11cd</th>
+      <th>msoa11cd</th>
+      <th>ladcd</th>
+      <th>msoa11nm</th>
+      <th>country</th>
+    </tr>
+    <tr>
+      <th>LSOA</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>City of London 001A</th>
+      <td>E01000001</td>
+      <td>E02000001</td>
+      <td>E09000001</td>
+      <td>City of London 001</td>
+      <td>E</td>
+    </tr>
+    <tr>
+      <th>City of London 001B</th>
+      <td>E01000002</td>
+      <td>E02000001</td>
+      <td>E09000001</td>
+      <td>City of London 001</td>
+      <td>E</td>
+    </tr>
+    <tr>
+      <th>City of London 001C</th>
+      <td>E01000003</td>
+      <td>E02000001</td>
+      <td>E09000001</td>
+      <td>City of London 001</td>
+      <td>E</td>
+    </tr>
+    <tr>
+      <th>City of London 001E</th>
+      <td>E01000005</td>
+      <td>E02000001</td>
+      <td>E09000001</td>
+      <td>City of London 001</td>
+      <td>E</td>
+    </tr>
+    <tr>
+      <th>Barking and Dagenham 016A</th>
+      <td>E01000006</td>
+      <td>E02000017</td>
+      <td>E09000002</td>
+      <td>Barking and Dagenham 016</td>
+      <td>E</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="link-region-data">
+<h2>Link region data<a class="headerlink" href="#link-region-data" title="Permalink to this heading">#</a></h2>
+<p>Link MSOA names to LSOA:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_lsoa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">df_lsoa</span><span class="p">,</span> <span class="n">df_msoa</span><span class="p">[</span><span class="s1">&#39;msoa11cd&#39;</span><span class="p">],</span>
+    <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Make a new column for separate LHB (Wales only) and a new column for either LHB (Wales only) or ICB (England only).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask_wales</span> <span class="o">=</span> <span class="n">df_regions</span><span class="p">[</span><span class="s1">&#39;region_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;LHB&#39;</span>
+
+<span class="n">df_regions</span><span class="p">[</span><span class="s1">&#39;lhb&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_regions</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_regions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">mask_wales</span><span class="p">,</span> <span class="s1">&#39;lhb&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
+
+<span class="n">df_regions</span><span class="p">[</span><span class="s1">&#39;icb_lhb&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_regions</span><span class="p">[</span><span class="s1">&#39;icb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_regions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask_wales</span><span class="p">,</span> <span class="s1">&#39;icb_lhb&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_regions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask_wales</span><span class="p">,</span> <span class="s1">&#39;region&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Combine the two bonus files:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Drop columns already in df_lsoa_regions or df_lsoa:</span>
+<span class="n">df_regions</span> <span class="o">=</span> <span class="n">df_regions</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">,</span> <span class="s1">&#39;region_type&#39;</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+
+<span class="n">df_lsoa_regions</span> <span class="o">=</span> <span class="n">df_lsoa_regions</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df_lsoa_regions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">df_lsoa_regions</span><span class="p">,</span> <span class="n">df_regions</span><span class="p">,</span>
+    <span class="n">on</span><span class="o">=</span><span class="s1">&#39;region_code&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span>
+<span class="p">)</span>
+<span class="n">df_lsoa_regions</span> <span class="o">=</span> <span class="n">df_lsoa_regions</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;LSOA&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Combine bonus files with collated data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_lsoa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">df_lsoa</span><span class="p">,</span> <span class="n">df_lsoa_regions</span><span class="p">,</span>
+    <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Combine collated data with geometry:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_lsoa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">gdf_lsoa</span><span class="p">,</span> <span class="n">df_lsoa</span><span class="p">,</span>
+    <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;LSOA11NM&#39;</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span>
+<span class="p">)</span>
+
+<span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gdf_lsoa</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>LSOA11NM</th>
+      <td>Adur 001A</td>
+      <td>Adur 001B</td>
+      <td>Adur 001C</td>
+      <td>Adur 001D</td>
+      <td>Adur 001E</td>
+    </tr>
+    <tr>
+      <th>LSOA11CD</th>
+      <td>E01031349</td>
+      <td>E01031350</td>
+      <td>E01031351</td>
+      <td>E01031352</td>
+      <td>E01031370</td>
+    </tr>
+    <tr>
+      <th>geometry</th>
+      <td>POLYGON ((-0.2318 50.8398, -0.2319 50.8399, -0...</td>
+      <td>POLYGON ((-0.2259 50.8429, -0.2302 50.8476, -0...</td>
+      <td>POLYGON ((-0.2377 50.8407, -0.2337 50.8438, -0...</td>
+      <td>POLYGON ((-0.2319 50.8399, -0.2318 50.8398, -0...</td>
+      <td>POLYGON ((-0.2484 50.8416, -0.2554 50.8418, -0...</td>
+    </tr>
+    <tr>
+      <th>closest_ivt_unit</th>
+      <td>BN25BE</td>
+      <td>BN25BE</td>
+      <td>BN112DH</td>
+      <td>BN112DH</td>
+      <td>BN112DH</td>
+    </tr>
+    <tr>
+      <th>closest_mt_unit</th>
+      <td>BN25BE</td>
+      <td>BN25BE</td>
+      <td>BN25BE</td>
+      <td>BN25BE</td>
+      <td>BN25BE</td>
+    </tr>
+    <tr>
+      <th>closest_mt_transfer</th>
+      <td>BN25BE</td>
+      <td>BN25BE</td>
+      <td>BN25BE</td>
+      <td>BN25BE</td>
+      <td>BN25BE</td>
+    </tr>
+    <tr>
+      <th>la_district_name_2019</th>
+      <td>Adur</td>
+      <td>Adur</td>
+      <td>Adur</td>
+      <td>Adur</td>
+      <td>Adur</td>
+    </tr>
+    <tr>
+      <th>rural_urban_2011</th>
+      <td>Urban city and town</td>
+      <td>Urban city and town</td>
+      <td>Urban city and town</td>
+      <td>Urban city and town</td>
+      <td>Urban city and town</td>
+    </tr>
+    <tr>
+      <th>ambulance_service</th>
+      <td>South East Coast</td>
+      <td>South East Coast</td>
+      <td>South East Coast</td>
+      <td>South East Coast</td>
+      <td>South East Coast</td>
+    </tr>
+    <tr>
+      <th>local_authority_district_22</th>
+      <td>Adur</td>
+      <td>Adur</td>
+      <td>Adur</td>
+      <td>Adur</td>
+      <td>Adur</td>
+    </tr>
+    <tr>
+      <th>LAD22NM</th>
+      <td>Adur</td>
+      <td>Adur</td>
+      <td>Adur</td>
+      <td>Adur</td>
+      <td>Adur</td>
+    </tr>
+    <tr>
+      <th>country</th>
+      <td>England</td>
+      <td>England</td>
+      <td>England</td>
+      <td>England</td>
+      <td>England</td>
+    </tr>
+    <tr>
+      <th>msoa11cd</th>
+      <td>E02006534</td>
+      <td>E02006534</td>
+      <td>E02006534</td>
+      <td>E02006534</td>
+      <td>E02006534</td>
+    </tr>
+    <tr>
+      <th>lsoa_code</th>
+      <td>E01031349</td>
+      <td>E01031350</td>
+      <td>E01031351</td>
+      <td>E01031352</td>
+      <td>E01031370</td>
+    </tr>
+    <tr>
+      <th>region</th>
+      <td>NHS Sussex ICB - 70F</td>
+      <td>NHS Sussex ICB - 70F</td>
+      <td>NHS Sussex ICB - 70F</td>
+      <td>NHS Sussex ICB - 70F</td>
+      <td>NHS Sussex ICB - 70F</td>
+    </tr>
+    <tr>
+      <th>region_code</th>
+      <td>E38000248</td>
+      <td>E38000248</td>
+      <td>E38000248</td>
+      <td>E38000248</td>
+      <td>E38000248</td>
+    </tr>
+    <tr>
+      <th>region_type</th>
+      <td>SICBL</td>
+      <td>SICBL</td>
+      <td>SICBL</td>
+      <td>SICBL</td>
+      <td>SICBL</td>
+    </tr>
+    <tr>
+      <th>short_code</th>
+      <td>SX2</td>
+      <td>SX2</td>
+      <td>SX2</td>
+      <td>SX2</td>
+      <td>SX2</td>
+    </tr>
+    <tr>
+      <th>icb</th>
+      <td>NHS Sussex Integrated Care Board</td>
+      <td>NHS Sussex Integrated Care Board</td>
+      <td>NHS Sussex Integrated Care Board</td>
+      <td>NHS Sussex Integrated Care Board</td>
+      <td>NHS Sussex Integrated Care Board</td>
+    </tr>
+    <tr>
+      <th>icb_code</th>
+      <td>E54000053</td>
+      <td>E54000053</td>
+      <td>E54000053</td>
+      <td>E54000053</td>
+      <td>E54000053</td>
+    </tr>
+    <tr>
+      <th>isdn</th>
+      <td>Sussex</td>
+      <td>Sussex</td>
+      <td>Sussex</td>
+      <td>Sussex</td>
+      <td>Sussex</td>
+    </tr>
+    <tr>
+      <th>lhb</th>
+      <td>&lt;NA&gt;</td>
+      <td>&lt;NA&gt;</td>
+      <td>&lt;NA&gt;</td>
+      <td>&lt;NA&gt;</td>
+      <td>&lt;NA&gt;</td>
+    </tr>
+    <tr>
+      <th>icb_lhb</th>
+      <td>NHS Sussex Integrated Care Board</td>
+      <td>NHS Sussex Integrated Care Board</td>
+      <td>NHS Sussex Integrated Care Board</td>
+      <td>NHS Sussex Integrated Care Board</td>
+      <td>NHS Sussex Integrated Care Board</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">gdf_lsoa</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>geopandas.geodataframe.GeoDataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Drop the geometry and save a copy:</span>
+<span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/lsoa_2021/lsoa_regions.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Make a fake column for merging all LSOAs into one big shape:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_lsoa</span><span class="p">[</span><span class="s1">&#39;england_wales&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="merge-region-shapes">
+<h2>Merge region shapes<a class="headerlink" href="#merge-region-shapes" title="Permalink to this heading">#</a></h2>
+<p>For each column of region data, merge the shapes of all LSOAs that belong to each region.</p>
+<p>Save a copy of the merged shapes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">merge_lsoas_into_region</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
+    <span class="c1"># Keep only the requested column:</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[[</span><span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="n">col</span><span class="p">]]</span>
+    <span class="c1"># Dissolve by value:</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">gdf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;LSOA11NM&#39;, &#39;LSOA11CD&#39;, &#39;geometry&#39;, &#39;closest_ivt_unit&#39;,
+       &#39;closest_mt_unit&#39;, &#39;closest_mt_transfer&#39;, &#39;la_district_name_2019&#39;,
+       &#39;rural_urban_2011&#39;, &#39;ambulance_service&#39;, &#39;local_authority_district_22&#39;,
+       &#39;LAD22NM&#39;, &#39;country&#39;, &#39;msoa11cd&#39;, &#39;lsoa_code&#39;, &#39;region&#39;, &#39;region_code&#39;,
+       &#39;region_type&#39;, &#39;short_code&#39;, &#39;icb&#39;, &#39;icb_code&#39;, &#39;isdn&#39;, &#39;lhb&#39;,
+       &#39;icb_lhb&#39;, &#39;england_wales&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols_to_merge</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;closest_ivt_unit&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;closest_mt_unit&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;closest_mt_transfer&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;rural_urban_2011&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ambulance_service&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LAD22NM&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;country&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;region_code&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;icb_code&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;isdn&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lhb&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;icb_lhb&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;msoa11cd&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;england_wales&#39;</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols_to_merge</span><span class="p">:</span>
+    <span class="n">gdf_merged</span> <span class="o">=</span> <span class="n">merge_lsoas_into_region</span><span class="p">(</span><span class="n">gdf_lsoa</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span>
+    <span class="n">gdf_merged</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">shapefiles</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;outline_</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">.geojson&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_create_shapefiles.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Create shapefiles</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_create_maps.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Create maps</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-setup">Notebook setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#link-region-data">Link region data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-region-shapes">Merge region shapes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By SAMueL-2 team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

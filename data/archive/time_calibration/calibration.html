@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -145,6 +145,7 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     <p class="title logo__title">stroke_unit_demographics</p>
   
 </a></div>
@@ -162,7 +163,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../../01_combine_demographic_data.html">Collate demographic data for each LSOA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../01b_ambulance_trusts.html">Ambulance Trusts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../02_create_shapefiles.html">Create shapefiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../02b_create_regions_for_streamlit_app.html">Create simplified regions for Streamlit app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../03_create_maps.html">Create maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03b_results_by_region.html">Create region-averaged data</a></li>
 </ul>
 
     </div>
@@ -422,9 +425,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intercept: 5.8
-Slope: 1.0741
-R-squared: 0.979
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intercept: 7.0
+Slope: 1.0606
+R-squared: 0.977
 P: 0.00000
 </pre></div>
 </div>
@@ -474,7 +477,7 @@ P: 0.00000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/6f020d738558e238f480789d36cfdb3ef66657ba5f06d024d5345b0effaef423.png" src="../../../_images/6f020d738558e238f480789d36cfdb3ef66657ba5f06d024d5345b0effaef423.png" />
+<img alt="../../../_images/41f491eec72f1900e91c3d2b37ed67ea421f3b749e5e77b72f7f7eb871bddadd.png" src="../../../_images/41f491eec72f1900e91c3d2b37ed67ea421f3b749e5e77b72f7f7eb871bddadd.png" />
 </div>
 </div>
 </section>
@@ -502,14 +505,14 @@ P: 0.00000
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    1.610000e+02
-mean     6.619963e-16
-std      6.596665e+00
-min     -2.646821e+01
-25%     -1.804597e+00
-50%      1.157773e+00
-75%      3.751848e+00
-max      1.716235e+01
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    1.510000e+02
+mean     4.952624e-15
+std      6.612988e+00
+min     -2.652658e+01
+25%     -1.812940e+00
+50%      1.566298e+00
+75%      3.595385e+00
+max      1.680622e+01
 dtype: float64
 </pre></div>
 </div>
@@ -614,8 +617,8 @@ By SAMueL-2 team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -147,6 +147,7 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     <p class="title logo__title">stroke_unit_demographics</p>
   
 </a></div>
@@ -164,7 +165,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="01_combine_demographic_data.html">Collate demographic data for each LSOA</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Ambulance Trusts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_create_shapefiles.html">Create shapefiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02b_create_regions_for_streamlit_app.html">Create simplified regions for Streamlit app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_create_maps.html">Create maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03b_results_by_region.html">Create region-averaged data</a></li>
 </ul>
 
     </div>
@@ -412,6 +415,65 @@ document.write(`
 <span class="c1"># Linting</span>
 <span class="o">%</span><span class="k">load_ext</span> pycodestyle_magic
 <span class="o">%</span><span class="k">pycodestyle_on</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 10&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1"># Linting</span>
+<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;load_ext&#39;</span><span class="p">,</span> <span class="s1">&#39;pycodestyle_magic&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;pycodestyle_on&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/lib/python3.9/site-packages/IPython/core/interactiveshell.py:2305,</span> in <span class="ni">InteractiveShell.run_line_magic</span><span class="nt">(self, magic_name, line, _stack_depth)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2303</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;local_ns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_local_scope</span><span class="p">(</span><span class="n">stack_depth</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2304</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2305</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2306</span> <span class="k">return</span> <span class="n">result</span>
+
+<span class="nn">File ~/miniconda3/lib/python3.9/site-packages/IPython/core/magics/extension.py:33,</span> in <span class="ni">ExtensionMagics.load_ext</span><span class="nt">(self, module_str)</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">module_str</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span>     <span class="k">raise</span> <span class="n">UsageError</span><span class="p">(</span><span class="s1">&#39;Missing module name.&#39;</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">33</span> <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">extension_manager</span><span class="o">.</span><span class="n">load_extension</span><span class="p">(</span><span class="n">module_str</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="k">if</span> <span class="n">res</span> <span class="o">==</span> <span class="s1">&#39;already loaded&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The </span><span class="si">%s</span><span class="s2"> extension is already loaded. To reload it, use:&quot;</span> <span class="o">%</span> <span class="n">module_str</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/lib/python3.9/site-packages/IPython/core/extensions.py:76,</span> in <span class="ni">ExtensionManager.load_extension</span><span class="nt">(self, module_str)</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Load an IPython extension by its module name.</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span><span class="sd"> Returns the string &quot;already loaded&quot; if the extension is already loaded,</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span><span class="sd"> &quot;no load function&quot; if the module doesn&#39;t have a load_ipython_extension</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span><span class="sd"> function, or None if it succeeded.</span>
+<span class="g g-Whitespace">     </span><span class="mi">74</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">75</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">76</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_extension</span><span class="p">(</span><span class="n">module_str</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span> <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span>     <span class="k">if</span> <span class="n">module_str</span> <span class="ow">in</span> <span class="n">BUILTINS_EXTS</span><span class="p">:</span>
+
+<span class="nn">File ~/miniconda3/lib/python3.9/site-packages/IPython/core/extensions.py:92,</span> in <span class="ni">ExtensionManager._load_extension</span><span class="nt">(self, module_str)</span>
+<span class="g g-Whitespace">     </span><span class="mi">90</span> <span class="k">if</span> <span class="n">module_str</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span>     <span class="k">with</span> <span class="n">prepended_to_syspath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ipython_extension_dir</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">92</span>         <span class="n">mod</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span><span class="n">module_str</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">93</span>         <span class="k">if</span> <span class="n">mod</span><span class="o">.</span><span class="vm">__file__</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ipython_extension_dir</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">94</span>             <span class="nb">print</span><span class="p">((</span><span class="s2">&quot;Loading extensions from </span><span class="si">{dir}</span><span class="s2"> is deprecated. &quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">95</span>                    <span class="s2">&quot;We recommend managing extensions like any &quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">96</span>                    <span class="s2">&quot;other Python packages, in site-packages.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span>                   <span class="nb">dir</span><span class="o">=</span><span class="n">compress_user</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ipython_extension_dir</span><span class="p">)))</span>
+
+<span class="nn">File ~/miniconda3/lib/python3.9/importlib/__init__.py:127,</span> in <span class="ni">import_module</span><span class="nt">(name, package)</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span>             <span class="k">break</span>
+<span class="g g-Whitespace">    </span><span class="mi">126</span>         <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="ne">--&gt; </span><span class="mi">127</span> <span class="k">return</span> <span class="n">_bootstrap</span><span class="o">.</span><span class="n">_gcd_import</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="n">level</span><span class="p">:],</span> <span class="n">package</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1030,</span> in <span class="ni">_gcd_import</span><span class="nt">(name, package, level)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1007,</span> in <span class="ni">_find_and_load</span><span class="nt">(name, import_)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:984,</span> in <span class="ni">_find_and_load_unlocked</span><span class="nt">(name, import_)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pycodestyle_magic&#39;
 </pre></div>
 </div>
 </div>
@@ -1766,8 +1828,8 @@ By SAMueL-2 team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
   </footer>

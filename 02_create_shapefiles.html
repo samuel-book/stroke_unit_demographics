@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '02_create_shapefiles';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Create maps" href="03_create_maps.html" />
+    <link rel="next" title="Create simplified regions for Streamlit app" href="02b_create_regions_for_streamlit_app.html" />
     <link rel="prev" title="Ambulance Trusts" href="01b_ambulance_trusts.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -147,6 +147,7 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     <p class="title logo__title">stroke_unit_demographics</p>
   
 </a></div>
@@ -164,7 +165,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="01_combine_demographic_data.html">Collate demographic data for each LSOA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01b_ambulance_trusts.html">Ambulance Trusts</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Create shapefiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02b_create_regions_for_streamlit_app.html">Create simplified regions for Streamlit app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_create_maps.html">Create maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03b_results_by_region.html">Create region-averaged data</a></li>
 </ul>
 
     </div>
@@ -694,7 +697,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9facbf6fca31ac306d2779aee831a447f265fe438d61cfaa2f3a8214486df65e.png" src="_images/9facbf6fca31ac306d2779aee831a447f265fe438d61cfaa2f3a8214486df65e.png" />
+<img alt="_images/a0730a7744fe66d5e200343d3deecc6e87aebe38361dd8f89f5674d03649b5fe.png" src="_images/a0730a7744fe66d5e200343d3deecc6e87aebe38361dd8f89f5674d03649b5fe.png" />
 </div>
 </div>
 </section>
@@ -835,7 +838,7 @@ document.write(`
     </tr>
   </tbody>
 </table>
-</div></div><img alt="_images/858ac21a0892c7c1d7cb438ce481258a1e0e4fd4671b5e89c1cb5bec3049c4ac.png" src="_images/858ac21a0892c7c1d7cb438ce481258a1e0e4fd4671b5e89c1cb5bec3049c4ac.png" />
+</div></div><img alt="_images/e675ebc9a6e308ba76947287cc24f97f0c8776301462114c4d2956d7c0b8f42b.png" src="_images/e675ebc9a6e308ba76947287cc24f97f0c8776301462114c4d2956d7c0b8f42b.png" />
 </div>
 </div>
 </section>
@@ -922,7 +925,7 @@ document.write(`
     </tr>
   </tbody>
 </table>
-</div></div><img alt="_images/82e3b5b4a455f1f7a0034ac2c1a295908da2866198b4265766bea4daaf78b8f4.png" src="_images/82e3b5b4a455f1f7a0034ac2c1a295908da2866198b4265766bea4daaf78b8f4.png" />
+</div></div><img alt="_images/9973ce5dc40bac1a1d17efa014c10463866d6e4fa3a832b523fed1f35a2c96bf.png" src="_images/9973ce5dc40bac1a1d17efa014c10463866d6e4fa3a832b523fed1f35a2c96bf.png" />
 </div>
 </div>
 </section>
@@ -969,11 +972,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="03_create_maps.html"
+       href="02b_create_regions_for_streamlit_app.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Create maps</p>
+        <p class="prev-next-title">Create simplified regions for Streamlit app</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1051,8 +1054,8 @@ By SAMueL-2 team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
   </footer>

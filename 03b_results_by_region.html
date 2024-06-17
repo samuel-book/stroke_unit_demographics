@@ -1,0 +1,1468 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Create region-averaged data &#8212; stroke_unit_demographics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '03b_results_by_region';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Create maps" href="03_create_maps.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">stroke_unit_demographics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Stroke unit demographics
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_combine_demographic_data.html">Collate demographic data for each LSOA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01b_ambulance_trusts.html">Ambulance Trusts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_create_shapefiles.html">Create shapefiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02b_create_regions_for_streamlit_app.html">Create simplified regions for Streamlit app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_create_maps.html">Create maps</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Create region-averaged data</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F03b_results_by_region.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/03b_results_by_region.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Create region-averaged data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up">1 Set up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries-and-define-file-paths">1.1 Import libraries and define file paths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">1.2 Load data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-functions-for-calculating-weighted-mean-and-proportions">1.3 Define functions for calculating weighted mean and proportions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-new-lsoa-level-data">2. Calculate new LSOA-level data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#big-function-for-region-level-data-creation">3. Big function for region-level data creation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="create-region-averaged-data">
+<h1>Create region-averaged data<a class="headerlink" href="#create-region-averaged-data" title="Permalink to this heading">#</a></h1>
+<blockquote>
+<div><p>This is a copy of notebook 3 (“Create maps”) with the mapping elements removed.</p>
+</div></blockquote>
+<p>Average the data for all LSOAs in a given region to find new values for e.g. population weighted mean IMD score per IVT catchment, or mean transfer time by ambulance trust.</p>
+<p>Most of this notebook involves:</p>
+<ul class="simple">
+<li><p>Load the data for all LSOAs</p></li>
+<li><p>Pick out only the LSOAs in a given region</p></li>
+<li><p>Average or sum the data for those LSOAs</p></li>
+</ul>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>Change from Notebook 3: ethnicity now looks at “white British” vs. “other than white British” groups rather than “white” vs “other than white”.</p></li>
+</ul>
+<section id="set-up">
+<h2>1 Set up<a class="headerlink" href="#set-up" title="Permalink to this heading">#</a></h2>
+<section id="import-libraries-and-define-file-paths">
+<h3>1.1 Import libraries and define file paths<a class="headerlink" href="#import-libraries-and-define-file-paths" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pandas.api.types</span> <span class="kn">import</span> <span class="n">is_numeric_dtype</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define file paths</span>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Paths</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Singleton object for storing paths to data and database.&#39;&#39;&#39;</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;./data&#39;</span>
+    <span class="n">collated</span> <span class="o">=</span> <span class="s1">&#39;collated_data_amb.csv&#39;</span>
+
+    <span class="n">hospitals</span> <span class="o">=</span> <span class="s1">&#39;hospitals&#39;</span>
+    <span class="n">stroke_hospitals</span> <span class="o">=</span> <span class="s1">&#39;stroke_hospitals_2022.csv&#39;</span>
+
+    <span class="n">shapefiles</span> <span class="o">=</span> <span class="s1">&#39;shapefiles&#39;</span>
+    <span class="n">lsoa_shp</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Lower_layer_super_output_areas_(E+W)_2011_Boundaries_&#39;</span> <span class="o">+</span>
+                <span class="s1">&#39;(Generalised_Clipped)_V2.zip&#39;</span><span class="p">)</span>
+
+
+<span class="n">paths</span> <span class="o">=</span> <span class="n">Paths</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-data">
+<h3>1.2 Load data<a class="headerlink" href="#load-data" title="Permalink to this heading">#</a></h3>
+<p><strong>LSOA information</strong> - load <code class="docutils literal notranslate"><span class="pre">collated_data.csv</span></code> produced by <code class="docutils literal notranslate"><span class="pre">01_combine_demographic_data.ipynb</span></code> which has information on each LSOA.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_lsoa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">collated</span><span class="p">))</span>
+
+<span class="c1"># Load in extra region information:</span>
+<span class="n">df_lsoa_regions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/lsoa_2021/lsoa_regions.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Remove any repeated columns:</span>
+<span class="n">cols_to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df_lsoa_regions</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df_lsoa</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="c1"># Merge with region information:</span>
+<span class="n">df_lsoa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_lsoa</span><span class="p">,</span> <span class="n">df_lsoa_regions</span><span class="p">[</span><span class="n">cols_to_keep</span><span class="p">],</span>
+                   <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;LSOA&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;LSOA11NM&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+<span class="n">df_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LSOA</th>
+      <th>admissions</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_ivt_unit_time</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_unit_time</th>
+      <th>closest_mt_transfer</th>
+      <th>closest_mt_transfer_time</th>
+      <th>total_mt_time</th>
+      <th>ivt_rate</th>
+      <th>...</th>
+      <th>lsoa_code</th>
+      <th>region</th>
+      <th>region_code</th>
+      <th>region_type</th>
+      <th>short_code</th>
+      <th>icb</th>
+      <th>icb_code</th>
+      <th>isdn</th>
+      <th>lhb</th>
+      <th>icb_lhb</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Welwyn Hatfield 010F</td>
+      <td>0.666667</td>
+      <td>SG14AB</td>
+      <td>18.7</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>57.8</td>
+      <td>6.8</td>
+      <td>...</td>
+      <td>E01033311</td>
+      <td>NHS Hertfordshire and West Essex ICB - 06K</td>
+      <td>E38000049</td>
+      <td>SICBL</td>
+      <td>HE1</td>
+      <td>NHS Hertfordshire and West Essex Integrated Ca...</td>
+      <td>E54000025</td>
+      <td>East of England (South)</td>
+      <td>NaN</td>
+      <td>NHS Hertfordshire and West Essex Integrated Ca...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Welwyn Hatfield 012A</td>
+      <td>4.000000</td>
+      <td>SG14AB</td>
+      <td>19.8</td>
+      <td>NW12BU</td>
+      <td>36.9</td>
+      <td>CB20QQ</td>
+      <td>39.1</td>
+      <td>58.9</td>
+      <td>6.8</td>
+      <td>...</td>
+      <td>E01023920</td>
+      <td>NHS Hertfordshire and West Essex ICB - 06K</td>
+      <td>E38000049</td>
+      <td>SICBL</td>
+      <td>HE1</td>
+      <td>NHS Hertfordshire and West Essex Integrated Ca...</td>
+      <td>E54000025</td>
+      <td>East of England (South)</td>
+      <td>NaN</td>
+      <td>NHS Hertfordshire and West Essex Integrated Ca...</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 128 columns</p>
+</div></div></div>
+</div>
+<p>Check the contents of this dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df_lsoa</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LSOA
+admissions
+closest_ivt_unit
+closest_ivt_unit_time
+closest_mt_unit
+closest_mt_unit_time
+closest_mt_transfer
+closest_mt_transfer_time
+total_mt_time
+ivt_rate
+imd_2019_score
+la_district_name_2019
+income_domain_score
+income_domain_rank
+idaci_score
+idaci_rank
+idaopi_score
+idaopi_rank
+ethnic_group_all_categories_ethnic_group
+ethnic_group_white_total
+ethnic_group_white_english_welsh_scottish_northern_irish_british
+ethnic_group_white_irish
+ethnic_group_white_gypsy_or_irish_traveller
+ethnic_group_white_other_white
+ethnic_group_mixed_multiple_ethnic_group_total
+ethnic_group_mixed_multiple_ethnic_group_white_and_black_caribbean
+ethnic_group_mixed_multiple_ethnic_group_white_and_black_african
+ethnic_group_mixed_multiple_ethnic_group_white_and_asian
+ethnic_group_mixed_multiple_ethnic_group_other_mixed
+ethnic_group_asian_asian_british_total
+ethnic_group_asian_asian_british_indian
+ethnic_group_asian_asian_british_pakistani
+ethnic_group_asian_asian_british_bangladeshi
+ethnic_group_asian_asian_british_chinese
+ethnic_group_asian_asian_british_other_asian
+ethnic_group_black_african_caribbean_black_british_total
+ethnic_group_black_african_caribbean_black_british_african
+ethnic_group_black_african_caribbean_black_british_caribbean
+ethnic_group_black_african_caribbean_black_british_other_black
+ethnic_group_other_ethnic_group_total
+ethnic_group_other_ethnic_group_arab
+ethnic_group_other_ethnic_group_any_other_ethnic_group
+all_categories_general_health
+very_good_or_good_health
+fair_health
+bad_or_very_bad_health
+all_categories_long_term_health_problem_or_disability
+day_to_day_activities_limited_a_lot
+day_to_day_activities_limited_a_little
+day_to_day_activities_not_limited
+rural_urban_2011
+population_all
+age_band_all_0
+age_band_all_5
+age_band_all_10
+age_band_all_15
+age_band_all_20
+age_band_all_25
+age_band_all_30
+age_band_all_35
+age_band_all_40
+age_band_all_45
+age_band_all_50
+age_band_all_55
+age_band_all_60
+age_band_all_65
+age_band_all_70
+age_band_all_75
+age_band_all_80
+age_band_all_85
+age_band_all_90
+population_females
+age_band_females_0
+age_band_females_5
+age_band_females_10
+age_band_females_15
+age_band_females_20
+age_band_females_25
+age_band_females_30
+age_band_females_35
+age_band_females_40
+age_band_females_45
+age_band_females_50
+age_band_females_55
+age_band_females_60
+age_band_females_65
+age_band_females_70
+age_band_females_75
+age_band_females_80
+age_band_females_85
+age_band_females_90
+population_males
+age_band_males_0
+age_band_males_5
+age_band_males_10
+age_band_males_15
+age_band_males_20
+age_band_males_25
+age_band_males_30
+age_band_males_35
+age_band_males_40
+age_band_males_45
+age_band_males_50
+age_band_males_55
+age_band_males_60
+age_band_males_65
+age_band_males_70
+age_band_males_75
+age_band_males_80
+age_band_males_85
+age_band_males_90
+ambulance_service
+local_authority_district_22
+LAD22NM
+country
+LSOA11NM
+LSOA11CD
+msoa11cd
+lsoa_code
+region
+region_code
+region_type
+short_code
+icb
+icb_code
+isdn
+lhb
+icb_lhb
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Hospital data</strong> - load data on each hospital, with aim of getting locations of hospitals that provide IVT.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in data on each hospital</span>
+<span class="n">gdf_units</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">hospitals</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">stroke_hospitals</span><span class="p">))</span>
+
+<span class="c1"># Combine get geometry from Easting and Northing columns</span>
+<span class="n">gdf_units</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span>
+        <span class="n">gdf_units</span><span class="o">.</span><span class="n">Easting</span><span class="p">,</span> <span class="n">gdf_units</span><span class="o">.</span><span class="n">Northing</span><span class="p">)</span>
+<span class="n">gdf_units</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">27700</span><span class="p">)</span>
+
+<span class="c1"># Restrict to the units delivering thrombolysis</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="p">[</span><span class="s1">&#39;Use_IVT&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span>
+<span class="n">gdf_units</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+
+<span class="c1"># Convert crs to epsg 3857</span>
+<span class="n">gdf_units</span> <span class="o">=</span> <span class="n">gdf_units</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span>
+
+<span class="c1"># Preview dataframe</span>
+<span class="n">gdf_units</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Postcode</th>
+      <th>Hospital_name</th>
+      <th>Use_IVT</th>
+      <th>Use_MT</th>
+      <th>Use_MSU</th>
+      <th>Country</th>
+      <th>Strategic Clinical Network</th>
+      <th>Health Board / Trust</th>
+      <th>Stroke Team</th>
+      <th>SSNAP name</th>
+      <th>...</th>
+      <th>ivt_rate</th>
+      <th>Easting</th>
+      <th>Northing</th>
+      <th>long</th>
+      <th>lat</th>
+      <th>Neuroscience</th>
+      <th>30 England Thrombectomy Example</th>
+      <th>hospital_city</th>
+      <th>Notes</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>RM70AG</td>
+      <td>RM70AG</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>England</td>
+      <td>London SCN</td>
+      <td>Barking</td>
+      <td>Havering and Redbridge University Hospitals N...</td>
+      <td>Queens Hospital Romford HASU</td>
+      <td>...</td>
+      <td>11.9</td>
+      <td>551118</td>
+      <td>187780</td>
+      <td>0.179030640661934</td>
+      <td>51.5686465521504</td>
+      <td>1</td>
+      <td>0</td>
+      <td>Romford</td>
+      <td></td>
+      <td>POINT (19932.617 6722504.230)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>E11BB</td>
+      <td>E11BB</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>England</td>
+      <td>London SCN</td>
+      <td>Barts Health NHS Trust</td>
+      <td>The Royal London Hospital</td>
+      <td>Royal London Hospital HASU</td>
+      <td>...</td>
+      <td>13.4</td>
+      <td>534829</td>
+      <td>181798</td>
+      <td>-0.0581329916047372</td>
+      <td>51.5190178361295</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Royal London</td>
+      <td></td>
+      <td>POINT (-6468.377 6713620.832)</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 22 columns</p>
+</div></div></div>
+</div>
+<p><strong>Area data</strong> - Import geojson of all LSOA to calculate area of each region.</p>
+<p>(use the proper Office for National Statistics file, not the simplified one):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_lsoa</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">paths</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">shapefiles</span><span class="p">,</span> <span class="n">paths</span><span class="o">.</span><span class="n">lsoa_shp</span><span class="p">),</span>
+    <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:27700&#39;</span><span class="p">)</span>
+
+<span class="c1"># Change the projection to a Cartesian system (EPSG:3857) and get area in</span>
+<span class="c1"># square kilometers (through /10**6)</span>
+<span class="n">gdf_lsoa</span><span class="p">[</span><span class="s1">&#39;polygon_area_km2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s1">&#39;EPSG:3857&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">area</span> <span class="o">/</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># Merge with region information:</span>
+<span class="n">df_lsoa_regions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/lsoa_2021/lsoa_regions.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">gdf_lsoa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">gdf_lsoa</span><span class="p">,</span> <span class="n">df_lsoa_regions</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;LSOA11NM&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">),</span>
+                    <span class="n">on</span><span class="o">=</span><span class="s1">&#39;LSOA11CD&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+<span class="c1"># Rename LSOA column to match df_lsoa:</span>
+<span class="n">gdf_lsoa</span> <span class="o">=</span> <span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;LSOA11NM&#39;</span><span class="p">:</span> <span class="s1">&#39;LSOA&#39;</span><span class="p">})</span>
+
+<span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LSOA11CD</th>
+      <th>LSOA</th>
+      <th>LSOA11NMW</th>
+      <th>geometry</th>
+      <th>polygon_area_km2</th>
+      <th>closest_ivt_unit</th>
+      <th>closest_mt_unit</th>
+      <th>closest_mt_transfer</th>
+      <th>la_district_name_2019</th>
+      <th>rural_urban_2011</th>
+      <th>...</th>
+      <th>lsoa_code</th>
+      <th>region</th>
+      <th>region_code</th>
+      <th>region_type</th>
+      <th>short_code</th>
+      <th>icb</th>
+      <th>icb_code</th>
+      <th>isdn</th>
+      <th>lhb</th>
+      <th>icb_lhb</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>E01000001</td>
+      <td>City of London 001A</td>
+      <td>City of London 001A</td>
+      <td>POLYGON ((532105.092 182011.230, 532162.491 18...</td>
+      <td>0.343907</td>
+      <td>E11BB</td>
+      <td>E11BB</td>
+      <td>E11BB</td>
+      <td>City of London</td>
+      <td>Urban major conurbation</td>
+      <td>...</td>
+      <td>E01000001</td>
+      <td>NHS North East London ICB - A3A8R</td>
+      <td>E38000255</td>
+      <td>SICBL</td>
+      <td>NEL</td>
+      <td>NHS North East London Integrated Care Board</td>
+      <td>E54000029</td>
+      <td>London</td>
+      <td>NaN</td>
+      <td>NHS North East London Integrated Care Board</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>E01000002</td>
+      <td>City of London 001B</td>
+      <td>City of London 001B</td>
+      <td>POLYGON ((532746.813 181786.891, 532671.688 18...</td>
+      <td>0.583474</td>
+      <td>E11BB</td>
+      <td>E11BB</td>
+      <td>E11BB</td>
+      <td>City of London</td>
+      <td>Urban major conurbation</td>
+      <td>...</td>
+      <td>E01000002</td>
+      <td>NHS North East London ICB - A3A8R</td>
+      <td>E38000255</td>
+      <td>SICBL</td>
+      <td>NEL</td>
+      <td>NHS North East London Integrated Care Board</td>
+      <td>E54000029</td>
+      <td>London</td>
+      <td>NaN</td>
+      <td>NHS North East London Integrated Care Board</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>E01000003</td>
+      <td>City of London 001C</td>
+      <td>City of London 001C</td>
+      <td>POLYGON ((532135.145 182198.119, 532158.250 18...</td>
+      <td>0.147840</td>
+      <td>E11BB</td>
+      <td>E11BB</td>
+      <td>E11BB</td>
+      <td>City of London</td>
+      <td>Urban major conurbation</td>
+      <td>...</td>
+      <td>E01000003</td>
+      <td>NHS North East London ICB - A3A8R</td>
+      <td>E38000255</td>
+      <td>SICBL</td>
+      <td>NEL</td>
+      <td>NHS North East London Integrated Care Board</td>
+      <td>E54000029</td>
+      <td>London</td>
+      <td>NaN</td>
+      <td>NHS North East London Integrated Care Board</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>E01000005</td>
+      <td>City of London 001E</td>
+      <td>City of London 001E</td>
+      <td>POLYGON ((533807.946 180767.770, 533649.063 18...</td>
+      <td>0.491918</td>
+      <td>E11BB</td>
+      <td>E11BB</td>
+      <td>E11BB</td>
+      <td>City of London</td>
+      <td>Urban major conurbation</td>
+      <td>...</td>
+      <td>E01000005</td>
+      <td>NHS North East London ICB - A3A8R</td>
+      <td>E38000255</td>
+      <td>SICBL</td>
+      <td>NEL</td>
+      <td>NHS North East London Integrated Care Board</td>
+      <td>E54000029</td>
+      <td>London</td>
+      <td>NaN</td>
+      <td>NHS North East London Integrated Care Board</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>E01000006</td>
+      <td>Barking and Dagenham 016A</td>
+      <td>Barking and Dagenham 016A</td>
+      <td>POLYGON ((545122.049 184314.931, 545271.917 18...</td>
+      <td>0.372257</td>
+      <td>RM70AG</td>
+      <td>RM70AG</td>
+      <td>RM70AG</td>
+      <td>Barking and Dagenham</td>
+      <td>Urban major conurbation</td>
+      <td>...</td>
+      <td>E01000006</td>
+      <td>NHS North East London ICB - A3A8R</td>
+      <td>E38000255</td>
+      <td>SICBL</td>
+      <td>NEL</td>
+      <td>NHS North East London Integrated Care Board</td>
+      <td>E54000029</td>
+      <td>London</td>
+      <td>NaN</td>
+      <td>NHS North East London Integrated Care Board</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 25 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="define-functions-for-calculating-weighted-mean-and-proportions">
+<h3>1.3 Define functions for calculating weighted mean and proportions<a class="headerlink" href="#define-functions-for-calculating-weighted-mean-and-proportions" title="Permalink to this heading">#</a></h3>
+<p>Group data by specified geography (e.g. closest IVT unit) and calculate the weighted average of specified columns - <a class="reference external" href="https://stackoverflow.com/questions/31521027/groupby-weighted-average-and-sum-in-pandas-dataframe">see stackoverflow tutorial here</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">weighted_av</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">group_by</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">new_col</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;population_all&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Groupby specified column and then find weighted average of another column</span>
+<span class="sd">    Returns normal mean and weighted mean</span>
+<span class="sd">    Inputs:</span>
+<span class="sd">    - df - dataframe, contains data and columns to do calculation</span>
+<span class="sd">    - group_by - string, column to group by</span>
+<span class="sd">    - col - string, column to find average of</span>
+<span class="sd">    - new_col - string, name of column which will contain weighted mean</span>
+<span class="sd">    - weight - string, name of column to weight by, default &#39;population_all&#39;</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span>
+           <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">group_by</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">col</span><span class="p">]),</span>
+                                       <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="n">weight</span><span class="p">])],</span>
+                                      <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">new_col</span><span class="p">])))</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Group data by specific geography (e.g. ambulance trust) and calculate proportion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_proportion</span><span class="p">(</span><span class="n">subgroup_col</span><span class="p">,</span> <span class="n">overall_col</span><span class="p">,</span> <span class="n">proportion_col</span><span class="p">,</span> <span class="n">group_col</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Groupby a particular geography, and find a proportion from two provided</span>
+<span class="sd">    columns</span>
+<span class="sd">    Inputs:</span>
+<span class="sd">    subgroup_col - string, numerator, has population counts for a subgroup</span>
+<span class="sd">    overall_col - string, denominator, has population count overall</span>
+<span class="sd">    proportion_col - string, name for the column produced</span>
+<span class="sd">    group_col - string, column to groupby when calculate proportions</span>
+<span class="sd">    df - dataframe, with columns used above</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># Sum the columns for each group</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">group_col</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+        <span class="n">subgroup_col</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span>
+        <span class="n">overall_col</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span>
+    <span class="p">})</span>
+
+    <span class="c1"># Find the proportions for each group</span>
+    <span class="n">res</span><span class="p">[</span><span class="n">proportion_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="n">subgroup_col</span><span class="p">]</span> <span class="o">/</span> <span class="n">res</span><span class="p">[</span><span class="n">overall_col</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Find counts of people in each category, then calculate proportion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_count_and_proportion</span><span class="p">(</span><span class="n">df_lsoa</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">prop</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Finds count of people in each category for each area (based on LSOA info</span>
+<span class="sd">    and counts), and then calculates proportion in particular category.</span>
+<span class="sd">    Requires col to contain &#39;True&#39; &#39;False&#39; where &#39;True&#39; is the proportion you</span>
+<span class="sd">    want to find (so calculates &#39;True&#39; / &#39;True&#39;+&#39;False&#39;)</span>
+<span class="sd">    Inputs:</span>
+<span class="sd">    - df_lsoa - dataframe with information on each LSOA</span>
+<span class="sd">    - area - string, column to group areas by</span>
+<span class="sd">    - col - string, column with data of interest</span>
+<span class="sd">    - count - string, column with population count</span>
+<span class="sd">    - prop - string, name of new column with proportion</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># Find count for each area of people in each category</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_lsoa</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">area</span><span class="p">,</span> <span class="n">col</span><span class="p">])[</span><span class="n">count</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+    <span class="c1"># Reformat dataframe</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span>
+        <span class="n">index</span><span class="o">=</span><span class="n">area</span><span class="p">,</span>
+        <span class="n">columns</span><span class="o">=</span><span class="n">col</span><span class="p">,</span>
+        <span class="n">values</span><span class="o">=</span><span class="s1">&#39;n&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename_axis</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Set NaN to 0</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Find proportion</span>
+    <span class="n">counts</span><span class="p">[</span><span class="n">prop</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;True&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="s1">&#39;True&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;False&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Set index to the area unit</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
+
+    <span class="c1"># Rename &#39;True&#39; and &#39;False&#39; columns to make their meanings clearer</span>
+    <span class="c1"># when the data is merged into another dataframe:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prop</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;True&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">_True&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">_False&#39;</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="calculate-new-lsoa-level-data">
+<h2>2. Calculate new LSOA-level data<a class="headerlink" href="#calculate-new-lsoa-level-data" title="Permalink to this heading">#</a></h2>
+<p>Must create the following columns in df_lsoa:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">age_65_plus_count</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ethnic_group_other_than_white_british</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">long_term_health_count</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rural</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ivt_within_30</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">closest_hospital_is_mt</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add count of &quot;other than white British&quot;</span>
+<span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;ethnic_group_other_than_white_british&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;ethnic_group_all_categories_ethnic_group&#39;</span><span class="p">]</span> <span class="o">-</span>
+    <span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;ethnic_group_white_english_welsh_scottish_northern_irish_british&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Add column with count of long-term health problem (limited a little or alot)</span>
+<span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;long_term_health_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;all_categories_long_term_health_problem_or_disability&#39;</span><span class="p">]</span> <span class="o">-</span>
+    <span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;day_to_day_activities_not_limited&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Extract if is rural or if is urban (each classification starts with that)</span>
+<span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;ruc_overall&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;rural_urban_2011&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="c1"># Add column where True if rural</span>
+<span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;rural&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;ruc_overall&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Rural&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">({</span>
+    <span class="kc">True</span><span class="p">:</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">})</span>
+
+<span class="c1"># Find count of people age 65 plus</span>
+<span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;age_65_plus_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_lsoa</span><span class="p">[[</span>
+    <span class="s1">&#39;age_band_all_65&#39;</span><span class="p">,</span> <span class="s1">&#39;age_band_all_70&#39;</span><span class="p">,</span> <span class="s1">&#39;age_band_all_75&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;age_band_all_80&#39;</span><span class="p">,</span> <span class="s1">&#39;age_band_all_85&#39;</span><span class="p">,</span> <span class="s1">&#39;age_band_all_90&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Create column indicating if IVT unit is within 30 minutes</span>
+<span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;ivt_within_30&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;closest_ivt_unit_time&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+    <span class="p">{</span><span class="kc">True</span><span class="p">:</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">})</span>
+
+<span class="c1"># Add column with whether closest hospital offers thrombectomy</span>
+<span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;closest_hospital_is_mt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_lsoa</span><span class="p">[</span><span class="s1">&#39;closest_mt_transfer_time&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="kc">True</span><span class="p">:</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span>
+                                                   <span class="kc">False</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="big-function-for-region-level-data-creation">
+<h2>3. Big function for region-level data creation<a class="headerlink" href="#big-function-for-region-level-data-creation" title="Permalink to this heading">#</a></h2>
+<p>Create one big function that does all of the calculations needed for averaging data across any given region.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">big_data_creation</span><span class="p">(</span><span class="n">df_lsoa</span><span class="p">,</span> <span class="n">gdf_lsoa</span><span class="p">,</span> <span class="n">group_by</span><span class="p">):</span>
+    <span class="n">df_lsoa</span> <span class="o">=</span> <span class="n">df_lsoa</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># just in case</span>
+    <span class="n">gdf_lsoa</span> <span class="o">=</span> <span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># just in case</span>
+    <span class="c1"># Find all of the possible options for this region type:</span>
+    <span class="n">index_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df_lsoa</span><span class="p">[</span><span class="n">group_by</span><span class="p">]))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">index_values</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">index_values</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    
+    <span class="c1"># Empty dataframe to place the results into:</span>
+    <span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index_values</span><span class="p">)</span>
+
+    <span class="c1"># Find population of each region:</span>
+    <span class="n">pop</span> <span class="o">=</span> <span class="n">df_lsoa</span><span class="p">[[</span><span class="n">group_by</span><span class="p">,</span> <span class="s1">&#39;population_all&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">group_by</span><span class="p">)[</span><span class="s1">&#39;population_all&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="c1"># Find area of each region:</span>
+    <span class="n">gdf_lsoa</span> <span class="o">=</span> <span class="n">gdf_lsoa</span><span class="p">[[</span><span class="n">group_by</span><span class="p">,</span> <span class="s1">&#39;polygon_area_km2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">group_by</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">gdf_lsoa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">gdf_lsoa</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># Divide population by area to get population density</span>
+    <span class="n">gdf_lsoa</span><span class="p">[</span><span class="s1">&#39;population_density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">gdf_lsoa</span><span class="p">[</span><span class="s1">&#39;population_all&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">gdf_lsoa</span><span class="p">[</span><span class="s1">&#39;polygon_area_km2&#39;</span><span class="p">])</span>
+    
+    <span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_results</span><span class="p">,</span> <span class="n">gdf_lsoa</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;population_all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">),</span>
+                          <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># --- Weighted averages ---</span>
+    <span class="c1"># Pre-requisites:</span>
+    <span class="c1"># Must have already calculated the following columns in df_lsoa:</span>
+    <span class="c1"># &#39;age_65_plus_count&#39;</span>
+    
+    <span class="n">cols_for_weighted_av</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="c1"># Population-weighted mean income domain score:</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;income_domain_score&#39;</span><span class="p">,</span>
+             <span class="n">new_col</span><span class="o">=</span><span class="s1">&#39;income_domain_weighted_mean&#39;</span><span class="p">),</span>
+        <span class="c1"># Population-weighted mean IMD score:</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;imd_2019_score&#39;</span><span class="p">,</span> <span class="n">new_col</span><span class="o">=</span><span class="s1">&#39;imd_weighted_mean&#39;</span><span class="p">),</span>
+        <span class="c1"># Average travel time to IVT unit weighted by number of</span>
+        <span class="c1"># over 65 year olds in catchment:</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;closest_ivt_unit_time&#39;</span><span class="p">,</span> <span class="n">new_col</span><span class="o">=</span><span class="s1">&#39;weighted_ivt_time&#39;</span><span class="p">,</span>
+             <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;age_65_plus_count&#39;</span><span class="p">),</span>
+        <span class="c1"># Population-weighted mean time to MT unit:</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;total_mt_time&#39;</span><span class="p">,</span> <span class="n">new_col</span><span class="o">=</span><span class="s1">&#39;mt_time_weighted_mean&#39;</span><span class="p">),</span>
+        <span class="c1"># Population-weighted mean time to IVT unit:</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;closest_ivt_unit_time&#39;</span><span class="p">,</span>
+             <span class="n">new_col</span><span class="o">=</span><span class="s1">&#39;ivt_time_weighted_mean&#39;</span><span class="p">),</span>
+        <span class="c1"># Population-weighted mean transfer time between IVT and MT unit:</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;closest_mt_transfer_time&#39;</span><span class="p">,</span>
+             <span class="n">new_col</span><span class="o">=</span><span class="s1">&#39;mt_transfer_time_weighted_mean&#39;</span><span class="p">),</span>   
+    <span class="p">]</span>
+    
+    <span class="k">for</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">cols_for_weighted_av</span><span class="p">:</span>
+        <span class="c1"># Calculate results.</span>
+        <span class="c1"># &#39;weighted_av()&#39; function returns a df with index named group_by and</span>
+        <span class="c1"># columns named &#39;mean&#39; and new_col.</span>
+        <span class="n">df_w</span> <span class="o">=</span> <span class="n">weighted_av</span><span class="p">(</span>
+            <span class="n">df_lsoa</span><span class="p">,</span>
+            <span class="n">group_by</span><span class="o">=</span><span class="n">group_by</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="c1"># Store in big results df.</span>
+        <span class="c1"># Discard &#39;mean&#39;, keep new_col.</span>
+        <span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_results</span><span class="p">,</span> <span class="n">df_w</span><span class="p">[</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;new_col&#39;</span><span class="p">]],</span>
+                              <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># --- Find proportions ---</span>
+    <span class="c1"># Pre-requisites:</span>
+    <span class="c1"># Must have already calculated the following columns in df_lsoa:</span>
+    <span class="c1"># &#39;ethnic_group_other_than_white_british&#39;</span>
+    <span class="c1"># &#39;long_term_health_count&#39;</span>
+    <span class="c1"># &#39;age_65_plus_count&#39;</span>
+    <span class="n">cols_for_proportion</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="c1"># Bad or very bad general health</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">subgroup_col</span><span class="o">=</span><span class="s1">&#39;ethnic_group_other_than_white_british&#39;</span><span class="p">,</span>
+             <span class="n">overall_col</span><span class="o">=</span><span class="s1">&#39;ethnic_group_all_categories_ethnic_group&#39;</span><span class="p">,</span>
+             <span class="n">proportion_col</span><span class="o">=</span><span class="s1">&#39;ethnic_minority_proportion&#39;</span><span class="p">,</span>
+             <span class="n">df</span><span class="o">=</span><span class="n">df_lsoa</span><span class="p">),</span>
+        <span class="c1"># General health - proportion with bad/very bad health</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">subgroup_col</span><span class="o">=</span><span class="s1">&#39;bad_or_very_bad_health&#39;</span><span class="p">,</span>
+             <span class="n">overall_col</span><span class="o">=</span><span class="s1">&#39;all_categories_general_health&#39;</span><span class="p">,</span>
+             <span class="n">proportion_col</span><span class="o">=</span><span class="s1">&#39;bad_health_proportion&#39;</span><span class="p">,</span>
+             <span class="n">df</span><span class="o">=</span><span class="n">df_lsoa</span><span class="p">),</span>
+        <span class="c1"># Long-term health problem or disability</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">subgroup_col</span><span class="o">=</span><span class="s1">&#39;long_term_health_count&#39;</span><span class="p">,</span>
+             <span class="n">overall_col</span><span class="o">=</span><span class="s1">&#39;all_categories_long_term_health_problem_or_disability&#39;</span><span class="p">,</span>
+             <span class="n">proportion_col</span><span class="o">=</span><span class="s1">&#39;long_term_health_proportion&#39;</span><span class="p">,</span>
+             <span class="n">df</span><span class="o">=</span><span class="n">df_lsoa</span><span class="p">),</span>
+        <span class="c1"># Age - proportion aged 65+</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">subgroup_col</span><span class="o">=</span><span class="s1">&#39;age_65_plus_count&#39;</span><span class="p">,</span>
+             <span class="n">overall_col</span><span class="o">=</span><span class="s1">&#39;population_all&#39;</span><span class="p">,</span>
+             <span class="n">proportion_col</span><span class="o">=</span><span class="s1">&#39;age_65_plus_proportion&#39;</span><span class="p">,</span>
+             <span class="n">df</span><span class="o">=</span><span class="n">df_lsoa</span><span class="p">),</span>
+    <span class="p">]</span>
+    <span class="c1"># &#39;find_proportion()&#39; function.</span>
+    <span class="c1"># Notebook 3 stored the proportion_col column, discarded the rest.</span>
+    <span class="c1"># Here, keep all resulting columns. First is number of True,</span>
+    <span class="c1"># second is total number (True + False), third is proportion.</span>
+    <span class="k">for</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">cols_for_proportion</span><span class="p">:</span>
+        <span class="c1"># Calculate results.</span>
+        <span class="n">df_p</span> <span class="o">=</span> <span class="n">find_proportion</span><span class="p">(</span><span class="n">group_col</span><span class="o">=</span><span class="n">group_by</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        
+        <span class="c1"># Store in big results df.</span>
+        <span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_results</span><span class="p">,</span> <span class="n">df_p</span><span class="p">,</span>
+                              <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># --- Find count and proportions ---</span>
+    <span class="c1"># Pre-requisites:</span>
+    <span class="c1"># Must have already calculated the following columns in df_lsoa:</span>
+    <span class="c1"># &#39;rural&#39;</span>
+    <span class="c1"># &#39;ivt_within_30&#39;</span>
+    <span class="c1"># &#39;closest_hospital_is_mt&#39;</span>
+    <span class="n">cols_for_count_and_proportion</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="c1"># Rural/urban - proportion of people living in rural areas</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;rural&#39;</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="s1">&#39;population_all&#39;</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="s1">&#39;proportion_rural&#39;</span><span class="p">),</span>
+        <span class="c1"># Proportion of 65+ year olds living within 30 minutes of their closest IVT unit</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;ivt_within_30&#39;</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="s1">&#39;age_65_plus_count&#39;</span><span class="p">,</span>
+             <span class="n">prop</span><span class="o">=</span><span class="s1">&#39;proportion_over_65_within_30&#39;</span><span class="p">),</span>
+        <span class="c1"># Proportion of patients whose nearest hospital is an MT unit</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;closest_hospital_is_mt&#39;</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="s1">&#39;population_all&#39;</span><span class="p">,</span>
+             <span class="n">prop</span><span class="o">=</span><span class="s1">&#39;proportion_closest_is_mt&#39;</span><span class="p">),</span>
+    <span class="p">]</span>
+    <span class="c1"># &#39;find_count_and_proportion()&#39; function.</span>
+    <span class="k">for</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">cols_for_count_and_proportion</span><span class="p">:</span>
+        <span class="c1"># Calculate results.</span>
+        <span class="n">df_c</span> <span class="o">=</span> <span class="n">find_count_and_proportion</span><span class="p">(</span><span class="n">df_lsoa</span><span class="o">=</span><span class="n">df_lsoa</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="n">group_by</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        
+        <span class="c1"># Store in big results df.</span>
+        <span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_results</span><span class="p">,</span> <span class="n">df_c</span><span class="p">,</span>
+                              <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df_results</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run the big data collection function for each different region type:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region_types</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;LSOA&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;closest_ivt_unit&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;closest_mt_unit&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;closest_mt_transfer&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ambulance_service&#39;</span><span class="p">,</span>
+    <span class="c1"># &#39;LAD22NM&#39;,</span>
+    <span class="s1">&#39;icb_code&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;isdn&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lhb&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;icb_lhb&#39;</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">region_type</span> <span class="ow">in</span> <span class="n">region_types</span><span class="p">:</span>
+    <span class="n">df_results</span> <span class="o">=</span> <span class="n">big_data_creation</span><span class="p">(</span><span class="n">df_lsoa</span><span class="p">,</span> <span class="n">gdf_lsoa</span><span class="p">,</span> <span class="n">region_type</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">region_type</span> <span class="o">==</span> <span class="s1">&#39;closest_ivt_unit&#39;</span><span class="p">:</span>
+        <span class="c1"># Do bonus calculations.</span>
+        <span class="c1"># Extract rate for each unit, with unit as index</span>
+        <span class="n">ivt_rate</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_lsoa</span><span class="p">[[</span><span class="s1">&#39;closest_ivt_unit&#39;</span><span class="p">,</span> <span class="s1">&#39;ivt_rate&#39;</span><span class="p">]]</span>
+                    <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+                    <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;closest_ivt_unit&#39;</span><span class="p">)[</span><span class="s1">&#39;ivt_rate&#39;</span><span class="p">])</span>
+        <span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_results</span><span class="p">,</span> <span class="n">ivt_rate</span><span class="p">,</span>
+                              <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Get admissions to each unit from 2021/22</span>
+        <span class="n">admissions_2122</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">gdf_units</span><span class="p">[[</span><span class="s1">&#39;Postcode&#39;</span><span class="p">,</span> <span class="s1">&#39;Admissions 21/22&#39;</span><span class="p">]]</span>
+               <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Postcode&#39;</span><span class="p">)</span>
+               <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Admissions 21/22&#39;</span><span class="p">:</span> <span class="s1">&#39;admissions_2122&#39;</span><span class="p">})</span>
+               <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_results</span><span class="p">,</span> <span class="n">admissions_2122</span><span class="p">,</span>
+                              <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Don&#39;t do anything extra.</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># Make sure data is not overly-precise before saving:</span>
+    <span class="n">cols_to_round</span> <span class="o">=</span> <span class="n">df_results</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;float&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+    <span class="n">df_results</span><span class="p">[</span><span class="n">cols_to_round</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_results</span><span class="p">[</span><span class="n">cols_to_round</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="c1"># Set index name explicitly to make sure something gets saved:</span>
+    <span class="n">df_results</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">region_type</span>
+    
+    <span class="c1"># Save to file:</span>
+    <span class="n">df_results</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/collated_data_by_region/collated_data_regional_</span><span class="si">{</span><span class="n">region_type</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_create_maps.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Create maps</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up">1 Set up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries-and-define-file-paths">1.1 Import libraries and define file paths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">1.2 Load data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-functions-for-calculating-weighted-mean-and-proportions">1.3 Define functions for calculating weighted mean and proportions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-new-lsoa-level-data">2. Calculate new LSOA-level data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#big-function-for-region-level-data-creation">3. Big function for region-level data creation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By SAMueL-2 team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
