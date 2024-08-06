@@ -6,3 +6,5 @@ data/Lower_Layer_Super_Output_Areas_December_2011_Full_Clipped__Boundaries_in_En
 data/demographic/2011_Census_Data.xls
 data/test.txt
 
+# Ignore gitub pages:
+_build/*
